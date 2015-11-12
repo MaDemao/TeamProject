@@ -1,0 +1,19 @@
+//
+//  BJ_PrefixHeader.pch
+//  DreamBeginProject
+//
+//  Created by lanou3g on 15/11/11.
+//  Copyright © 2015年 MaDemao. All rights reserved.
+//
+
+#import "BJ_URLs.h"
+#import "BJ_allTableViewController.h"
+#import "BJ_tabBarViewController.h"
+
+#ifndef BJ_PrefixHeader_pch
+#define BJ_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* BJ_PrefixHeader_pch */
