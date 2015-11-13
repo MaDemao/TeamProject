@@ -27,17 +27,17 @@
     oneController.title = @"推荐";
     BJ_projectTableViewController *twoController = [[BJ_projectTableViewController alloc]init];
     twoController.title = @"专题";
-    BJ_allTableViewController *threeController = [[BJ_allTableViewController alloc]init];
+    BJ_allTableViewController *threeController = [[BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithTure];
     threeController.title = @"真相";
-     BJ_allTableViewController *fourController = [[ BJ_allTableViewController alloc]init];
+     BJ_allTableViewController *fourController = [[ BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithRead];
     fourController.title = @"一图读懂";
-     BJ_allTableViewController *fiveController = [[BJ_allTableViewController alloc]init];
+     BJ_allTableViewController *fiveController = [[BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithTumor];
     fiveController.title = @"肿瘤";
-    BJ_allTableViewController *sixController = [[BJ_allTableViewController alloc]init];
+    BJ_allTableViewController *sixController = [[BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithSlowDisease];
     sixController.title = @"慢病";
-    BJ_allTableViewController *sevenController = [[BJ_allTableViewController alloc]init];
+    BJ_allTableViewController *sevenController = [[BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithNutrition];
     sevenController.title = @"营养";
-    BJ_allTableViewController *eightController = [[BJ_allTableViewController alloc]init];
+    BJ_allTableViewController *eightController = [[BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithMaternalAndInfant];
     eightController.title = @"母婴";
  
     SCNavTabBarController *navTab = [[SCNavTabBarController alloc]init];

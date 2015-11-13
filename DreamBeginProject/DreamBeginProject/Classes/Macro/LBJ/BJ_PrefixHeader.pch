@@ -9,6 +9,18 @@
 #import "BJ_URLs.h"
 #import "BJ_allTableViewController.h"
 #import "BJ_tabBarViewController.h"
+#import "SDRefresh.h"
+#import "BJ_Homepage.h"
+#import "BJ_DataManager.h"
+#import "BJ_detailsPageViewController.h"
+#import "BJ_FirstTableViewController.h"
+#import "BJ_HaveProjectTableViewController.h"
+#import "BJ_HomeTableViewCell.h"
+#import "BJ_Project.h"
+#import "BJ_projectTableViewCell.h"
+#import "BJ_projectTableViewController.h"
+#import "BJ_SecondProjectTableViewCell.h"
+#import "Networking.h"
 
 #ifndef BJ_PrefixHeader_pch
 #define BJ_PrefixHeader_pch

@@ -11,12 +11,17 @@
 @implementation BJ_Homepage
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{
     if ([key isEqualToString:@"id"]) {
-        self.ID = (NSInteger)value;
+        
+        self.ID = [value intValue];
+//        self.ID =(int)value;;
+        
+        
+//        NSLog(@"bbbbbb%ld",_special_id);
     }
     
 }
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%ld", _ID];
+    return [NSString stringWithFormat:@"%@,%ld", _title,_ID];
 }
 @end
