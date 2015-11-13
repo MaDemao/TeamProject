@@ -43,9 +43,6 @@ static NSString *const cellID = @"DiseaseType";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"4.png"] style:(UIBarButtonItemStylePlain) target:self action:@selector(showMenu)];
     self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
     
@@ -55,7 +52,7 @@ static NSString *const cellID = @"DiseaseType";
     
     self.dataArray = [LANHelper shareHelper].allDataArray;
     self.dataArray2 = ((LANCommonDiseaseListModel *)[self.dataArray objectAtIndex:0]).twoTypeArray;
-    //
+    //tableView分割线颜色
     [self.tableView setSeparatorColor:[UIColor blackColor]];
         
     [self.tableView reloadData];
@@ -64,6 +61,8 @@ static NSString *const cellID = @"DiseaseType";
     
     
 }
+
+
 
 
 -(void)showMenu{
@@ -138,9 +137,11 @@ static NSString *const cellID = @"DiseaseType";
     LANDiseaseTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     
     LANDiseaseTypeModel *model =[self.dataArray2 objectAtIndex:indexPath.row];
-    //cell.selectionStyle
+    
+    
+    
     cell.LANTitleLabel.text = model.dataName;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     
 
     return cell;
@@ -155,17 +156,13 @@ static NSString *const cellID = @"DiseaseType";
     LANDiseaseInfoTableViewController *disInfoVC = [[LANDiseaseInfoTableViewController alloc]init];
     disInfoVC.diseaseTypeModel = model;
     
+    //push时隐藏tabbar
+    disInfoVC.hidesBottomBarWhenPushed = YES;
+    
     [self.navigationController pushViewController:disInfoVC animated:YES];
     
 }
 
-//-(NSMutableArray *)dataArray{
-//    
-//    if (_dataArray == nil) {
-//        self.dataArray = [NSMutableArray array];
-//    }
-//    return _dataArray;
-//}
 
 -(NSMutableArray *)dataArray2{
     

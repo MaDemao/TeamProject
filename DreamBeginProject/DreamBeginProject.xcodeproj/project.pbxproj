@@ -97,6 +97,8 @@
 		41F6C4521BF4CA5A0034EA9D /* SCNavTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F6C4431BF4CA5A0034EA9D /* SCNavTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 		41F6C4531BF4CA5A0034EA9D /* SCNavTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F6C4461BF4CA5A0034EA9D /* SCNavTabBar.m */; settings = {ASSET_TAGS = (); }; };
 		41F6C4541BF4CA5A0034EA9D /* SCPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F6C4481BF4CA5A0034EA9D /* SCPopView.m */; settings = {ASSET_TAGS = (); }; };
+		C26634141BF56CC300824DAA /* LANDrugVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C26634131BF56CC300824DAA /* LANDrugVC.m */; settings = {ASSET_TAGS = (); }; };
+		C26634171BF56CE300824DAA /* LANInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C26634161BF56CE300824DAA /* LANInfoVC.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -251,6 +253,10 @@
 		41F6C4471BF4CA5A0034EA9D /* SCPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPopView.h; sourceTree = "<group>"; };
 		41F6C4481BF4CA5A0034EA9D /* SCPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPopView.m; sourceTree = "<group>"; };
 		6D8BB7EBB2797D54B93D2E6A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C26634121BF56CC300824DAA /* LANDrugVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LANDrugVC.h; sourceTree = "<group>"; };
+		C26634131BF56CC300824DAA /* LANDrugVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANDrugVC.m; sourceTree = "<group>"; };
+		C26634151BF56CE300824DAA /* LANInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LANInfoVC.h; sourceTree = "<group>"; };
+		C26634161BF56CE300824DAA /* LANInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANInfoVC.m; sourceTree = "<group>"; };
 		E85A9060C0DEAAD7F6FD1CC4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FE66D799FDD4D42A9808F88E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -686,6 +692,10 @@
 				41C6A7371BF4CECD00A56DD7 /* LANDiseaseInfoTableViewController.m */,
 				41C6A7381BF4CECD00A56DD7 /* LANTableViewController.h */,
 				41C6A7391BF4CECD00A56DD7 /* LANTableViewController.m */,
+				C26634121BF56CC300824DAA /* LANDrugVC.h */,
+				C26634131BF56CC300824DAA /* LANDrugVC.m */,
+				C26634151BF56CE300824DAA /* LANInfoVC.h */,
+				C26634161BF56CE300824DAA /* LANInfoVC.m */,
 			);
 			path = LAN;
 			sourceTree = "<group>";
@@ -979,6 +989,7 @@
 				41C6A7071BF4CDC500A56DD7 /* BJ_projectTableViewController.m in Sources */,
 				412264F51BF2DAC600D71D81 /* YBImgPickerViewCell.m in Sources */,
 				41C6A72A1BF4CE5D00A56DD7 /* LANGrugModel.m in Sources */,
+				C26634141BF56CC300824DAA /* LANDrugVC.m in Sources */,
 				41C6A7141BF4CDC500A56DD7 /* MDMPostTVC.m in Sources */,
 				41B81E611BF4CF3500948027 /* REMenuItem.m in Sources */,
 				41C6A68E1BF4CC3100A56DD7 /* MDMPostCell.m in Sources */,
@@ -1002,6 +1013,7 @@
 				41B81E601BF4CF3500948027 /* REMenuContainerView.m in Sources */,
 				41C6A7291BF4CE5D00A56DD7 /* LANDiseaseTypeModel.m in Sources */,
 				41C6A68C1BF4CC3100A56DD7 /* MDMPicItem.m in Sources */,
+				C26634171BF56CE300824DAA /* LANInfoVC.m in Sources */,
 				41F6C44A1BF4CA5A0034EA9D /* IanScrollView.m in Sources */,
 				41F6C40C1BF4C8AC0034EA9D /* Networking.m in Sources */,
 				41C6A7081BF4CDC500A56DD7 /* BJ_tabBarViewController.m in Sources */,
