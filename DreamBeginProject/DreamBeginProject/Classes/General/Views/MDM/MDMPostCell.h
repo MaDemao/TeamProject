@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "MDMPost.h"
 @interface MDMPostCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIImageView *headPic;
+
+
 @property (nonatomic, strong) MDMPost *post;
 @end

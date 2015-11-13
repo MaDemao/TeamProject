@@ -10,7 +10,6 @@
 #import "MDMUserInfo.h"
 
 @interface MDMCommendCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *headPic;
 @property (weak, nonatomic) IBOutlet UILabel *nameText;
 @property (weak, nonatomic) IBOutlet UILabel *dateText;
 @property (weak, nonatomic) IBOutlet UILabel *desText;

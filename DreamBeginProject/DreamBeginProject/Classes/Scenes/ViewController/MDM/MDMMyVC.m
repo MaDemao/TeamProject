@@ -56,7 +56,7 @@ static NSString * const cell_id = @"cell_id";
 
 - (void)tapGRAction:(UITapGestureRecognizer *)sender
 {
-    UIImagePickerControllerSourceType sourceType=UIImagePickerControllerSourceTypeCamera;
+    UIImagePickerControllerSourceType sourceType=UIImagePickerControllerSourceTypeSavedPhotosAlbum;
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
     }

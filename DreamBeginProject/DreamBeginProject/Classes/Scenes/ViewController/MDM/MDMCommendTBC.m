@@ -12,6 +12,7 @@
 #import "MDMUserHelper.h"
 #import "MDMLoginVC.h"
 #import "MDMCommendCell.h"
+#import "MDMUserDetailedVC.h"
 
 @interface MDMCommendTBC ()
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -30,6 +31,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"MDMCommendCell" bundle:nil] forCellReuseIdentifier:@"MDMCommendCell"];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 100;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)leftBtnAction:(UIBarButtonItem *)sender
@@ -53,9 +55,9 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     
     if (self.isPush == YES) {
         [self rightBtnAction:nil];
@@ -78,36 +80,45 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MDMCommendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MDMCommendCell" forIndexPath:indexPath];
     
-    MDMCommend *commend = [self.dataArray objectAtIndex:indexPath.row];
+    MDMCommend *commend = [self.dataArray objectAtIndex:indexPath.section];
     
     cell.commend = commend;
+    
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGRAction:)];
+    [cell.headPic addGestureRecognizer:tapGR];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    MDMCommendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MDMCommendCell"];
-//    MDMCommend *commend = [self.dataArray objectAtIndex:indexPath.row];
-//    
-//    cell.commend = commend;
-//    
-//    [cell setNeedsUpdateConstraints];
-//    [cell updateConstraintsIfNeeded];
-//    CGFloat height = [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-//    return height;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (void)tapGRAction:(UITapGestureRecognizer *)sender
+{
+    NSIndexPath *path = [self.tableView indexPathForCell:((MDMCommendCell *)sender.view.superview.superview)];
+    if (self.dataArray.count > 0) {
+        MDMCommend *commend = [self.dataArray objectAtIndex:path.section];
+        
+        MDMUserDetailedVC *vc = [[MDMUserDetailedVC alloc] init];
+        vc.info = commend.info;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 
 #pragma mark - 懒加载
 - (NSMutableArray *)dataArray

@@ -17,6 +17,7 @@
                 <outlet property="personText" destination="eYh-dr-6Mw" id="7dc-Xp-bjn"/>
                 <outlet property="pics" destination="6Z7-zK-YDO" id="Rnd-4W-e0Y"/>
                 <outlet property="scrollView" destination="iYi-Sl-1x6" id="SQB-e0-yxI"/>
+                <outlet property="tempView" destination="77l-2a-szn" id="efd-5m-UiE"/>
                 <outlet property="titleText" destination="RhI-be-sR5" id="jAZ-uN-sEn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -129,6 +130,13 @@
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="7" maxY="0.0"/>
                                     </collectionViewFlowLayout>
                                 </collectionView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="77l-2a-szn">
+                                    <rect key="frame" x="10" y="233" width="580" height="1"/>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="rbg-cr-yYx"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -137,11 +145,14 @@
                                 <constraint firstAttribute="bottom" secondItem="yBC-ug-HSh" secondAttribute="bottom" constant="10" id="HMA-5g-LzH"/>
                                 <constraint firstItem="6Z7-zK-YDO" firstAttribute="top" secondItem="RhI-be-sR5" secondAttribute="bottom" constant="30" id="O4z-4W-H4p"/>
                                 <constraint firstItem="RhI-be-sR5" firstAttribute="top" secondItem="kyc-4B-slO" secondAttribute="top" constant="10" id="SOd-Op-pw9"/>
+                                <constraint firstAttribute="trailing" secondItem="77l-2a-szn" secondAttribute="trailing" constant="10" id="XX2-wr-fTx"/>
                                 <constraint firstItem="yBC-ug-HSh" firstAttribute="top" secondItem="6Z7-zK-YDO" secondAttribute="bottom" constant="20" id="aon-TF-tNf"/>
                                 <constraint firstAttribute="trailing" secondItem="6Z7-zK-YDO" secondAttribute="trailing" constant="30" id="bYa-1m-Zzc"/>
                                 <constraint firstItem="RhI-be-sR5" firstAttribute="leading" secondItem="kyc-4B-slO" secondAttribute="leading" constant="8" id="geI-Xl-ITP"/>
+                                <constraint firstItem="yBC-ug-HSh" firstAttribute="top" secondItem="77l-2a-szn" secondAttribute="bottom" constant="5" id="jRn-1S-BKj"/>
                                 <constraint firstAttribute="trailing" secondItem="RhI-be-sR5" secondAttribute="trailing" constant="8" id="lXL-Ge-sVc"/>
                                 <constraint firstItem="yBC-ug-HSh" firstAttribute="leading" secondItem="kyc-4B-slO" secondAttribute="leading" constant="8" id="nYJ-hI-iez"/>
+                                <constraint firstItem="77l-2a-szn" firstAttribute="leading" secondItem="kyc-4B-slO" secondAttribute="leading" constant="10" id="yFy-jT-eV3"/>
                             </constraints>
                         </view>
                     </subviews>

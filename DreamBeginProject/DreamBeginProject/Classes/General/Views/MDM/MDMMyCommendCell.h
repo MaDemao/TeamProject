@@ -1,18 +1,15 @@
 //
-//  MDMCommendCell.h
+//  MDMMyCommendCell.h
 //  DreamBeginProject
 //
-//  Created by 马德茂 on 15/11/12.
+//  Created by 马德茂 on 15/11/13.
 //  Copyright © 2015年 MaDemao. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "MDMCommend.h"
 
-@interface MDMCommendCell : UITableViewCell
-
-@property (weak, nonatomic) IBOutlet UIImageView *headPic;
-
+@interface MDMMyCommendCell : UITableViewCell
 
 @property (nonatomic, strong) MDMCommend *commend;
 

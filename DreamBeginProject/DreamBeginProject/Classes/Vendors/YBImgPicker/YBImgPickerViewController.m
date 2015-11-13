@@ -322,6 +322,9 @@ static NSString * const tableReuseIdentifier = @"tableCell";
             ALAsset * asset = [resuletData objectAtIndex:i];
             if ([asset isKindOfClass:[ALAsset class]]) {
                 UIImage * image = [UIImage imageWithCGImage:[asset thumbnail]];
+                
+
+                
                 [resuletData replaceObjectAtIndex:i withObject:image];
             }
         }
