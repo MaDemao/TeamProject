@@ -42,6 +42,7 @@
     
     UINavigationController *BJ_rootVC = [[UINavigationController alloc]initWithRootViewController:[BJ_tabBarViewController new]];
     
+    
     UINavigationController *rootVC = [[UINavigationController alloc]initWithRootViewController:[LANTableViewController new]];
     
     MDMPostTVC *postVC = [[MDMPostTVC alloc] init];

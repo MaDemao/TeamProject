@@ -31,7 +31,6 @@ static Networking *network;
 -(void)networkingGetWithURL:(NSString *)urlString Block:(Block)block{
     
     NSURL *url = [NSURL URLWithString:urlString];
-    
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
     NSURLSession *session=[NSURLSession sharedSession];

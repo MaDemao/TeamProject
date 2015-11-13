@@ -11,7 +11,9 @@
 @implementation BJ_Project
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key{
     if ([key isEqualToString:@"id"]) {
-        _ID = (NSInteger)value;
+        _ID = [value intValue];
+        
+        NSLog(@"aaa%ld",_ID);
     }
 }
 - (NSString *)description

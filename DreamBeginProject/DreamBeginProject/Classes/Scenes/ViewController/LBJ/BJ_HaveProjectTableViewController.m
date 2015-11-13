@@ -1,58 +1,56 @@
 //
-//  BJ_allTableViewController.m
+//  BJ_HaveProjectTableViewController.m
 //  DreamBeginProject
 //
-//  Created by lanou3g on 15/11/11.
+//  Created by lanou3g on 15/11/12.
 //  Copyright © 2015年 MaDemao. All rights reserved.
 //
 
-#import "BJ_allTableViewController.h"
-#import "Networking.h"
+#import "BJ_HaveProjectTableViewController.h"
+#import "BJ_DataManager.h"
 #import "BJ_HomeTableViewCell.h"
-#import "BJ_projectTableViewCell.h"
-
-@interface BJ_allTableViewController ()
-@property(nonatomic, strong)NSMutableArray *dataArray;
-//总页数
-@property (nonatomic ,strong)NSString *total_pages;
-
-@property (nonatomic, strong)BJ_Homepage *model;
+#import "BJ_detailsPageViewController.h"
+#define kURL(i)    [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&order=publishTime&page_index=1&special_id=%ld&vc=4.0.8",i]
+@interface BJ_HaveProjectTableViewController ()
+@property (nonatomic, strong)NSMutableArray *allArray;
+@property (nonatomic ,strong)BJ_Homepage *model;
 @end
 
-@implementation BJ_allTableViewController
+@implementation BJ_HaveProjectTableViewController
 static NSString *const cellID = @"cell";
-static NSString *const cellSeconID = @"cellTwo";
--(instancetype)initWithUrl:(NSString *)url{
-    if (self =[super init]) {
-        _url = url;
-    }
-    return self;
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    self.view.backgroundColor = [UIColor whiteColor];
+ 
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.tableView registerNib:[UINib nibWithNibName:@"BJ_HomeTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
-    [self.tableView registerNib:[UINib nibWithNibName:@"BJ_projectTableViewCell" bundle:nil] forCellReuseIdentifier:cellSeconID];
+  
     [self loadData];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BJ_HomeTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
    
+
 }
+
 - (void)loadData{
-    [[Networking shareNetworking]networkingGetWithURL:_url Block:^(id object) {
+   
+   
+    NSLog(@"id%ld",_special_id);
+    [[Networking shareNetworking]networkingGetWithURL:kURL(_special_id) Block:^(id object) {
+       
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:object options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *dict1 = dict[@"data"];
-        self.total_pages = dict1[@"total_pages"];
-        
         NSArray *array = dict1[@"items"];
         
         for (NSDictionary *dic in array) {
             BJ_Homepage *model = [BJ_Homepage new];
             [model setValuesForKeysWithDictionary:dic];
-            [self.dataArray addObject:model];
-            
+            [self.allArray addObject:model];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-        
     }];
 
 }
@@ -68,50 +66,28 @@ static NSString *const cellSeconID = @"cellTwo";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    return self.allArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    _model = self.dataArray[indexPath.row];
-    if (_model.special_id) {
-         BJ_projectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellSeconID forIndexPath:indexPath];
-        cell.model = _model;
-        return cell;
-    }
-    else{
-        BJ_HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-        cell.model = _model;
-         return cell;
-    }
+    BJ_HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    _model = self.allArray[indexPath.row];
+    cell.model = _model;
+  
+    
+    return cell;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    _model = self.dataArray[indexPath.row];
-    NSLog(@"model%@",_model);
-    if (_model.special_id) {
-        
-        BJ_HaveProjectTableViewController *haveProjectVC = [[BJ_HaveProjectTableViewController alloc]init];
-        
-        
-        haveProjectVC.special_id = _model.special_id;
-        
-        haveProjectVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:haveProjectVC animated:YES];
-    }else{
-        BJ_detailsPageViewController *detailsPageVC = [[BJ_detailsPageViewController alloc]init];
-        detailsPageVC.ID = _model.ID;
-        
-        detailsPageVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:detailsPageVC animated:YES];
-        
-        
-        
-        
-    }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    BJ_detailsPageViewController *detailsVC = [[BJ_detailsPageViewController alloc]init];
+    detailsVC.ID = _model.ID;
+    detailsVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:detailsVC animated:YES];
 }
 /*
 // Override to support conditional editing of the table view.
@@ -156,10 +132,10 @@ static NSString *const cellSeconID = @"cellTwo";
     // Pass the selected object to the new view controller.
 }
 */
-- (NSMutableArray *)dataArray{
-    if (!_dataArray) {
-        self.dataArray = [NSMutableArray new];
+- (NSMutableArray *)allArray{
+    if (!_allArray) {
+        self.allArray = [NSMutableArray new];
     }
-    return _dataArray;
+    return _allArray;
 }
 @end

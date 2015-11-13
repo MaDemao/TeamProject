@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BJ_allTableViewController : UITableViewController
-
+- (instancetype)initWithUrl:(NSString *)url;
+@property(nonatomic,strong)NSString *url;
 @end

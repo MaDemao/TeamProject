@@ -13,6 +13,9 @@
 #import "BJ_Homepage.h"
 #import "BJ_projectTableViewCell.h"
 #import "SDRefresh.h"
+#import "BJ_HaveProjectTableViewController.h"
+#import "BJ_detailsPageViewController.h"
+
 
 
 
@@ -32,6 +35,11 @@
 @property (nonatomic, weak) SDRefreshFooterView *refreshFooter;
 @property (nonatomic, weak) SDRefreshHeaderView *refreshHeader;
 @property(nonatomic,assign)NSInteger pageIndex;
+
+//
+@property(nonatomic,strong) BJ_Homepage *model;
+//总页数
+@property (nonatomic ,strong)NSString *total_pages;
 @end
 
 @implementation BJ_FirstTableViewController
@@ -41,36 +49,46 @@ static NSString *const cellTwiID = @"cellTwo";
 - (instancetype)initWithURLString:(NSString *)url{
     
     if (self = [super init]) {
+        
         self.urlString = url;
-      
-     
+        
+
     }
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
+    
+    
+   
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _pageIndex = 1 ;
+   
+    _pageIndex = 1;
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_HomeTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_projectTableViewCell" bundle:nil] forCellReuseIdentifier:cellTwiID];
-    [self addHeader];
+   
     [self loadData];
-    
-   //加载第三方
+    [self setExtraCellLineHidden:self.tableView];
+    [self addHeader];
+    //加载第三方
     //添加头部控件
-//
+    //
     [self setupHeader];
     [self setupFooter];
-   
-    
-  
 }
 
-- (void)viewDidAppear:(BOOL)animated
+
+//tableView初始加载无数据时，不显示单元格线
+-(void)setExtraCellLineHidden: (UITableView *)tableView
 {
-    [super viewDidAppear:animated];
-    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, self.tableView.frame.size.height - 44);
+  UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -85,6 +103,8 @@ static NSString *const cellTwiID = @"cellTwo";
         [[Networking shareNetworking]networkingGetWithURL:self.urlString Block:^(id object) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:object options:NSJSONReadingAllowFragments error:nil];
             NSDictionary *dict1 = dict[@"data"];
+            self.total_pages = dict1[@"total_pages"];
+           
             NSArray *array = dict1[@"items"];
             
             for (NSDictionary *dic in array) {
@@ -93,7 +113,10 @@ static NSString *const cellTwiID = @"cellTwo";
                 [self.dataArray addObject:model];
                 
             }
-             [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                 [self.tableView reloadData];
+            });
+            
             }];
   
 }
@@ -122,6 +145,8 @@ static NSString *const cellTwiID = @"cellTwo";
 
 - (void)setupFooter
 {
+   
+    
     SDRefreshFooterView *refreshFooter = [SDRefreshFooterView refreshView];
     [refreshFooter addToScrollView:self.tableView];
     [refreshFooter addTarget:self refreshAction:@selector(footerRefresh)];
@@ -132,6 +157,14 @@ static NSString *const cellTwiID = @"cellTwo";
 - (void)footerRefresh
 {
     _pageIndex ++;
+    int a = [self.total_pages intValue];
+    
+    if (_pageIndex > a) {
+        [self.refreshFooter endRefreshing];
+        return;
+    }
+ 
+   
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         NSString *url = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/recommend?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&page_index=%ld&vc=4.0.8",(long)_pageIndex];
         
@@ -143,16 +176,27 @@ static NSString *const cellTwiID = @"cellTwo";
             NSArray *array = dic[@"items"];
             for (NSDictionary *di in array) {
                 BJ_Homepage *model = [BJ_Homepage new];
+            
                 [model setValuesForKeysWithDictionary:di];
+                
                 [self.dataArray addObject:model];
+                
             }
             
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    
+                });
+           
+            
         }];
-        [dataTask resume];
-        [self.tableView reloadData];
+        
         [self.refreshFooter endRefreshing];
+        
+
+       [dataTask resume];
     });
-}
+    }
 
 #pragma mark - Table view data source
 
@@ -165,14 +209,15 @@ static NSString *const cellTwiID = @"cellTwo";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BJ_Homepage *model;
     model = self.dataArray[indexPath.row];
-    if (model.special_id) {
+    _model = model;
+    if (_model.special_id) {
         BJ_projectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellTwiID forIndexPath:indexPath];
-        cell.model = model;
+        cell.model = _model;
         
         return cell;
     }else{
         BJ_HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-        cell.model = model;
+        cell.model = _model;
         return cell;
     }
     
@@ -223,6 +268,28 @@ static NSString *const cellTwiID = @"cellTwo";
   
     [self.tableView addSubview:self.label];
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    _model = self.dataArray[indexPath.row];
+    if (_model.special_id) {
+        
+        BJ_HaveProjectTableViewController *haveProjectVC = [[BJ_HaveProjectTableViewController alloc]init];
+      
+        
+        haveProjectVC.special_id = _model.special_id;
+        
+        haveProjectVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:haveProjectVC animated:YES];
+    }else{
+        BJ_detailsPageViewController *detailsPageVC = [[BJ_detailsPageViewController alloc]init];
+        detailsPageVC.ID = _model.ID;
+        
+        detailsPageVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailsPageVC animated:YES];
+   
+}
+}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

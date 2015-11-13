@@ -99,6 +99,10 @@
 		41F6C4541BF4CA5A0034EA9D /* SCPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F6C4481BF4CA5A0034EA9D /* SCPopView.m */; settings = {ASSET_TAGS = (); }; };
 		C26634141BF56CC300824DAA /* LANDrugVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C26634131BF56CC300824DAA /* LANDrugVC.m */; settings = {ASSET_TAGS = (); }; };
 		C26634171BF56CE300824DAA /* LANInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C26634161BF56CE300824DAA /* LANInfoVC.m */; settings = {ASSET_TAGS = (); }; };
+		C244E3361BF571720014E2C7 /* BJ_detailsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C244E3351BF571720014E2C7 /* BJ_detailsPageViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C244E35D1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C244E35B1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		C244E35E1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C244E35C1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		C2B4FBF01BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B4FBEF1BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -257,6 +261,13 @@
 		C26634131BF56CC300824DAA /* LANDrugVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANDrugVC.m; sourceTree = "<group>"; };
 		C26634151BF56CE300824DAA /* LANInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LANInfoVC.h; sourceTree = "<group>"; };
 		C26634161BF56CE300824DAA /* LANInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANInfoVC.m; sourceTree = "<group>"; };
+		C244E3341BF571720014E2C7 /* BJ_detailsPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJ_detailsPageViewController.h; sourceTree = "<group>"; };
+		C244E3351BF571720014E2C7 /* BJ_detailsPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJ_detailsPageViewController.m; sourceTree = "<group>"; };
+		C244E35A1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJ_SecondProjectTableViewCell.h; sourceTree = "<group>"; };
+		C244E35B1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJ_SecondProjectTableViewCell.m; sourceTree = "<group>"; };
+		C244E35C1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BJ_SecondProjectTableViewCell.xib; sourceTree = "<group>"; };
+		C2B4FBEE1BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJ_HaveProjectTableViewController.h; sourceTree = "<group>"; };
+		C2B4FBEF1BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJ_HaveProjectTableViewController.m; sourceTree = "<group>"; };
 		E85A9060C0DEAAD7F6FD1CC4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FE66D799FDD4D42A9808F88E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -536,6 +547,9 @@
 				41C6A6941BF4CC4500A56DD7 /* BJ_projectTableViewCell.h */,
 				41C6A6951BF4CC4500A56DD7 /* BJ_projectTableViewCell.m */,
 				41C6A6961BF4CC4500A56DD7 /* BJ_projectTableViewCell.xib */,
+				C244E35A1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.h */,
+				C244E35B1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.m */,
+				C244E35C1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib */,
 			);
 			path = LBJ;
 			sourceTree = "<group>";
@@ -703,14 +717,18 @@
 		41C6A6E31BF4CDC500A56DD7 /* LBJ */ = {
 			isa = PBXGroup;
 			children = (
-				41C6A6E41BF4CDC500A56DD7 /* BJ_allTableViewController.h */,
-				41C6A6E51BF4CDC500A56DD7 /* BJ_allTableViewController.m */,
-				41C6A6E61BF4CDC500A56DD7 /* BJ_FirstTableViewController.h */,
-				41C6A6E71BF4CDC500A56DD7 /* BJ_FirstTableViewController.m */,
-				41C6A6E81BF4CDC500A56DD7 /* BJ_projectTableViewController.h */,
-				41C6A6E91BF4CDC500A56DD7 /* BJ_projectTableViewController.m */,
 				41C6A6EA1BF4CDC500A56DD7 /* BJ_tabBarViewController.h */,
 				41C6A6EB1BF4CDC500A56DD7 /* BJ_tabBarViewController.m */,
+				41C6A6E61BF4CDC500A56DD7 /* BJ_FirstTableViewController.h */,
+				41C6A6E71BF4CDC500A56DD7 /* BJ_FirstTableViewController.m */,
+				C2B4FBEE1BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.h */,
+				C2B4FBEF1BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.m */,
+				41C6A6E81BF4CDC500A56DD7 /* BJ_projectTableViewController.h */,
+				41C6A6E91BF4CDC500A56DD7 /* BJ_projectTableViewController.m */,
+				41C6A6E41BF4CDC500A56DD7 /* BJ_allTableViewController.h */,
+				41C6A6E51BF4CDC500A56DD7 /* BJ_allTableViewController.m */,
+				C244E3341BF571720014E2C7 /* BJ_detailsPageViewController.h */,
+				C244E3351BF571720014E2C7 /* BJ_detailsPageViewController.m */,
 			);
 			path = LBJ;
 			sourceTree = "<group>";
@@ -904,6 +922,7 @@
 				41C6A69A1BF4CC4500A56DD7 /* BJ_projectTableViewCell.xib in Resources */,
 				41F6C44C1BF4CA5A0034EA9D /* sdRefeshView_arrow@2x.png in Resources */,
 				412265441BF337B900D71D81 /* iconfont-morentouxiang.png in Resources */,
+				C244E35E1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib in Resources */,
 				41C6A7111BF4CDC500A56DD7 /* MDMPostDetailedVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -966,6 +985,7 @@
 				41C6A7321BF4CE9900A56DD7 /* LANDiseaseInfoCell.m in Sources */,
 				412264F21BF2DAC600D71D81 /* YBImgPickerTableViewCell.m in Sources */,
 				41C6A70C1BF4CDC500A56DD7 /* MDMLoginVC.m in Sources */,
+				C244E35D1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.m in Sources */,
 				41C6A6A61BF4CC8500A56DD7 /* BJ_DataManager.m in Sources */,
 				412312921BF06F5A00F819EA /* main.m in Sources */,
 				41C6A7101BF4CDC500A56DD7 /* MDMPostDetailedVC.m in Sources */,
@@ -991,8 +1011,10 @@
 				41C6A72A1BF4CE5D00A56DD7 /* LANGrugModel.m in Sources */,
 				C26634141BF56CC300824DAA /* LANDrugVC.m in Sources */,
 				41C6A7141BF4CDC500A56DD7 /* MDMPostTVC.m in Sources */,
+				C2B4FBF01BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.m in Sources */,
 				41B81E611BF4CF3500948027 /* REMenuItem.m in Sources */,
 				41C6A68E1BF4CC3100A56DD7 /* MDMPostCell.m in Sources */,
+				C244E3361BF571720014E2C7 /* BJ_detailsPageViewController.m in Sources */,
 				41C6A7151BF4CDC500A56DD7 /* MDMRegisterVC.m in Sources */,
 				41C6A73B1BF4CECD00A56DD7 /* LANTableViewController.m in Sources */,
 				412312BA1BF06FAF00F819EA /* AppDelegate.m in Sources */,
