@@ -11,5 +11,5 @@
 @interface BJ_DataManager : NSObject
 + (instancetype)shareDataManager;
 
-- (void)requestWithUrlString:(NSString *)urlString;
+- (void)requestWithUrlString:(NSString *)urlString withBlock:(void(^)(NSMutableArray *allArray))result;
 @end

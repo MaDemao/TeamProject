@@ -22,7 +22,7 @@
     return manager;
 }
 
-- (void)requestWithUrlString:(NSString *)urlString{
+- (void)requestWithUrlString:(NSString *)urlString withBlock:(void(^)(NSMutableArray *allArray))result{
     
     
     NSURL *url = [NSURL URLWithString:urlString];
@@ -43,13 +43,14 @@
             [self.dataArray addObject:model];
             
         }
-       
+        result(self.dataArray);
         
     }];
     [dataTask resume];
 
     
 }
+
 
 - (NSMutableArray *)dataArray{
     if (_dataArray == nil) {

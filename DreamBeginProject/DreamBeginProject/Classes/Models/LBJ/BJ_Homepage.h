@@ -13,4 +13,6 @@
 @property(nonatomic,strong)NSString *cover_small;
 @property(nonatomic,assign)NSInteger ID;
 @property(nonatomic,assign)NSInteger special_id;
+
+
 @end
