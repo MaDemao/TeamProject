@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eLC-Ev-wiD">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eLC-Ev-wiD">
                         <rect key="frame" x="10" y="10" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="eLC-Ev-wiD" secondAttribute="height" multiplier="1:1" id="OyW-e2-BzH"/>
@@ -60,7 +60,7 @@
             <connections>
                 <outlet property="dateText" destination="Uhu-5B-DGa" id="pGR-8f-y0O"/>
                 <outlet property="desText" destination="He4-Ir-9CQ" id="a9I-xB-qHh"/>
-                <outlet property="headPic" destination="eLC-Ev-wiD" id="pVf-tW-aiG"/>
+                <outlet property="headPic" destination="eLC-Ev-wiD" id="bgN-Et-IBH"/>
                 <outlet property="nameText" destination="Xj8-nV-bhp" id="IGn-uv-KGX"/>
             </connections>
             <point key="canvasLocation" x="356.5" y="331.5"/>

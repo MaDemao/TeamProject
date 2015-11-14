@@ -11,6 +11,9 @@
 
 @interface MDMCommendCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *headPic;
+
+
 @property (nonatomic, strong) MDMCommend *commend;
 
 @end

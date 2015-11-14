@@ -10,6 +10,7 @@
 #import "MDMPicItem.h"
 #import "MDMCommendTBC.h"
 #import "MDMCommend.h"
+#import "MDMUserDetailedVC.h"
 
 @interface MDMPostDetailedVC ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIImageView *headPic;
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *pics;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *hight;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *tempView;
 
 @end
 
@@ -37,12 +39,23 @@
     
     UITapGestureRecognizer *tapGRView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGRViewAction:)];
     [self.commendView addGestureRecognizer:tapGRView];
+    
+    UITapGestureRecognizer *tapGRHead = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGRHeadAction:)];
+    self.headPic.userInteractionEnabled = YES;
+    [self.headPic addGestureRecognizer:tapGRHead];
 }
 
 - (void)tapGRViewAction:(UITapGestureRecognizer *)sender
 {
     MDMCommendTBC *vc = [[MDMCommendTBC alloc] init];
     vc.post = self.post;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)tapGRHeadAction:(UITapGestureRecognizer *)sender
+{
+    MDMUserDetailedVC *vc = [[MDMUserDetailedVC alloc] init];
+    vc.info = self.post.info;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -58,6 +71,7 @@
     
     if (self.post.images.count == 0) {
         self.hight.constant = 0;
+        self.tempView.hidden = YES;
         [self.pics setNeedsUpdateConstraints];
         [self.pics updateConstraintsIfNeeded];
     }

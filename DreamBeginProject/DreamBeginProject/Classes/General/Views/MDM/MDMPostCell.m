@@ -11,7 +11,6 @@
 
 @interface MDMPostCell ()
 @property (weak, nonatomic) IBOutlet UILabel *titleText;
-@property (weak, nonatomic) IBOutlet UIImageView *headPic;
 @property (weak, nonatomic) IBOutlet UILabel *commentCount;
 @property (weak, nonatomic) IBOutlet UILabel *desText;
 
@@ -33,7 +32,11 @@
 
 - (void)setPost:(MDMPost *)post
 {
+    self.headPic.layer.masksToBounds = YES;
+    self.headPic.layer.cornerRadius = self.headPic.frame.size.height / 2.0;
     self.headPic.image = [UIImage imageNamed:@"iconfont-morentouxiang.png"];
+    
+    
     self.titleText.text = post.title;
     self.desText.text = post.des;
     MDMUserInfo *info = post.info;
@@ -56,11 +59,5 @@
     }];
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.headPic.layer.masksToBounds = YES;
-    self.headPic.layer.cornerRadius = self.headPic.frame.size.height / 2.0;
-}
 
 @end

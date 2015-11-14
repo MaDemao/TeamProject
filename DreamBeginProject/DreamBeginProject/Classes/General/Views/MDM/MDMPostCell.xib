@@ -50,7 +50,7 @@
                                     <constraint firstAttribute="height" constant="1" id="VT2-oy-waB"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NB3-yf-zY0">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NB3-yf-zY0">
                                 <rect key="frame" x="8" y="48" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="eVQ-s7-jRr"/>
@@ -103,7 +103,7 @@
             <connections>
                 <outlet property="commentCount" destination="7b2-pf-TJr" id="WGT-ZA-M8a"/>
                 <outlet property="desText" destination="Bkg-5S-d0K" id="1Ae-XA-Wx5"/>
-                <outlet property="headPic" destination="NB3-yf-zY0" id="J13-Cl-tjA"/>
+                <outlet property="headPic" destination="NB3-yf-zY0" id="tMa-ho-437"/>
                 <outlet property="titleText" destination="uBD-xM-Xqe" id="cP6-nb-HNy"/>
             </connections>
             <point key="canvasLocation" x="356.5" y="362"/>

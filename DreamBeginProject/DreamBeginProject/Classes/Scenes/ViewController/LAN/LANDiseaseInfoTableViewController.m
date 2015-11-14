@@ -12,6 +12,10 @@
 #import "LANGrugModel.h"
 #import "LANInfoModel.h"
 
+#import "LANDrugVC.h"
+#import "LANInfoVC.h"
+
+
 #import <UIImageView+WebCache.h>
 
 @interface LANDiseaseInfoTableViewController ()
@@ -28,31 +32,32 @@
 
 static NSString *const cellID1 = @"DiseaseInfo";
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        [self requestData];
-    }
-    return self;
-}
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"LANDiseaseInfoCell" bundle:nil] forCellReuseIdentifier:cellID1];
-    //[self requestData];
+    //self.tableView.showsVerticalScrollIndicator = NO;
+    [self requestData];
     
+    [self setExtraCellLineHidden:self.tableView];
     
     [self.tableView reloadData];
     
 }
 
 
+//tableView参数为要隐藏单元格线的tableView
+-(void)setExtraCellLineHidden: (UITableView *)tableView
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
+}
+
 -(void)requestData{
     
+
     NSString *urlStr = [NSString stringWithFormat:
                         @"http://api.lkhealth.net/index.php?r=drug/diseaseown&diseaseId=%@&uid=&lat=40.036326&lng=116.350313",self.diseaseTypeModel.dataId];
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -66,7 +71,7 @@ static NSString *const cellID1 = @"DiseaseInfo";
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         NSDictionary *rootDict = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingAllowFragments) error:nil];
-        NSLog(@"=============%@",rootDict);
+       // NSLog(@"=============%@",rootDict);
         
         NSDictionary *dict = [rootDict objectForKey:@"data"];
         for (NSDictionary *dic1 in dict[@"drugList"]) {
@@ -86,6 +91,7 @@ static NSString *const cellID1 = @"DiseaseInfo";
             [self.infoArray addObject:model];
         }
         
+    [self.tableView reloadData];
             
     }];
     
@@ -114,6 +120,18 @@ static NSString *const cellID1 = @"DiseaseInfo";
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     return 2;
+}
+
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    
+    if (section == 0) {
+        return @"注意事项";
+    }
+    if (section == 1) {
+        return @"相关用药";
+    }
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -157,7 +175,51 @@ static NSString *const cellID1 = @"DiseaseInfo";
   
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return 100;
+    }if (indexPath.section == 1) {
+        return 110;
+    }
+    
+    return 0;
+}
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //点击效果
+     [[tableView cellForRowAtIndexPath:indexPath]setSelected:NO animated:YES];
+    
+    if (indexPath.section == 0) {
+        
+        LANInfoModel *model = self.infoArray[indexPath.row];
+        LANInfoVC *infoVC = [[LANInfoVC alloc]init];
+        infoVC.infoModel = model;
+        
+        UINavigationController *infoNC = [[UINavigationController alloc]initWithRootViewController:infoVC];
+        
+        [self.navigationController presentViewController:infoNC animated:YES completion:nil];
+       
+    } else if (indexPath.section == 1) {
+        
+        LANGrugModel *model = self.drugArray[indexPath.row];
+        LANDrugVC *drugVC = [[LANDrugVC alloc]init];
+        drugVC.drugModel = model;
+        
+        UINavigationController *drugNC = [[UINavigationController alloc]initWithRootViewController:drugVC];
+        
+        
+        
+        [self.navigationController presentViewController:drugNC animated:YES completion:nil];
+        
+        
+    }
+    
+    
+    
+    
+    
+}
 
 - (NSMutableArray *)drugArray{
     

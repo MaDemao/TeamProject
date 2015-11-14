@@ -12,7 +12,7 @@
 #import "MDMPost.h"
 #import "MDMUserHelper.h"
 
-@interface MDMPostEditVC ()<UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, YBImgPickerViewControllerDelegate>
+@interface MDMPostEditVC ()<UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleText;
 @property (weak, nonatomic) IBOutlet UITextView *desText;
 @property (weak, nonatomic) IBOutlet UILabel *tempText;
@@ -50,7 +50,6 @@
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {            [self.navigationController popViewControllerAnimated:YES];
         }];
         UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self rightBtnAction:nil];
         }];
         [alert addAction:action1];
         [alert addAction:action];
@@ -86,16 +85,13 @@
         
         NSMutableArray *array = [NSMutableArray array];
         for (UIImage *image in self.imageArray) {
-            NSData *data = UIImageJPEGRepresentation(image, 0.5);
+            NSData *data = UIImageJPEGRepresentation(image, 0.1);
             AVFile *file = [AVFile fileWithData:data];
             [file save];
             [array addObject:file];
-            data = nil;
         }
         post.images = array;
         [post save];
-        [post.images removeAllObjects];
-        [self.imageArray removeAllObjects];
         [array removeAllObjects];
         [self.activityView stopAnimating];
         
@@ -118,17 +114,6 @@
     [self.desText resignFirstResponder];
 }
 
-#pragma mark - YBImgPickerViewControllerDelegate
-- (void)YBImagePickerDidFinishWithImages:(NSArray *)imageArray
-{
-    [self.imageArray addObjectsFromArray:imageArray];
-    imageArray = nil;
-    [self.collectionView reloadData];
-    [self.titleText resignFirstResponder];
-    [self.desText resignFirstResponder];
-    NSIndexPath *path = [NSIndexPath indexPathForItem:self.imageArray.count inSection:0];
-    [self.collectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
-}
 
 
 #pragma mark - UITextViewDelegate
@@ -171,9 +156,38 @@
         [self.titleText resignFirstResponder];
         [self.desText resignFirstResponder];
     }else{
-        YBImgPickerViewController *next = [[YBImgPickerViewController alloc] init];
-        [next showInViewContrller:self choosenNum:0 delegate:self];
+        UIImagePickerControllerSourceType sourceType=UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        UIImagePickerController * picker = [[UIImagePickerController alloc]init];
+        picker.delegate = self;
+        picker.allowsEditing=NO;
+        picker.sourceType=sourceType;
+        [self presentViewController:picker animated:YES completion:nil];
     }
+}
+
+-(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info1
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [self performSelector:@selector(delayAction:) withObject:info1 afterDelay:0.1];
+}
+
+- (void)delayAction:(NSDictionary *)info1
+{
+    UIImage * image=[info1 objectForKey:UIImagePickerControllerOriginalImage];
+    [self.imageArray addObject:image];
+    [self.collectionView reloadData];
+    [self.titleText resignFirstResponder];
+    [self.desText resignFirstResponder];
+    NSIndexPath *path = [NSIndexPath indexPathForItem:self.imageArray.count inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - 懒加载

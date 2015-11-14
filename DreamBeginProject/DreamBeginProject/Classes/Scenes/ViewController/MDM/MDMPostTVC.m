@@ -12,9 +12,11 @@
 #import "MDMLoginVC.h"
 #import "MDMPostEditVC.h"
 #import "MDMPostDetailedVC.h"
+#import "MDMUserDetailedVC.h"
 
 @interface MDMPostTVC ()
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) UIActivityIndicatorView *activityView;
 @end
 
 @implementation MDMPostTVC
@@ -41,6 +43,11 @@
         self.dataArray = [MDMUserHelper sharedMDMUserHelper].postArray;
         [self.tableView reloadData];
     };
+    
+    self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityView.color = [UIColor blackColor];
+    self.activityView.center = CGPointMake([UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height / 2);
+    [self.view addSubview:self.activityView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -103,6 +110,9 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGRAction:)];
+    [cell.headPic addGestureRecognizer:tapGR];
+    
     return cell;
 }
 
@@ -113,12 +123,32 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MDMPostDetailedVC *vc = [[MDMPostDetailedVC alloc] init];
-    vc.post = [self.dataArray objectAtIndex:indexPath.section];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:nc animated:YES completion:nil];
+    if (self.dataArray.count > 0) {
+        [self.activityView startAnimating];
+        MDMPostDetailedVC *vc = [[MDMPostDetailedVC alloc] init];
+        vc.post = [self.dataArray objectAtIndex:indexPath.section];
+        vc.view.backgroundColor = [UIColor whiteColor];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self.activityView stopAnimating];
+        [self presentViewController:nc animated:YES completion:nil];
+    }
 }
+
+- (void)tapGRAction:(UITapGestureRecognizer *)sender
+{
+    if (self.dataArray.count > 0) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:((MDMPostCell *)(sender.view.superview.superview.superview))];
+        MDMPost *post = [self.dataArray objectAtIndex:indexPath.section];
+        MDMUserInfo *info = post.info;
+        
+        MDMUserDetailedVC *vc = [[MDMUserDetailedVC alloc] init];
+        vc.info = info;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+
 
 - (NSMutableArray *)dataArray
 {
