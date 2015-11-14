@@ -13,6 +13,10 @@
 
 @interface BJ_allTableViewController ()
 @property(nonatomic, strong)NSMutableArray *dataArray;
+//第三方
+@property (nonatomic, weak) SDRefreshFooterView *refreshFooter;
+@property (nonatomic, weak) SDRefreshHeaderView *refreshHeader;
+@property(nonatomic,assign)NSInteger pageIndex;
 //总页数
 @property (nonatomic ,strong)NSString *total_pages;
 
@@ -38,12 +42,20 @@ static NSString *const cellSeconID = @"cellTwo";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_HomeTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
+    
+    _pageIndex = 1;
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_projectTableViewCell" bundle:nil] forCellReuseIdentifier:cellSeconID];
     [self loadData];
+    //加载第三方
+    //添加头部控件
+    //
+    [self setupHeader];
+    [self setupFooter];
    
 }
 - (void)loadData{
-    [[Networking shareNetworking]networkingGetWithURL:_url Block:^(id object) {
+    [[Networking shareNetworking]networkingGetWithURL:[_url stringByAppendingFormat:@"%ld",self.pageIndex] Block:^(id object) {
+        
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:object options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *dict1 = dict[@"data"];
         self.total_pages = dict1[@"total_pages"];
@@ -57,12 +69,66 @@ static NSString *const cellSeconID = @"cellTwo";
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
+            
             [self.tableView reloadData];
+            [self.refreshFooter endRefreshing];
         });
         
     }];
 
 }
+- (void)setupHeader
+{
+    
+    SDRefreshHeaderView *refreshHeader = [SDRefreshHeaderView refreshView];
+    
+    // 默认是在navigationController环境下，如果不是在此环境下，请设置 refreshHeader.isEffectedByNavigationController = NO;
+    [refreshHeader addToScrollView:self.tableView];
+    
+    __weak SDRefreshHeaderView *weakRefreshHeader = refreshHeader;
+    __weak typeof(self) weakSelf = self;
+    refreshHeader.beginRefreshingOperation = ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [weakSelf.tableView reloadData];
+            [weakRefreshHeader endRefreshing];
+        });
+    };
+    
+    // 进入页面自动加载一次数据
+    [refreshHeader autoRefreshWhenViewDidAppear];
+    
+}
+
+- (void)setupFooter
+{
+    
+    
+    SDRefreshFooterView *refreshFooter = [SDRefreshFooterView refreshView];
+    [refreshFooter addToScrollView:self.tableView];
+    [refreshFooter addTarget:self refreshAction:@selector(footerRefresh)];
+    _refreshFooter = refreshFooter;
+}
+
+
+- (void)footerRefresh
+{
+    _pageIndex ++;
+    
+    
+    if (_pageIndex > [self.total_pages intValue]) {
+        [self.refreshFooter endRefreshing];
+        return;
+    }
+    
+    
+   
+    
+    
+    [self loadData];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -100,7 +166,8 @@ static NSString *const cellSeconID = @"cellTwo";
     
     if (_model.special_id) {
         
-        BJ_HaveProjectTableViewController *haveProjectVC = [[BJ_HaveProjectTableViewController alloc]init];
+        NSString *str = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&order=publishTime&page_index=1&special_id=%ld&vc=4.0.8",_model.special_id];
+        BJ_HaveProjectTableViewController *haveProjectVC = [[BJ_HaveProjectTableViewController alloc]initWithURL:str];
         
         
         haveProjectVC.special_id = _model.special_id;

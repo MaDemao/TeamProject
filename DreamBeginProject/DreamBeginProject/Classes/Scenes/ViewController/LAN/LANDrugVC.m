@@ -29,24 +29,39 @@
     //self.webView.backgroundColor = [UIColor redColor];
     //
     self.webView.scalesPageToFit =YES;
+    
+    [self.view addSubview:self.webView];
     [self requestData];
     
 }
 
 -(void)requestData{
     
-    NSString *urlStr = [NSString stringWithFormat:@"http://phone.lkhealth.net/ydzx/business/apppage/druginfo.html?&drugid=%@",self.drugModel.drugId];
-    
-    
-    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
-    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSString *urlStr = [NSString stringWithFormat:@"http://phone.lkhealth.net/ydzx/business/apppage/druginfo.html?&drugid=%@",self.drugModel.drugId];
     NSURL *url = [NSURL URLWithString:urlStr];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
-    [self.view addSubview:self.webView];
+    
+       
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            
+          
+            
+        });
+        
+        
+    });
+    
+    
+    
+//    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    
+//    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+    
+    
 
 //    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 //        

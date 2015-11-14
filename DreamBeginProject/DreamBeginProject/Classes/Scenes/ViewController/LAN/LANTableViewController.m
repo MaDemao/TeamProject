@@ -75,7 +75,9 @@ static NSString *const cellID = @"DiseaseType";
         REMenuItem *item = [[REMenuItem alloc]initWithTitle:model.dataName image:nil highlightedImage:nil action:^(REMenuItem *item) {
             self.navigationItem.title = model.dataName;
             self.dataArray2 = model.twoTypeArray;
-            [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
             
             
         }];
@@ -141,6 +143,14 @@ static NSString *const cellID = @"DiseaseType";
     
     
     cell.LANTitleLabel.text = model.dataName;
+    //
+//    if (indexPath.row %2 == 0) {
+//        
+//         cell.backgroundColor= [UIColor orangeColor];
+//    } else {
+//        cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
+//    }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     
 

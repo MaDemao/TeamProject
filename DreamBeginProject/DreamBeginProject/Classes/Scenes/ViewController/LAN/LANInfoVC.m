@@ -8,11 +8,20 @@
 
 #import "LANInfoVC.h"
 #import "LANInfoModel.h"
+
+#import "UMSocial.h"
+
+
+
+
+
 @interface LANInfoVC ()<UIWebViewDelegate>
 
 @property(nonatomic,strong)UIWebView *webView;
 
 @property(nonatomic,assign)NSInteger index;
+@property(nonatomic,copy)NSString *Str;
+
 
 @end
 
@@ -59,32 +68,67 @@
 
 -(void)requestData{
     
-    NSString *string =[NSString stringWithFormat:@"http://api.lkhealth.net/index.php?r=news/newsdetail&dataId=%@&dataType=0&isAlbum=0",self.infoModel.infoId];
     
-    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
-    
-    NSURL *url = [NSURL URLWithString:string];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [self.webView loadRequest:request];
-    [self.view addSubview:self.webView];
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
-        NSDictionary *rootDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        NSDictionary *dict = [rootDic objectForKey:@"data"];
-        NSDictionary *dic = [dict objectForKey:@"newsInfo"];
-        NSString *string = [dic objectForKey:@"content"];
-        //NSLog(@"%@", string);
+        NSString *string =[NSString stringWithFormat:@"http://api.lkhealth.net/index.php?r=news/newsdetail&dataId=%@&dataType=0&isAlbum=0",self.infoModel.infoId];
         
-       [self.webView loadHTMLString:string baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+        NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+        
+        NSURL *url = [NSURL URLWithString:string];
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [self.webView loadRequest:request];
         [self.view addSubview:self.webView];
-    }];
-    [dataTask resume];
+        
+        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+            NSDictionary *rootDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            NSDictionary *dict = [rootDic objectForKey:@"data"];
+            NSDictionary *dic = [dict objectForKey:@"newsInfo"];
+            NSString *string = [dic objectForKey:@"content"];
+            //NSLog(@"%@", string);
+            self.Str = [NSString stringWithString:string];
+            
+            [self.webView loadHTMLString:string baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+            [self.view addSubview:self.webView];
+            
+            [self.view addSubview:self.webView];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+            });
+            
+            
+        }];
+        [dataTask resume];
+
+        
+    });
     
     
+    
+    
+}
+
+//取html标签
+- (NSString *)filterHTML:(NSString *)html{
+    NSScanner * scanner = [NSScanner scannerWithString:html];
+    NSString * text = nil;
+    while([scanner isAtEnd]==NO)
+    {
+        //找到标签的起始位置
+        [scanner scanUpToString:@"<" intoString:nil];
+        //找到标签的结束位置
+        [scanner scanUpToString:@">" intoString:&text];
+        //替换字符
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+    }
+    
+    return html;
     
 }
 
@@ -119,20 +163,30 @@
 //收藏
 -(void)button2Action:(id)sender{
     
-    NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize=%f;document.body.style.color=%@",19.f,[UIColor redColor]];
-    [_webView stringByEvaluatingJavaScriptFromString:jsString];
+   
     
 }
 //分享
 -(void)button3Action:(id)sender{
   
+    NSString *st = [self filterHTML:self.Str];
+    
+    
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:@"5646898a67e58e8c57002553"
+                                      shareText:st
+                                     shareImage:[UIImage imageNamed:@"icon.png"]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToRenren,UMShareToDouban,UMShareToEmail, nil]
+                                       delegate:nil];
+    
+    
     
 }
 
 
 
 
-
+//返回上一个页面
 
 -(void)leftAction:(id)sender{
     

@@ -10,4 +10,5 @@
 
 @interface BJ_HaveProjectTableViewController : UITableViewController
 @property (nonatomic, assign)NSInteger special_id;
+- (instancetype)initWithURL:(NSString *)str;
 @end
