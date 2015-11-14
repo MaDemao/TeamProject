@@ -1,42 +1,58 @@
 //
-//  MDMMyCommendTBC.m
+//  MDMUserCommendTVC.m
 //  DreamBeginProject
 //
-//  Created by 马德茂 on 15/11/13.
+//  Created by 马德茂 on 15/11/14.
 //  Copyright © 2015年 MaDemao. All rights reserved.
 //
 
-#import "MDMMyCommendTBC.h"
+#import "MDMUserCommendTVC.h"
+#import "MDMCommend.h"
+#import "MDMUserCommendCell.h"
 #import "MDMPostDetailedVC.h"
-#import "MDMMyCommendCell.h"
 
-@interface MDMMyCommendTBC ()
+@interface MDMUserCommendTVC ()
+
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
 @end
 
-@implementation MDMMyCommendTBC
+@implementation MDMUserCommendTVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-jiantouzuo.png"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtnAction:)];
     
     self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityView.color = [UIColor blackColor];
     self.activityView.center = CGPointMake([UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height / 2);
     [self.view addSubview:self.activityView];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"MDMMyCommendCell" bundle:nil] forCellReuseIdentifier:@"MDMMyCommendCell"];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-jiantouzuo.png"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtnAction:)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(rightBtnAction:)];
+    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 100;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerNib:[UINib nibWithNibName:@"MDMUserCommendCell" bundle:nil] forCellReuseIdentifier:@"MDMUserCommendCell"];
 }
 
 - (void)leftBtnAction:(UIBarButtonItem *)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)rightBtnAction:(UIBarButtonItem *)sender
+{
+    if (self.tableView.editing == YES) {
+        self.navigationItem.rightBarButtonItem.title = @"编辑";
+    }else{
+        self.navigationItem.rightBarButtonItem.title = @"完成";
+    }
+    self.tableView.editing = !self.tableView.editing;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -65,44 +81,59 @@
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    MDMMyCommendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MDMMyCommendCell" forIndexPath:indexPath];
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    MDMUserCommendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MDMUserCommendCell" forIndexPath:indexPath];
+    
     if (self.dataArray.count > 0) {
         MDMCommend *commend = [self.dataArray objectAtIndex:indexPath.section];
-        
         cell.commend = commend;
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 10;
+    return 1;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.dataArray.count > 0) {
+        MDMCommend *commend = [self.dataArray objectAtIndex:indexPath.section];
+        [self.dataArray removeObject:commend];
+        [commend deleteInBackground];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.dataArray.count > 0) {
-        MDMCommend *commend = [self.dataArray objectAtIndex:indexPath.section];
-        MDMPost *post = commend.post;
-        AVQuery *query = [MDMPost query];
-        [query whereKey:@"objectId" equalTo:post.objectId];
-        [query includeKey:@"images"];
         [self.activityView startAnimating];
+        MDMPostDetailedVC *vc = [[MDMPostDetailedVC alloc] init];
+        MDMCommend *commend = [self.dataArray objectAtIndex:indexPath.section];
+        AVQuery *query = [MDMPost query];
+        [query whereKey:@"objectId" equalTo:commend.post.objectId];
+        [query includeKey:@"images"];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            MDMPostDetailedVC *vc = [[MDMPostDetailedVC alloc] init];
-            
             if (objects.count > 0) {
-                vc.post = objects.firstObject;
-                
+                MDMPost *post = objects.firstObject;
+                vc.post = post;
                 UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
                 nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                
                 [self presentViewController:nc animated:YES completion:nil];
             }else{
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"网络出错" preferredStyle:UIAlertControllerStyleAlert];
@@ -122,4 +153,5 @@
     }
     return _dataArray;
 }
+
 @end

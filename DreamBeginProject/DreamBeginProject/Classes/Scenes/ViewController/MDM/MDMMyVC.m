@@ -9,6 +9,10 @@
 #import "MDMMyVC.h"
 #import "MDMLoginVC.h"
 #import "MDMUserHelper.h"
+#import "MDMMyAttentionTVC.h"
+#import "MDMMyFansTVC.h"
+#import "MDMUserPostTVC.h"
+#import "MDMUserCommendTVC.h"
 
 @interface MDMMyVC ()<UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
@@ -52,6 +56,7 @@ static NSString * const cell_id = @"cell_id";
     self.tableView.delegate = self;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cell_id];
+
 }
 
 - (void)tapGRAction:(UITapGestureRecognizer *)sender
@@ -97,7 +102,7 @@ static NSString * const cell_id = @"cell_id";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    NSLog(@"%@", [MDMMyUser currentUser]);
+//    NSLog(@"%@", [MDMMyUser currentUser]);
     if ([MDMUserHelper sharedMDMUserHelper].currentUser) {
         
         
@@ -174,6 +179,65 @@ static NSString * const cell_id = @"cell_id";
 {
     return 5;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2 && (indexPath.row == 1 || indexPath.row == 2)) {
+        if (indexPath.row == 2) {
+            //清除缓存
+        }else{
+            //地图
+        }
+    }else{
+        if ([MDMUserHelper sharedMDMUserHelper].currentUser) {
+            if (indexPath.section == 0) {
+                if (indexPath.row == 0) {
+                    //我的关注
+                    MDMMyAttentionTVC *tvc = [[MDMMyAttentionTVC alloc] init];
+                    tvc.info = [MDMUserHelper sharedMDMUserHelper].currentUser.info;
+                    tvc.pushType = 1;
+                    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:tvc];
+                    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                    [self presentViewController:nc animated:YES completion:nil];
+                }else{
+                    MDMMyFansTVC *tvc = [[MDMMyFansTVC alloc] init];
+                    tvc.info = [MDMUserHelper sharedMDMUserHelper].currentUser.info;
+                    tvc.pushType = 1;
+                    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:tvc];
+                    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                    [self presentViewController:nc animated:YES completion:nil];
+                }
+            }else if (indexPath.section == 1){
+                if (indexPath.row == 0) {
+                    //我的帖子
+                    MDMUserPostTVC *tvc = [[MDMUserPostTVC alloc] init];
+                    tvc.info = [MDMUserHelper sharedMDMUserHelper].currentUser.info;
+                    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:tvc];
+                    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                    [self presentViewController:nc animated:YES completion:nil];
+                }else if (indexPath.row == 1){
+                    //我的评论
+                    MDMUserCommendTVC *tvc = [[MDMUserCommendTVC alloc] init];
+                    tvc.info = [MDMUserHelper sharedMDMUserHelper].currentUser.info;
+                    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:tvc];
+                    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                    [self presentViewController:nc animated:YES completion:nil];
+                }else{
+                    //我的收藏
+                }
+            }else{
+                //个人设置
+            }
+        }else{
+            MDMLoginVC *vc = [[MDMLoginVC alloc] init];
+            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+            nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:nc animated:YES completion:nil];
+        }
+    }
+}
+
+
 
 - (NSMutableArray *)dataArray
 {

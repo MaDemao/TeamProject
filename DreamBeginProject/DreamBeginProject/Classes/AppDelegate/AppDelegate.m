@@ -15,6 +15,7 @@
 #import "MDMPost.h"
 #import "MDMCommend.h"
 #import "UMSocial.h"
+#import "MDMFans.h"
 //
 #import "LANTableViewController.h"
 
@@ -31,6 +32,7 @@
     [MDMMyUser registerSubclass];
     [MDMPost registerSubclass];
     [MDMCommend registerSubclass];
+    [MDMFans registerSubclass];
     
     
     [AVOSCloud setApplicationId:@"IB145PVnPxFGL9d7E9X8qXpP"

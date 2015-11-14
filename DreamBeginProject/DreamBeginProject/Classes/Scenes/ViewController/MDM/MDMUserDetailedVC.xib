@@ -73,7 +73,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评论" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORD-Yg-Vj0">
-                                                <rect key="frame" x="0.0" y="20" width="180" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="20.5" width="180" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.38133285979999998" green="0.38133285979999998" blue="0.38133285979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -101,7 +101,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关注" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lZ-yI-d0t">
-                                                <rect key="frame" x="0.0" y="20" width="180" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="20.5" width="180" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.38133285979999998" green="0.38133285979999998" blue="0.38133285979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -129,7 +129,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="粉丝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3v-tR-Bzm">
-                                                <rect key="frame" x="0.0" y="20" width="180" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="20.5" width="180" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.38133285979999998" green="0.38133285979999998" blue="0.38133285979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -145,7 +145,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="keD-bl-s8K">
-                                <rect key="frame" x="533" y="20" width="57" height="30"/>
+                                <rect key="frame" x="530" y="20" width="60" height="30"/>
                                 <color key="backgroundColor" red="0.10940376810000001" green="0.73232323229999996" blue="0.17631595459999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="关注">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -165,7 +165,7 @@
                             <constraint firstItem="TPc-4P-dnF" firstAttribute="top" secondItem="Ia2-DT-W2E" secondAttribute="top" constant="20" id="K0p-lY-uml"/>
                             <constraint firstItem="W9R-UW-Fnw" firstAttribute="top" secondItem="h8s-hY-yVW" secondAttribute="bottom" constant="5" id="M6s-4q-9df"/>
                             <constraint firstItem="P4g-ae-VuC" firstAttribute="width" secondItem="Ia2-DT-W2E" secondAttribute="width" multiplier="0.33333" id="MH1-6F-dLn"/>
-                            <constraint firstItem="keD-bl-s8K" firstAttribute="leading" secondItem="CMD-lS-bEr" secondAttribute="trailing" constant="3" id="MTA-0n-h9g"/>
+                            <constraint firstItem="keD-bl-s8K" firstAttribute="leading" secondItem="CMD-lS-bEr" secondAttribute="trailing" id="MTA-0n-h9g"/>
                             <constraint firstAttribute="trailing" secondItem="h8s-hY-yVW" secondAttribute="trailing" constant="5" id="NPd-qn-8Xu"/>
                             <constraint firstItem="hFu-Cv-Qzl" firstAttribute="width" secondItem="Ia2-DT-W2E" secondAttribute="width" multiplier="0.33333" id="QKv-UN-Mgs"/>
                             <constraint firstItem="keD-bl-s8K" firstAttribute="top" secondItem="Ia2-DT-W2E" secondAttribute="top" constant="20" id="RCc-tA-afZ"/>

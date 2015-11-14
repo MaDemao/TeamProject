@@ -19,6 +19,11 @@
 		412312A31BF06F5A00F819EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412312A11BF06F5A00F819EA /* LaunchScreen.storyboard */; };
 		412312BA1BF06FAF00F819EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 412312AD1BF06FAF00F819EA /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		412312C01BF070D800F819EA /* ViewControllersTemp.m in Sources */ = {isa = PBXBuildFile; fileRef = 412312BF1BF070D800F819EA /* ViewControllersTemp.m */; settings = {ASSET_TAGS = (); }; };
+		41A2125E1BF7351A00C1A4DC /* MDMUserPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A2125C1BF7351A00C1A4DC /* MDMUserPostCell.m */; settings = {ASSET_TAGS = (); }; };
+		41A2125F1BF7351A00C1A4DC /* MDMUserPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41A2125D1BF7351A00C1A4DC /* MDMUserPostCell.xib */; settings = {ASSET_TAGS = (); }; };
+		41A212621BF74A1E00C1A4DC /* MDMUserCommendTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A212611BF74A1E00C1A4DC /* MDMUserCommendTVC.m */; settings = {ASSET_TAGS = (); }; };
+		41A212661BF7504300C1A4DC /* MDMUserCommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A212641BF7504300C1A4DC /* MDMUserCommendCell.m */; settings = {ASSET_TAGS = (); }; };
+		41A212671BF7504300C1A4DC /* MDMUserCommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41A212651BF7504300C1A4DC /* MDMUserCommendCell.xib */; settings = {ASSET_TAGS = (); }; };
 		41B81E5F1BF4CF3500948027 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B81E581BF4CF3500948027 /* REMenu.m */; settings = {ASSET_TAGS = (); }; };
 		41B81E601BF4CF3500948027 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B81E5A1BF4CF3500948027 /* REMenuContainerView.m */; settings = {ASSET_TAGS = (); }; };
 		41B81E611BF4CF3500948027 /* REMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B81E5C1BF4CF3500948027 /* REMenuItem.m */; settings = {ASSET_TAGS = (); }; };
@@ -92,6 +97,12 @@
 		41F484191BF6C04200A1BC65 /* UMSnsAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F4840D1BF6C04200A1BC65 /* UMSnsAccountViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		41F4841A1BF6C04200A1BC65 /* UMSShareListController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F4840E1BF6C04200A1BC65 /* UMSShareListController.xib */; settings = {ASSET_TAGS = (); }; };
 		41F4841B1BF6C04200A1BC65 /* UMSocialSDKResourcesNew.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 41F4840F1BF6C04200A1BC65 /* UMSocialSDKResourcesNew.bundle */; settings = {ASSET_TAGS = (); }; };
+		41F4841E1BF6C87600A1BC65 /* MDMFans.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F4841D1BF6C87600A1BC65 /* MDMFans.m */; settings = {ASSET_TAGS = (); }; };
+		41F4C5F91BF6DD98005BE59B /* MDMMyAttentionTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F4C5F81BF6DD98005BE59B /* MDMMyAttentionTVC.m */; settings = {ASSET_TAGS = (); }; };
+		41F4C5FD1BF6E247005BE59B /* MDMRelationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F4C5FB1BF6E247005BE59B /* MDMRelationCell.m */; settings = {ASSET_TAGS = (); }; };
+		41F4C5FE1BF6E247005BE59B /* MDMRelationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41F4C5FC1BF6E247005BE59B /* MDMRelationCell.xib */; settings = {ASSET_TAGS = (); }; };
+		41F4C6011BF6E602005BE59B /* MDMMyFansTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F4C6001BF6E602005BE59B /* MDMMyFansTVC.m */; settings = {ASSET_TAGS = (); }; };
+		41F4C6041BF729A7005BE59B /* MDMUserPostTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F4C6031BF729A7005BE59B /* MDMUserPostTVC.m */; settings = {ASSET_TAGS = (); }; };
 		41F6C3FF1BF490BF0034EA9D /* iconfont-jiantouzuo.png in Resources */ = {isa = PBXBuildFile; fileRef = 41F6C3FE1BF490BF0034EA9D /* iconfont-jiantouzuo.png */; settings = {ASSET_TAGS = (); }; };
 		41F6C40C1BF4C8AC0034EA9D /* Networking.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F6C40B1BF4C8AC0034EA9D /* Networking.m */; settings = {ASSET_TAGS = (); }; };
 		41F6C4491BF4CA5A0034EA9D /* IanScrollImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F6C42F1BF4CA5A0034EA9D /* IanScrollImageView.m */; settings = {ASSET_TAGS = (); }; };
@@ -130,6 +141,14 @@
 		412312AD1BF06FAF00F819EA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		412312BE1BF070D800F819EA /* ViewControllersTemp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllersTemp.h; sourceTree = "<group>"; };
 		412312BF1BF070D800F819EA /* ViewControllersTemp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllersTemp.m; sourceTree = "<group>"; };
+		41A2125B1BF7351A00C1A4DC /* MDMUserPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMUserPostCell.h; sourceTree = "<group>"; };
+		41A2125C1BF7351A00C1A4DC /* MDMUserPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMUserPostCell.m; sourceTree = "<group>"; };
+		41A2125D1BF7351A00C1A4DC /* MDMUserPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDMUserPostCell.xib; sourceTree = "<group>"; };
+		41A212601BF74A1E00C1A4DC /* MDMUserCommendTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMUserCommendTVC.h; sourceTree = "<group>"; };
+		41A212611BF74A1E00C1A4DC /* MDMUserCommendTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMUserCommendTVC.m; sourceTree = "<group>"; };
+		41A212631BF7504300C1A4DC /* MDMUserCommendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMUserCommendCell.h; sourceTree = "<group>"; };
+		41A212641BF7504300C1A4DC /* MDMUserCommendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMUserCommendCell.m; sourceTree = "<group>"; };
+		41A212651BF7504300C1A4DC /* MDMUserCommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDMUserCommendCell.xib; sourceTree = "<group>"; };
 		41B81E571BF4CF3500948027 /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
 		41B81E581BF4CF3500948027 /* REMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenu.m; sourceTree = "<group>"; };
 		41B81E591BF4CF3500948027 /* REMenuContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuContainerView.h; sourceTree = "<group>"; };
@@ -260,6 +279,17 @@
 		41F4840E1BF6C04200A1BC65 /* UMSShareListController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UMSShareListController.xib; sourceTree = "<group>"; };
 		41F4840F1BF6C04200A1BC65 /* UMSocialSDKResourcesNew.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResourcesNew.bundle; sourceTree = "<group>"; };
 		41F484101BF6C04200A1BC65 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UMSocialLocalizable.strings"; sourceTree = "<group>"; };
+		41F4841C1BF6C87600A1BC65 /* MDMFans.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMFans.h; sourceTree = "<group>"; };
+		41F4841D1BF6C87600A1BC65 /* MDMFans.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMFans.m; sourceTree = "<group>"; };
+		41F4C5F71BF6DD98005BE59B /* MDMMyAttentionTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMMyAttentionTVC.h; sourceTree = "<group>"; };
+		41F4C5F81BF6DD98005BE59B /* MDMMyAttentionTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMMyAttentionTVC.m; sourceTree = "<group>"; };
+		41F4C5FA1BF6E247005BE59B /* MDMRelationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMRelationCell.h; sourceTree = "<group>"; };
+		41F4C5FB1BF6E247005BE59B /* MDMRelationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMRelationCell.m; sourceTree = "<group>"; };
+		41F4C5FC1BF6E247005BE59B /* MDMRelationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDMRelationCell.xib; sourceTree = "<group>"; };
+		41F4C5FF1BF6E602005BE59B /* MDMMyFansTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMMyFansTVC.h; sourceTree = "<group>"; };
+		41F4C6001BF6E602005BE59B /* MDMMyFansTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMMyFansTVC.m; sourceTree = "<group>"; };
+		41F4C6021BF729A7005BE59B /* MDMUserPostTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMUserPostTVC.h; sourceTree = "<group>"; };
+		41F4C6031BF729A7005BE59B /* MDMUserPostTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMUserPostTVC.m; sourceTree = "<group>"; };
 		41F6C3FE1BF490BF0034EA9D /* iconfont-jiantouzuo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iconfont-jiantouzuo.png"; sourceTree = "<group>"; };
 		41F6C40A1BF4C8AC0034EA9D /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
 		41F6C40B1BF4C8AC0034EA9D /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
@@ -551,6 +581,15 @@
 				41ECDC651BF5FDE300CBC7C3 /* MDMMyCommendCell.h */,
 				41ECDC661BF5FDE300CBC7C3 /* MDMMyCommendCell.m */,
 				41ECDC671BF5FDE300CBC7C3 /* MDMMyCommendCell.xib */,
+				41F4C5FA1BF6E247005BE59B /* MDMRelationCell.h */,
+				41F4C5FB1BF6E247005BE59B /* MDMRelationCell.m */,
+				41F4C5FC1BF6E247005BE59B /* MDMRelationCell.xib */,
+				41A2125B1BF7351A00C1A4DC /* MDMUserPostCell.h */,
+				41A2125C1BF7351A00C1A4DC /* MDMUserPostCell.m */,
+				41A2125D1BF7351A00C1A4DC /* MDMUserPostCell.xib */,
+				41A212631BF7504300C1A4DC /* MDMUserCommendCell.h */,
+				41A212641BF7504300C1A4DC /* MDMUserCommendCell.m */,
+				41A212651BF7504300C1A4DC /* MDMUserCommendCell.xib */,
 			);
 			path = MDM;
 			sourceTree = "<group>";
@@ -669,6 +708,8 @@
 				41C6A6BF1BF4CD1100A56DD7 /* MDMPost.m */,
 				41C6A6C01BF4CD1100A56DD7 /* MDMUserInfo.h */,
 				41C6A6C11BF4CD1100A56DD7 /* MDMUserInfo.m */,
+				41F4841C1BF6C87600A1BC65 /* MDMFans.h */,
+				41F4841D1BF6C87600A1BC65 /* MDMFans.m */,
 			);
 			path = MDM;
 			sourceTree = "<group>";
@@ -780,6 +821,14 @@
 				41ECDC5F1BF57A4700CBC7C3 /* MDMUserDetailedVC.xib */,
 				41ECDC621BF5C26F00CBC7C3 /* MDMMyCommendTBC.h */,
 				41ECDC631BF5C26F00CBC7C3 /* MDMMyCommendTBC.m */,
+				41F4C5F71BF6DD98005BE59B /* MDMMyAttentionTVC.h */,
+				41F4C5F81BF6DD98005BE59B /* MDMMyAttentionTVC.m */,
+				41F4C5FF1BF6E602005BE59B /* MDMMyFansTVC.h */,
+				41F4C6001BF6E602005BE59B /* MDMMyFansTVC.m */,
+				41F4C6021BF729A7005BE59B /* MDMUserPostTVC.h */,
+				41F4C6031BF729A7005BE59B /* MDMUserPostTVC.m */,
+				41A212601BF74A1E00C1A4DC /* MDMUserCommendTVC.h */,
+				41A212611BF74A1E00C1A4DC /* MDMUserCommendTVC.m */,
 			);
 			path = MDM;
 			sourceTree = "<group>";
@@ -967,10 +1016,12 @@
 				412312A31BF06F5A00F819EA /* LaunchScreen.storyboard in Resources */,
 				41F6C3FF1BF490BF0034EA9D /* iconfont-jiantouzuo.png in Resources */,
 				41F484191BF6C04200A1BC65 /* UMSnsAccountViewController.xib in Resources */,
+				41A2125F1BF7351A00C1A4DC /* MDMUserPostCell.xib in Resources */,
 				41ECDC611BF57A4700CBC7C3 /* MDMUserDetailedVC.xib in Resources */,
 				41F6C4511BF4CA5A0034EA9D /* SCNavTabBar.bundle in Resources */,
 				41C6A6CE1BF4CD2700A56DD7 /* 1.png in Resources */,
 				41C6A7131BF4CDC500A56DD7 /* MDMPostEditVC.xib in Resources */,
+				41F4C5FE1BF6E247005BE59B /* MDMRelationCell.xib in Resources */,
 				41C6A70D1BF4CDC500A56DD7 /* MDMLoginVC.xib in Resources */,
 				41F3F5FA1BF1E9030097DE21 /* myData.plist in Resources */,
 				41B81E641BF4CFD800948027 /* 4.png in Resources */,
@@ -996,6 +1047,7 @@
 				41F6C44C1BF4CA5A0034EA9D /* sdRefeshView_arrow@2x.png in Resources */,
 				41F4841A1BF6C04200A1BC65 /* UMSShareListController.xib in Resources */,
 				41F484161BF6C04200A1BC65 /* UMShareEditViewController.xib in Resources */,
+				41A212671BF7504300C1A4DC /* MDMUserCommendCell.xib in Resources */,
 				412265441BF337B900D71D81 /* iconfont-morentouxiang.png in Resources */,
 				C244E35E1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib in Resources */,
 				41C6A7111BF4CDC500A56DD7 /* MDMPostDetailedVC.xib in Resources */,
@@ -1058,10 +1110,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41F4C5FD1BF6E247005BE59B /* MDMRelationCell.m in Sources */,
 				41C6A7321BF4CE9900A56DD7 /* LANDiseaseInfoCell.m in Sources */,
 				41C6A70C1BF4CDC500A56DD7 /* MDMLoginVC.m in Sources */,
 				C244E35D1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.m in Sources */,
 				41C6A6A61BF4CC8500A56DD7 /* BJ_DataManager.m in Sources */,
+				41A212661BF7504300C1A4DC /* MDMUserCommendCell.m in Sources */,
 				412312921BF06F5A00F819EA /* main.m in Sources */,
 				41C6A7101BF4CDC500A56DD7 /* MDMPostDetailedVC.m in Sources */,
 				41F6C4501BF4CA5A0034EA9D /* UIView+SDExtension.m in Sources */,
@@ -1081,6 +1135,8 @@
 				41C6A72B1BF4CE5D00A56DD7 /* LANInfoModel.m in Sources */,
 				41F6C44F1BF4CA5A0034EA9D /* SDRefreshView.m in Sources */,
 				41C6A7071BF4CDC500A56DD7 /* BJ_projectTableViewController.m in Sources */,
+				41F4841E1BF6C87600A1BC65 /* MDMFans.m in Sources */,
+				41F4C6041BF729A7005BE59B /* MDMUserPostTVC.m in Sources */,
 				41C6A72A1BF4CE5D00A56DD7 /* LANGrugModel.m in Sources */,
 				C26634141BF56CC300824DAA /* LANDrugVC.m in Sources */,
 				41C6A7141BF4CDC500A56DD7 /* MDMPostTVC.m in Sources */,
@@ -1089,6 +1145,7 @@
 				41C6A68E1BF4CC3100A56DD7 /* MDMPostCell.m in Sources */,
 				C244E3361BF571720014E2C7 /* BJ_detailsPageViewController.m in Sources */,
 				41C6A7151BF4CDC500A56DD7 /* MDMRegisterVC.m in Sources */,
+				41A212621BF74A1E00C1A4DC /* MDMUserCommendTVC.m in Sources */,
 				41C6A73B1BF4CECD00A56DD7 /* LANTableViewController.m in Sources */,
 				412312BA1BF06FAF00F819EA /* AppDelegate.m in Sources */,
 				41F6C4541BF4CA5A0034EA9D /* SCPopView.m in Sources */,
@@ -1102,6 +1159,7 @@
 				41C6A6A71BF4CC8500A56DD7 /* MDMUserHelper.m in Sources */,
 				41F6C44D1BF4CA5A0034EA9D /* SDRefreshFooterView.m in Sources */,
 				41F6C4531BF4CA5A0034EA9D /* SCNavTabBar.m in Sources */,
+				41A2125E1BF7351A00C1A4DC /* MDMUserPostCell.m in Sources */,
 				41C6A6C61BF4CD1100A56DD7 /* BJ_Project.m in Sources */,
 				41C6A7271BF4CE5D00A56DD7 /* LANCommonDiseaseListModel.m in Sources */,
 				41C6A70E1BF4CDC500A56DD7 /* MDMMyVC.m in Sources */,
@@ -1110,6 +1168,7 @@
 				41C6A7291BF4CE5D00A56DD7 /* LANDiseaseTypeModel.m in Sources */,
 				41ECDC641BF5C26F00CBC7C3 /* MDMMyCommendTBC.m in Sources */,
 				41C6A68C1BF4CC3100A56DD7 /* MDMPicItem.m in Sources */,
+				41F4C5F91BF6DD98005BE59B /* MDMMyAttentionTVC.m in Sources */,
 				C26634171BF56CE300824DAA /* LANInfoVC.m in Sources */,
 				41F6C44A1BF4CA5A0034EA9D /* IanScrollView.m in Sources */,
 				41F6C40C1BF4C8AC0034EA9D /* Networking.m in Sources */,
@@ -1119,6 +1178,7 @@
 				41C6A6C51BF4CD1100A56DD7 /* BJ_Homepage.m in Sources */,
 				41C6A7121BF4CDC500A56DD7 /* MDMPostEditVC.m in Sources */,
 				41ECDC601BF57A4700CBC7C3 /* MDMUserDetailedVC.m in Sources */,
+				41F4C6011BF6E602005BE59B /* MDMMyFansTVC.m in Sources */,
 				41C6A68A1BF4CC3100A56DD7 /* MDMCommendCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -64,6 +64,7 @@
         return;
     }
     if (self.isRef == YES) {
+        [self.tableView reloadData];
         [[MDMUserHelper sharedMDMUserHelper] requestPostData];
         self.isRef = NO;
     }

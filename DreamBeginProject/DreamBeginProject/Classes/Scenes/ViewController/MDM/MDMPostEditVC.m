@@ -7,7 +7,6 @@
 //
 
 #import "MDMPostEditVC.h"
-#import "YBImgPickerViewController.h"
 #import "MDMPicItem.h"
 #import "MDMPost.h"
 #import "MDMUserHelper.h"

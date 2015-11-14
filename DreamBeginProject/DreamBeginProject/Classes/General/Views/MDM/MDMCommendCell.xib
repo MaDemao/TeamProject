@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="加载中" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="He4-Ir-9CQ">
-                        <rect key="frame" x="70" y="41" width="295" height="31"/>
+                        <rect key="frame" x="80" y="41" width="285" height="31"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="He4-Ir-9CQ" secondAttribute="bottom" constant="2" id="kwZ-FL-2xt"/>
                     <constraint firstAttribute="trailingMargin" secondItem="He4-Ir-9CQ" secondAttribute="trailing" constant="2" id="lMI-aD-d4l"/>
                     <constraint firstItem="Xj8-nV-bhp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="sS2-dm-aHs"/>
-                    <constraint firstItem="He4-Ir-9CQ" firstAttribute="leading" secondItem="eLC-Ev-wiD" secondAttribute="trailing" constant="10" id="y0J-0c-etk"/>
+                    <constraint firstItem="He4-Ir-9CQ" firstAttribute="leading" secondItem="eLC-Ev-wiD" secondAttribute="trailing" constant="20" id="y0J-0c-etk"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

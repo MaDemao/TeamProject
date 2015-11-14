@@ -11,6 +11,11 @@
 #import "MDMPost.h"
 #import "MDMPostDetailedVC.h"
 #import "MDMMyCommendTBC.h"
+#import "MDMUserHelper.h"
+#import "MDMFans.h"
+#import "MDMLoginVC.h"
+#import "MDMMyAttentionTVC.h"
+#import "MDMMyFansTVC.h"
 
 @interface MDMUserDetailedVC ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -30,6 +35,8 @@
 
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, assign) BOOL isFans;
+@property (nonatomic, strong) UIActivityIndicatorView *activityView;
 
 @end
 
@@ -38,6 +45,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.activityView.color = [UIColor blackColor];
+    self.activityView.center = CGPointMake([UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height / 2);
+    [self.view addSubview:self.activityView];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-jiantouzuo.png"] style:UIBarButtonItemStylePlain target:self action:@selector(leftBtnAction:)];
     
@@ -63,6 +75,8 @@
 {
     [super viewWillAppear:animated];
     
+    [self.dataArray removeAllObjects];
+    
     AVQuery *query = [MDMPost query];
     [query whereKey:@"info" equalTo:self.info];
     [query orderByDescending:@"date"];
@@ -84,6 +98,39 @@
     [query1 countObjectsInBackgroundWithBlock:^(NSInteger number, NSError *error) {
         self.commendText.text = [NSString stringWithFormat:@"%ld", number];
     }];
+    
+    AVQuery *query2 = [MDMFans query];
+    [query2 whereKey:@"fromInfo" equalTo:self.info];
+    [query2 countObjectsInBackgroundWithBlock:^(NSInteger number, NSError *error) {
+        self.attentionText.text = [NSString stringWithFormat:@"%ld", number];
+    }];
+    
+    AVQuery *query3 = [MDMFans query];
+    [query3 whereKey:@"toInfo" equalTo:self.info];
+    [query3 countObjectsInBackgroundWithBlock:^(NSInteger number, NSError *error) {
+        self.fansText.text = [NSString stringWithFormat:@"%ld", number];
+    }];
+    
+    if ([MDMUserHelper sharedMDMUserHelper].currentUser) {
+        if ([self.info.objectId isEqualToString:[MDMUserHelper sharedMDMUserHelper].currentUser.info.objectId]) {
+            self.funsBtn.hidden = YES;
+        }else{
+            AVQuery *query1 = [MDMFans query];
+            [query1 whereKey:@"fromInfo" equalTo:[MDMUserHelper sharedMDMUserHelper].currentUser.info];
+            AVQuery *query2 = [MDMFans query];
+            [query2 whereKey:@"toInfo" equalTo:self.info];
+            AVQuery *query = [AVQuery andQueryWithSubqueries:@[query1, query2]];
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (objects.count > 0) {
+                    [self.funsBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+                    self.isFans = YES;
+                }else{
+                    [self.funsBtn setTitle:@"关注" forState:UIControlStateNormal];
+                    self.isFans = NO;
+                }
+            }];
+        }
+    }
 }
 
 - (void)leftBtnAction:(UIBarButtonItem *)sender
@@ -92,6 +139,59 @@
 }
 
 - (IBAction)fansBtnAction:(UIButton *)sender {
+    if ([MDMUserHelper sharedMDMUserHelper].currentUser) {
+        if ([self.info.objectId isEqualToString:[MDMUserHelper sharedMDMUserHelper].currentUser.info.objectId]) {
+            return;
+        }else{
+            if (self.isFans) {
+                //删除关系
+                
+                AVQuery *query1 = [MDMFans query];
+                [query1 whereKey:@"fromInfo" equalTo:[MDMUserHelper sharedMDMUserHelper].currentUser.info];
+                AVQuery *query2 = [MDMFans query];
+                [query2 whereKey:@"toInfo" equalTo:self.info];
+                AVQuery *query = [AVQuery andQueryWithSubqueries:@[query1, query2]];
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    if (objects.count > 0) {
+                        MDMFans *fans = objects.firstObject;
+                        [self.activityView startAnimating];
+                        NSLog(@"%@", fans);
+                        [fans deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            self.isFans = NO;
+                            [self.funsBtn setTitle:@"关注" forState:UIControlStateNormal];
+                            [self viewWillAppear:YES];
+                            [self.activityView stopAnimating];
+                        }];
+                    }
+                }];
+                
+                
+            }else{
+                [self.activityView startAnimating];
+                MDMFans *fans = [MDMFans object];
+                fans.fromInfo = [MDMUserHelper sharedMDMUserHelper].currentUser.info;
+                fans.toInfo = self.info;
+                
+                NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"yyyy-MM-dd HH-mm"];
+                NSString *string = [formatter stringFromDate:date];
+                
+                fans.date = string;
+                [fans save];
+                
+                self.isFans = YES;
+                [self.funsBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+                [self viewWillAppear:YES];
+                [self.activityView stopAnimating];
+            }
+        }
+    }else
+    {
+        MDMLoginVC *vc = [[MDMLoginVC alloc] init];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nc animated:YES completion:nil];
+    }
 }
 
 - (void)tapGRCommendAction:(UITapGestureRecognizer *)sender
@@ -103,12 +203,16 @@
 
 - (void)tapGRAttentionAction:(UITapGestureRecognizer *)sender
 {
-    NSLog(@"关注");
+    MDMMyAttentionTVC *tvc = [[MDMMyAttentionTVC alloc] init];
+    tvc.info = self.info;
+    [self.navigationController pushViewController:tvc animated:YES];
 }
 
 - (void)tapGRFansAction:(UITapGestureRecognizer *)sender
 {
-    NSLog(@"粉丝");
+    MDMMyFansTVC *tvc = [[MDMMyFansTVC alloc] init];
+    tvc.info = self.info;
+    [self.navigationController pushViewController:tvc animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -130,9 +234,11 @@
     cell.textLabel.font = [UIFont systemFontOfSize:24];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:18];
     
-    MDMPost *post = [self.dataArray objectAtIndex:indexPath.section];
-    cell.textLabel.text = post.title;
-    cell.detailTextLabel.text = post.des;
+    if (self.dataArray.count > 0) {
+        MDMPost *post = [self.dataArray objectAtIndex:indexPath.section];
+        cell.textLabel.text = post.title;
+        cell.detailTextLabel.text = post.des;
+    }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -160,17 +266,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MDMPost *post = [self.dataArray objectAtIndex:indexPath.section];
-    
-    MDMPostDetailedVC *vc = [[MDMPostDetailedVC alloc] init];
-    
-    vc.post = post;
-    
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    
-    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    
-    [self presentViewController:nc animated:YES completion:nil];
+    if (self.dataArray.count > 0) {
+        MDMPost *post = [self.dataArray objectAtIndex:indexPath.section];
+        
+        MDMPostDetailedVC *vc = [[MDMPostDetailedVC alloc] init];
+        
+        vc.post = post;
+        
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        
+        nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        
+        [self presentViewController:nc animated:YES completion:nil];
+    }
 }
 
 - (NSMutableArray *)dataArray

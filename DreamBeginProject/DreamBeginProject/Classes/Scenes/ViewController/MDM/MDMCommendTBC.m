@@ -64,6 +64,7 @@
         self.isPush = NO;
     }else{
         [self.dataArray removeAllObjects];
+        [self.tableView reloadData];
         
         AVQuery *query = [MDMCommend query];
         [query whereKey:@"post" equalTo:self.post];
