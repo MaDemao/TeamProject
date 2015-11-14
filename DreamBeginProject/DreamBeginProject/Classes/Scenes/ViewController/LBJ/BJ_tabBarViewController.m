@@ -22,10 +22,10 @@
     [super viewDidLoad];
     
     self.title = @"首页";
-    
+
     BJ_FirstTableViewController *oneController = [[BJ_FirstTableViewController alloc]initWithURLString:kBaseUrlWithRecommended];
     oneController.title = @"推荐";
-    BJ_projectTableViewController *twoController = [[BJ_projectTableViewController alloc]init];
+    BJ_projectTableViewController *twoController = [[BJ_projectTableViewController alloc]initWithUrl:kBaseUrlWithProject];
     twoController.title = @"专题";
     BJ_allTableViewController *threeController = [[BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithTure];
     threeController.title = @"真相";
@@ -44,6 +44,7 @@
        
     //添加控制器列表
     navTab.subViewControllers = @[oneController,twoController,threeController,fourController,fiveController,sixController,sevenController,eightController];
+    
 
     navTab.canPopAllItemMenu = NO;
     navTab.scrollAnimation = YES;

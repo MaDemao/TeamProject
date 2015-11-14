@@ -61,7 +61,8 @@ static NSString *const cellTwiID = @"cellTwo";
     [super viewWillAppear:animated];
     self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
     
-    
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
    
 }
 
@@ -160,16 +161,16 @@ static NSString *const cellTwiID = @"cellTwo";
 - (void)footerRefresh
 {
     _pageIndex ++;
-    int a = [self.total_pages intValue];
+   
     
-    if (_pageIndex > a) {
+    if (_pageIndex > [self.total_pages intValue]) {
         [self.refreshFooter endRefreshing];
         return;
     }
  
     NSString *url = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/recommend?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&page_index=%ld&vc=4.0.8",(long)_pageIndex];
     self.urlString = url;
-    //self.urlString = [NSString stringWithFormat:@"%@%ld",self.urlString,(long)_pageIndex];
+
     
     [self loadData];
 
@@ -250,7 +251,9 @@ static NSString *const cellTwiID = @"cellTwo";
     _model = self.dataArray[indexPath.row];
     if (_model.special_id) {
         
-        BJ_HaveProjectTableViewController *haveProjectVC = [[BJ_HaveProjectTableViewController alloc]init];
+        NSString *str = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&order=publishTime&page_index=%d&special_id=%ld&vc=4.0.8",1,_model.special_id];
+        BJ_HaveProjectTableViewController *haveProjectVC = [[BJ_HaveProjectTableViewController alloc]initWithURL:str];
+        
       
         
         haveProjectVC.special_id = _model.special_id;
