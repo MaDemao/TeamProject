@@ -15,8 +15,8 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="骨质增生" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3z-Kv-yUg">
-                        <rect key="frame" x="20" y="12" width="64" height="20"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <rect key="frame" x="30" y="11" width="68" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -30,7 +30,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="pnJ-mt-rWt" secondAttribute="trailing" id="BB3-MV-nFa"/>
-                    <constraint firstItem="N3z-Kv-yUg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="J5y-8L-iX3"/>
+                    <constraint firstItem="N3z-Kv-yUg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="J5y-8L-iX3"/>
                     <constraint firstItem="N3z-Kv-yUg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="odH-Hf-sGs"/>
                     <constraint firstItem="pnJ-mt-rWt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="p6l-RM-XuJ"/>
                 </constraints>

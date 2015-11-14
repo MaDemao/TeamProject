@@ -62,7 +62,6 @@
 		41C6A7151BF4CDC500A56DD7 /* MDMRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6A7011BF4CDC500A56DD7 /* MDMRegisterVC.m */; settings = {ASSET_TAGS = (); }; };
 		41C6A7161BF4CDC500A56DD7 /* MDMRegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41C6A7021BF4CDC500A56DD7 /* MDMRegisterVC.xib */; settings = {ASSET_TAGS = (); }; };
 		41C6A71B1BF4CE1F00A56DD7 /* LANHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6A7181BF4CE1F00A56DD7 /* LANHelper.m */; settings = {ASSET_TAGS = (); }; };
-		41C6A71C1BF4CE1F00A56DD7 /* LANHelper1.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6A71A1BF4CE1F00A56DD7 /* LANHelper1.m */; settings = {ASSET_TAGS = (); }; };
 		41C6A7271BF4CE5D00A56DD7 /* LANCommonDiseaseListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6A71E1BF4CE5D00A56DD7 /* LANCommonDiseaseListModel.m */; settings = {ASSET_TAGS = (); }; };
 		41C6A7281BF4CE5D00A56DD7 /* LANDiseaseInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6A7201BF4CE5D00A56DD7 /* LANDiseaseInfoModel.m */; settings = {ASSET_TAGS = (); }; };
 		41C6A7291BF4CE5D00A56DD7 /* LANDiseaseTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6A7221BF4CE5D00A56DD7 /* LANDiseaseTypeModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -205,8 +204,6 @@
 		41C6A7021BF4CDC500A56DD7 /* MDMRegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDMRegisterVC.xib; sourceTree = "<group>"; };
 		41C6A7171BF4CE1F00A56DD7 /* LANHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LANHelper.h; sourceTree = "<group>"; };
 		41C6A7181BF4CE1F00A56DD7 /* LANHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANHelper.m; sourceTree = "<group>"; };
-		41C6A7191BF4CE1F00A56DD7 /* LANHelper1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LANHelper1.h; sourceTree = "<group>"; };
-		41C6A71A1BF4CE1F00A56DD7 /* LANHelper1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANHelper1.m; sourceTree = "<group>"; };
 		41C6A71D1BF4CE5D00A56DD7 /* LANCommonDiseaseListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LANCommonDiseaseListModel.h; sourceTree = "<group>"; };
 		41C6A71E1BF4CE5D00A56DD7 /* LANCommonDiseaseListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANCommonDiseaseListModel.m; sourceTree = "<group>"; };
 		41C6A71F1BF4CE5D00A56DD7 /* LANDiseaseInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LANDiseaseInfoModel.h; sourceTree = "<group>"; };
@@ -583,8 +580,6 @@
 			children = (
 				41C6A7171BF4CE1F00A56DD7 /* LANHelper.h */,
 				41C6A7181BF4CE1F00A56DD7 /* LANHelper.m */,
-				41C6A7191BF4CE1F00A56DD7 /* LANHelper1.h */,
-				41C6A71A1BF4CE1F00A56DD7 /* LANHelper1.m */,
 			);
 			path = LAN;
 			sourceTree = "<group>";
@@ -1070,7 +1065,6 @@
 				41C6A6C91BF4CD1100A56DD7 /* MDMPost.m in Sources */,
 				41C6A6C71BF4CD1100A56DD7 /* MDMCommend.m in Sources */,
 				41C6A6971BF4CC4500A56DD7 /* BJ_HomeTableViewCell.m in Sources */,
-				41C6A71C1BF4CE1F00A56DD7 /* LANHelper1.m in Sources */,
 				41C6A6CA1BF4CD1100A56DD7 /* MDMUserInfo.m in Sources */,
 				41C6A6991BF4CC4500A56DD7 /* BJ_projectTableViewCell.m in Sources */,
 				41C6A73A1BF4CECD00A56DD7 /* LANDiseaseInfoTableViewController.m in Sources */,

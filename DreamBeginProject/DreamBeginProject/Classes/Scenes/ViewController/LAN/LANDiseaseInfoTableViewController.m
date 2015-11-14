@@ -91,7 +91,10 @@ static NSString *const cellID1 = @"DiseaseInfo";
             [self.infoArray addObject:model];
         }
         
-    [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    
             
     }];
     
