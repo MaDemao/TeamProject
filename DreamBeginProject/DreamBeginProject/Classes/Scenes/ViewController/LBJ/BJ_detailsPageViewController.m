@@ -19,19 +19,48 @@
     [super viewDidLoad];
     [self drawWenView];
      [self loadData];
+        self.view.backgroundColor = [UIColor whiteColor];
+//    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64);
+    self.navigationController.navigationBar.translucent = NO;
+    UIImage *image = [UIImage imageNamed:@"share_24px_1161414_easyicon.net"];
+     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    UIBarButtonItem *rightOne = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(rightOne)];
+//    self.navigationItem.rightBarButtonItems = @[rightOne];
+    
+}
+- (void)rightOne{
+    
+    
+    
+    
 }
 - (void)drawWenView{
     
-    self.view.backgroundColor = [UIColor whiteColor];
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(10, 0, self.view.frame.size.width - 10, [UIScreen mainScreen].bounds.size.height)];
+
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(10, 0, self.view.frame.size.width - 10, [UIScreen mainScreen].bounds.size.height - 64)];
     _webView.backgroundColor = [UIColor whiteColor];
     _webView.scalesPageToFit =YES;
     _webView.delegate =self;
-     [self.view addSubview:_webView];
+    
     
 }
+//- (NSString *)filterHTML:(NSString *)html{
+//    NSScanner * scanner = [NSScanner scannerWithString:html];
+//    NSString * text = nil;
+//    while([scanner isAtEnd]==NO)
+//    {
+//        //找到标签的起始位置
+//        [scanner scanUpToString:@"</li></ol>" intoString:nil];
+//        //找到标签的结束位置
+//        [scanner scanUpToString:@"Shutterstock.com</font></div>" intoString:&text];
+//        //替换字符
+//        html = [html stringByReplacingOccurrencesOfString:[NSString    stringWithFormat:@"%@>",text] withString:@""];
+//    }
+//    return html;
+//}
 - (void)loadData{
     NSString *url = [NSString stringWithFormat:kURL(_ID)];
+    NSLog(@"%ld",_ID);
     [[Networking shareNetworking]networkingGetWithURL:url Block:^(id object) {
         
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:object options:NSJSONReadingAllowFragments error:nil];
@@ -43,14 +72,16 @@
         
           str = [@"<h1>" stringByAppendingString:[NSString stringWithFormat:@"%@</h1>%@",secondStr,str]];
         
-          str = [NSString stringWithFormat:@"<body>%@</body>",str];
+//          str = [NSString stringWithFormat:@"<body>%@</body>",str];
             [_webView loadHTMLString:str baseURL:[NSURL fileURLWithPath:[NSBundle mainBundle].bundlePath]];
         
         
             
        
     }];
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.view addSubview:_webView];
+    });
    
 
     

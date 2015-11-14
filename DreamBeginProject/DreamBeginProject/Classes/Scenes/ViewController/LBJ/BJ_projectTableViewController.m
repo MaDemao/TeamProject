@@ -33,7 +33,12 @@ static NSString *const cellID = @"cell";
     
     
 }
-
+- (instancetype)initWithUrl:(NSString *)url{
+    if (self = [super init]) {
+        self.urlString = url;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,12 +54,6 @@ static NSString *const cellID = @"cell";
     [self setupHeader];
     [self setupFooter];
 }
-
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
-//}
 
 - (void)setupHeader
 {
@@ -93,48 +92,22 @@ static NSString *const cellID = @"cell";
 - (void)footerRefresh
 {
     _pageIndex ++;
-    int a = [self.total_pages intValue];
-    NSLog(@"aa%d",a);
-    
-    if (_pageIndex > a) {
+   
+    if (_pageIndex > [self.total_pages intValue]) {
         [self.refreshFooter endRefreshing];
         return;
     }
-    
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+   
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         NSString *url = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/special/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&page_index=%ld&vc=4.0.8",(long)_pageIndex];
-        
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-        NSURLSession *session = [NSURLSession sharedSession];
-        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-           
-            NSDictionary *dic = dict[@"data"];
-            
-            NSArray *array = dic[@"items"];
-            for (NSDictionary *dict in array) {
-                BJ_Project *project = [BJ_Project new];
-                [project setValuesForKeysWithDictionary:dict];
-                [self.dataArray addObject:project];
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-            });
-            
-            
-            
-        }];
-        
-        [self.refreshFooter endRefreshing];
-        
-        
-        [dataTask resume];
-    });
+       
+        self.urlString = url;
+        [self loadData];
+
 }
 
 - (void)loadData{
-    [[Networking shareNetworking]networkingGetWithURL:kBaseUrlWithProject Block:^(id object) {
+    [[Networking shareNetworking]networkingGetWithURL:self.urlString Block:^(id object) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:object options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *dic = dict[@"data"];
         self.total_pages = dic[@"total_pages"];
@@ -148,6 +121,7 @@ static NSString *const cellID = @"cell";
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+             [self.refreshFooter endRefreshing];
         });
         
     }];
@@ -172,22 +146,25 @@ static NSString *const cellID = @"cell";
     
    BJ_SecondProjectTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     cell.model = self.dataArray[indexPath.row];
-    
-    
 
-    
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    BJ_detailsPageViewController *details = [BJ_detailsPageViewController new];
     
-//    details.ID = [self.dataArray[indexPath.row] ID];
     
-    details.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:details animated:YES];
+    NSString *str = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&order=publishTime&page_index=1&special_id=%ld&vc=4.0.8",[self.dataArray[indexPath.row]ID]];
+    BJ_HaveProjectTableViewController *haveProjectVC = [[BJ_HaveProjectTableViewController alloc]initWithURL:str];
+   
+    
+    
+    haveProjectVC.special_id = [self.dataArray[indexPath.row]ID];
+    
+    
+    haveProjectVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:haveProjectVC animated:YES];
 }
 /*
 // Override to support conditional editing of the table view.

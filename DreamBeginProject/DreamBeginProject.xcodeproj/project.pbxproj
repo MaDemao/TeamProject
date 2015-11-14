@@ -45,7 +45,6 @@
 		41C6A6CE1BF4CD2700A56DD7 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 41C6A6CC1BF4CD2700A56DD7 /* 1.png */; settings = {ASSET_TAGS = (); }; };
 		41C6A7051BF4CDC500A56DD7 /* BJ_allTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6A6E51BF4CDC500A56DD7 /* BJ_allTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		41C6A7061BF4CDC500A56DD7 /* BJ_FirstTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6A6E71BF4CDC500A56DD7 /* BJ_FirstTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		41C6A7071BF4CDC500A56DD7 /* BJ_projectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6A6E91BF4CDC500A56DD7 /* BJ_projectTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		41C6A7081BF4CDC500A56DD7 /* BJ_tabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6A6EB1BF4CDC500A56DD7 /* BJ_tabBarViewController.m */; settings = {ASSET_TAGS = (); }; };
 		41C6A7091BF4CDC500A56DD7 /* MDMCommendEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6A6EE1BF4CDC500A56DD7 /* MDMCommendEditVC.m */; settings = {ASSET_TAGS = (); }; };
 		41C6A70A1BF4CDC500A56DD7 /* MDMCommendEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41C6A6EF1BF4CDC500A56DD7 /* MDMCommendEditVC.xib */; settings = {ASSET_TAGS = (); }; };
@@ -105,6 +104,9 @@
 		41F6C4521BF4CA5A0034EA9D /* SCNavTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F6C4431BF4CA5A0034EA9D /* SCNavTabBarController.m */; settings = {ASSET_TAGS = (); }; };
 		41F6C4531BF4CA5A0034EA9D /* SCNavTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F6C4461BF4CA5A0034EA9D /* SCNavTabBar.m */; settings = {ASSET_TAGS = (); }; };
 		41F6C4541BF4CA5A0034EA9D /* SCPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41F6C4481BF4CA5A0034EA9D /* SCPopView.m */; settings = {ASSET_TAGS = (); }; };
+		C21994591BF71FE70001895B /* BJ_projectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C21994581BF71FE70001895B /* BJ_projectTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C21994821BF752B20001895B /* fenxiang.png in Resources */ = {isa = PBXBuildFile; fileRef = C21994811BF752B20001895B /* fenxiang.png */; settings = {ASSET_TAGS = (); }; };
+		C21994851BF754D50001895B /* share_24px_1161414_easyicon.net.png in Resources */ = {isa = PBXBuildFile; fileRef = C21994841BF754D50001895B /* share_24px_1161414_easyicon.net.png */; settings = {ASSET_TAGS = (); }; };
 		C244E3361BF571720014E2C7 /* BJ_detailsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C244E3351BF571720014E2C7 /* BJ_detailsPageViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C244E35D1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C244E35B1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		C244E35E1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C244E35C1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -176,8 +178,6 @@
 		41C6A6E51BF4CDC500A56DD7 /* BJ_allTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJ_allTableViewController.m; sourceTree = "<group>"; };
 		41C6A6E61BF4CDC500A56DD7 /* BJ_FirstTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJ_FirstTableViewController.h; sourceTree = "<group>"; };
 		41C6A6E71BF4CDC500A56DD7 /* BJ_FirstTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJ_FirstTableViewController.m; sourceTree = "<group>"; };
-		41C6A6E81BF4CDC500A56DD7 /* BJ_projectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJ_projectTableViewController.h; sourceTree = "<group>"; };
-		41C6A6E91BF4CDC500A56DD7 /* BJ_projectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJ_projectTableViewController.m; sourceTree = "<group>"; };
 		41C6A6EA1BF4CDC500A56DD7 /* BJ_tabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJ_tabBarViewController.h; sourceTree = "<group>"; };
 		41C6A6EB1BF4CDC500A56DD7 /* BJ_tabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJ_tabBarViewController.m; sourceTree = "<group>"; };
 		41C6A6ED1BF4CDC500A56DD7 /* MDMCommendEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMCommendEditVC.h; sourceTree = "<group>"; };
@@ -284,6 +284,10 @@
 		41F6C4471BF4CA5A0034EA9D /* SCPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPopView.h; sourceTree = "<group>"; };
 		41F6C4481BF4CA5A0034EA9D /* SCPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPopView.m; sourceTree = "<group>"; };
 		6D8BB7EBB2797D54B93D2E6A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C21994571BF71FE70001895B /* BJ_projectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJ_projectTableViewController.h; sourceTree = "<group>"; };
+		C21994581BF71FE70001895B /* BJ_projectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJ_projectTableViewController.m; sourceTree = "<group>"; };
+		C21994811BF752B20001895B /* fenxiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fenxiang.png; path = ../MDMImage/fenxiang.png; sourceTree = "<group>"; };
+		C21994841BF754D50001895B /* share_24px_1161414_easyicon.net.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_24px_1161414_easyicon.net.png; sourceTree = "<group>"; };
 		C244E3341BF571720014E2C7 /* BJ_detailsPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJ_detailsPageViewController.h; sourceTree = "<group>"; };
 		C244E3351BF571720014E2C7 /* BJ_detailsPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJ_detailsPageViewController.m; sourceTree = "<group>"; };
 		C244E35A1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJ_SecondProjectTableViewCell.h; sourceTree = "<group>"; };
@@ -482,7 +486,7 @@
 		412312B51BF06FAF00F819EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				41C6A6D01BF4CD3100A56DD7 /* LBJImage */,
+				C21994831BF7532C0001895B /* BJImage */,
 				41C6A6CB1BF4CD2700A56DD7 /* LANImages */,
 				412264E11BF2D81000D71D81 /* MDMImage */,
 			);
@@ -677,13 +681,6 @@
 			path = LANImages;
 			sourceTree = "<group>";
 		};
-		41C6A6D01BF4CD3100A56DD7 /* LBJImage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LBJImage;
-			sourceTree = "<group>";
-		};
 		41C6A6D11BF4CD6200A56DD7 /* LAN */ = {
 			isa = PBXGroup;
 			children = (
@@ -735,8 +732,8 @@
 				41C6A6E71BF4CDC500A56DD7 /* BJ_FirstTableViewController.m */,
 				C2B4FBEE1BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.h */,
 				C2B4FBEF1BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.m */,
-				41C6A6E81BF4CDC500A56DD7 /* BJ_projectTableViewController.h */,
-				41C6A6E91BF4CDC500A56DD7 /* BJ_projectTableViewController.m */,
+				C21994571BF71FE70001895B /* BJ_projectTableViewController.h */,
+				C21994581BF71FE70001895B /* BJ_projectTableViewController.m */,
 				41C6A6E41BF4CDC500A56DD7 /* BJ_allTableViewController.h */,
 				41C6A6E51BF4CDC500A56DD7 /* BJ_allTableViewController.m */,
 				C244E3341BF571720014E2C7 /* BJ_detailsPageViewController.h */,
@@ -892,6 +889,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C21994831BF7532C0001895B /* BJImage */ = {
+			isa = PBXGroup;
+			children = (
+				C21994841BF754D50001895B /* share_24px_1161414_easyicon.net.png */,
+				C21994811BF752B20001895B /* fenxiang.png */,
+			);
+			path = BJImage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -966,6 +972,7 @@
 				41F6C4511BF4CA5A0034EA9D /* SCNavTabBar.bundle in Resources */,
 				41C6A6CE1BF4CD2700A56DD7 /* 1.png in Resources */,
 				41C6A7131BF4CDC500A56DD7 /* MDMPostEditVC.xib in Resources */,
+				C21994851BF754D50001895B /* share_24px_1161414_easyicon.net.png in Resources */,
 				41C6A70D1BF4CDC500A56DD7 /* MDMLoginVC.xib in Resources */,
 				41F3F5FA1BF1E9030097DE21 /* myData.plist in Resources */,
 				41B81E641BF4CFD800948027 /* 4.png in Resources */,
@@ -983,6 +990,7 @@
 				412312A01BF06F5A00F819EA /* Assets.xcassets in Resources */,
 				41F484171BF6C04200A1BC65 /* UMShareEditViewControlleriPad.xib in Resources */,
 				4122656E1BF3705200D71D81 /* iconfont-pinglun.png in Resources */,
+				C21994821BF752B20001895B /* fenxiang.png in Resources */,
 				41C6A68F1BF4CC3100A56DD7 /* MDMPostCell.xib in Resources */,
 				41F6C44B1BF4CA5A0034EA9D /* IanScrollViewDefault@2x.png in Resources */,
 				412264E41BF2D81000D71D81 /* iconfont-jiantouyou.png in Resources */,
@@ -1071,10 +1079,10 @@
 				4123129E1BF06F5A00F819EA /* DreamBeginProject.xcdatamodeld in Sources */,
 				412312C01BF070D800F819EA /* ViewControllersTemp.m in Sources */,
 				41C6A7281BF4CE5D00A56DD7 /* LANDiseaseInfoModel.m in Sources */,
+				C21994591BF71FE70001895B /* BJ_projectTableViewController.m in Sources */,
 				41F6C44E1BF4CA5A0034EA9D /* SDRefreshHeaderView.m in Sources */,
 				41C6A72B1BF4CE5D00A56DD7 /* LANInfoModel.m in Sources */,
 				41F6C44F1BF4CA5A0034EA9D /* SDRefreshView.m in Sources */,
-				41C6A7071BF4CDC500A56DD7 /* BJ_projectTableViewController.m in Sources */,
 				41C6A72A1BF4CE5D00A56DD7 /* LANGrugModel.m in Sources */,
 				C26634141BF56CC300824DAA /* LANDrugVC.m in Sources */,
 				41C6A7141BF4CDC500A56DD7 /* MDMPostTVC.m in Sources */,

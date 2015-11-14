@@ -44,7 +44,7 @@
     [self.window makeKeyAndVisible];
     
     UINavigationController *BJ_rootVC = [[UINavigationController alloc]initWithRootViewController:[BJ_tabBarViewController new]];
-    
+   
     
     UINavigationController *rootVC = [[UINavigationController alloc]initWithRootViewController:[LANTableViewController new]];
     
@@ -57,6 +57,9 @@
     
     UITabBarController *rootTBC = [[UITabBarController alloc] init];
     rootTBC.viewControllers = @[BJ_rootVC, rootVC, postNC, mdmMyVC];
+    
+    
+    
     
     self.window.rootViewController=rootTBC;
     
