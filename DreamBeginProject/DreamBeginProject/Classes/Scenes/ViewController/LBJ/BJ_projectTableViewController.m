@@ -26,13 +26,13 @@
 
 @implementation BJ_projectTableViewController
 static NSString *const cellID = @"cell";
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
-//    
-//    
-//    
-//}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
+    
+    
+    
+}
 
 
 - (void)viewDidLoad {
@@ -40,6 +40,7 @@ static NSString *const cellID = @"cell";
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadData];
    _pageIndex = 1;
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_SecondProjectTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
 
     //加载第三方
@@ -87,6 +88,7 @@ static NSString *const cellID = @"cell";
 {
     _pageIndex ++;
     int a = [self.total_pages intValue];
+    NSLog(@"aa%d",a);
     
     if (_pageIndex > a) {
         [self.refreshFooter endRefreshing];
@@ -103,8 +105,7 @@ static NSString *const cellID = @"cell";
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
            
             NSDictionary *dic = dict[@"data"];
-             self.total_pages = dic[@"total_pages"];
-            self.dataArray = [[NSMutableArray alloc]initWithCapacity:20];
+            
             NSArray *array = dic[@"items"];
             for (NSDictionary *dict in array) {
                 BJ_Project *project = [BJ_Project new];
@@ -114,6 +115,7 @@ static NSString *const cellID = @"cell";
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
+            
             
             
         }];
@@ -129,7 +131,9 @@ static NSString *const cellID = @"cell";
     [[Networking shareNetworking]networkingGetWithURL:kBaseUrlWithProject Block:^(id object) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:object options:NSJSONReadingAllowFragments error:nil];
         NSDictionary *dic = dict[@"data"];
-        self.dataArray = [[NSMutableArray alloc]initWithCapacity:20];
+        self.total_pages = dic[@"total_pages"];
+        
+       
         NSArray *array = dic[@"items"];
         for (NSDictionary *dict in array) {
             BJ_Project *project = [BJ_Project new];
@@ -169,7 +173,7 @@ static NSString *const cellID = @"cell";
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 120;
+    return 100;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     BJ_detailsPageViewController *details = [BJ_detailsPageViewController new];
@@ -224,7 +228,7 @@ static NSString *const cellID = @"cell";
 */
 - (NSMutableArray *)dataArray{
     if (!_dataArray) {
-        self.dataArray = [NSMutableArray new];
+        self.dataArray = [[NSMutableArray alloc]initWithCapacity:20];
     }
     return _dataArray;
 }

@@ -44,6 +44,7 @@
        
     //添加控制器列表
     navTab.subViewControllers = @[oneController,twoController,threeController,fourController,fiveController,sixController,sevenController,eightController];
+
     navTab.canPopAllItemMenu = NO;
     navTab.scrollAnimation = YES;
     navTab.mainViewBounces = NO;

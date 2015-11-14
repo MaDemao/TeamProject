@@ -28,6 +28,13 @@ static NSString *const cellSeconID = @"cellTwo";
     }
     return self;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
+    
+    
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_HomeTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
@@ -90,7 +97,7 @@ static NSString *const cellSeconID = @"cellTwo";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _model = self.dataArray[indexPath.row];
-    NSLog(@"model%@",_model);
+    
     if (_model.special_id) {
         
         BJ_HaveProjectTableViewController *haveProjectVC = [[BJ_HaveProjectTableViewController alloc]init];

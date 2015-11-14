@@ -13,7 +13,7 @@
     if ([key isEqualToString:@"id"]) {
         _ID = [value intValue];
         
-        NSLog(@"aaa%ld",_ID);
+      
     }
 }
 - (NSString *)description

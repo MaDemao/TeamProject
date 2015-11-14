@@ -59,7 +59,7 @@ static NSString *const cellTwiID = @"cellTwo";
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
+    self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
     
     
    
@@ -115,7 +115,10 @@ static NSString *const cellTwiID = @"cellTwo";
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                  [self.tableView reloadData];
+                [self.refreshFooter endRefreshing];
             });
+            
+            
             
             }];
   
@@ -164,38 +167,12 @@ static NSString *const cellTwiID = @"cellTwo";
         return;
     }
  
-   
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSString *url = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/recommend?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&page_index=%ld&vc=4.0.8",(long)_pageIndex];
-        
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-        NSURLSession *session = [NSURLSession sharedSession];
-        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            NSDictionary *dic = dict[@"data"];
-            NSArray *array = dic[@"items"];
-            for (NSDictionary *di in array) {
-                BJ_Homepage *model = [BJ_Homepage new];
-            
-                [model setValuesForKeysWithDictionary:di];
-                
-                [self.dataArray addObject:model];
-                
-            }
-            
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                    
-                });
-           
-            
-        }];
-        
-        [self.refreshFooter endRefreshing];
-        
+    NSString *url = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/recommend?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&page_index=%ld&vc=4.0.8",(long)_pageIndex];
+    self.urlString = url;
+    //self.urlString = [NSString stringWithFormat:@"%@%ld",self.urlString,(long)_pageIndex];
+    
+    [self loadData];
 
-       [dataTask resume];
-    });
     }
 
 #pragma mark - Table view data source
