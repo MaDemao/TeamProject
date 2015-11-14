@@ -14,6 +14,7 @@
 #import "MDMPostTVC.h"
 #import "MDMPost.h"
 #import "MDMCommend.h"
+#import "UMSocial.h"
 //
 #import "LANTableViewController.h"
 
@@ -35,6 +36,8 @@
     [AVOSCloud setApplicationId:@"IB145PVnPxFGL9d7E9X8qXpP"
                       clientKey:@"D7RFqtYU62so3MHbW1V4kQMT"];
     
+    
+    [UMSocialData setAppKey:@"5646898a67e58e8c57002553"];
     //
     self.window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor=[UIColor whiteColor];

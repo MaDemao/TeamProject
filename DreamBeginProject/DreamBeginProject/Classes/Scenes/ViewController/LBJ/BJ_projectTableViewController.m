@@ -49,6 +49,12 @@ static NSString *const cellID = @"cell";
     [self setupFooter];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
+}
+
 - (void)setupHeader
 {
     
