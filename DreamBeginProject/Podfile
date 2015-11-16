@@ -4,3 +4,6 @@ pod 'SDWebImage', '~>3.7'
 pod 'AVOSCloud'
 
 pod 'AFNetworking', '~>2.0'
+
+pod 'AMap3DMap'
+pod 'AMapSearch'

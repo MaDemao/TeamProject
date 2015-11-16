@@ -19,11 +19,14 @@
 		412312A31BF06F5A00F819EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412312A11BF06F5A00F819EA /* LaunchScreen.storyboard */; };
 		412312BA1BF06FAF00F819EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 412312AD1BF06FAF00F819EA /* AppDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		412312C01BF070D800F819EA /* ViewControllersTemp.m in Sources */ = {isa = PBXBuildFile; fileRef = 412312BF1BF070D800F819EA /* ViewControllersTemp.m */; settings = {ASSET_TAGS = (); }; };
+		413525141BF968C6002D6D70 /* MDMUserSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413525121BF968C6002D6D70 /* MDMUserSettingVC.m */; settings = {ASSET_TAGS = (); }; };
+		413525151BF968C6002D6D70 /* MDMUserSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413525131BF968C6002D6D70 /* MDMUserSettingVC.xib */; settings = {ASSET_TAGS = (); }; };
 		41A2125E1BF7351A00C1A4DC /* MDMUserPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A2125C1BF7351A00C1A4DC /* MDMUserPostCell.m */; settings = {ASSET_TAGS = (); }; };
 		41A2125F1BF7351A00C1A4DC /* MDMUserPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41A2125D1BF7351A00C1A4DC /* MDMUserPostCell.xib */; settings = {ASSET_TAGS = (); }; };
 		41A212621BF74A1E00C1A4DC /* MDMUserCommendTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A212611BF74A1E00C1A4DC /* MDMUserCommendTVC.m */; settings = {ASSET_TAGS = (); }; };
 		41A212661BF7504300C1A4DC /* MDMUserCommendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A212641BF7504300C1A4DC /* MDMUserCommendCell.m */; settings = {ASSET_TAGS = (); }; };
 		41A212671BF7504300C1A4DC /* MDMUserCommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41A212651BF7504300C1A4DC /* MDMUserCommendCell.xib */; settings = {ASSET_TAGS = (); }; };
+		41B435C51BF97AEA0067953D /* LANMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B435C41BF97AEA0067953D /* LANMapVC.m */; settings = {ASSET_TAGS = (); }; };
 		41B81E5F1BF4CF3500948027 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B81E581BF4CF3500948027 /* REMenu.m */; settings = {ASSET_TAGS = (); }; };
 		41B81E601BF4CF3500948027 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B81E5A1BF4CF3500948027 /* REMenuContainerView.m */; settings = {ASSET_TAGS = (); }; };
 		41B81E611BF4CF3500948027 /* REMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 41B81E5C1BF4CF3500948027 /* REMenuItem.m */; settings = {ASSET_TAGS = (); }; };
@@ -142,6 +145,9 @@
 		412312AD1BF06FAF00F819EA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		412312BE1BF070D800F819EA /* ViewControllersTemp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllersTemp.h; sourceTree = "<group>"; };
 		412312BF1BF070D800F819EA /* ViewControllersTemp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllersTemp.m; sourceTree = "<group>"; };
+		413525111BF968C6002D6D70 /* MDMUserSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMUserSettingVC.h; sourceTree = "<group>"; };
+		413525121BF968C6002D6D70 /* MDMUserSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMUserSettingVC.m; sourceTree = "<group>"; };
+		413525131BF968C6002D6D70 /* MDMUserSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDMUserSettingVC.xib; sourceTree = "<group>"; };
 		41A2125B1BF7351A00C1A4DC /* MDMUserPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMUserPostCell.h; sourceTree = "<group>"; };
 		41A2125C1BF7351A00C1A4DC /* MDMUserPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMUserPostCell.m; sourceTree = "<group>"; };
 		41A2125D1BF7351A00C1A4DC /* MDMUserPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDMUserPostCell.xib; sourceTree = "<group>"; };
@@ -150,6 +156,8 @@
 		41A212631BF7504300C1A4DC /* MDMUserCommendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMUserCommendCell.h; sourceTree = "<group>"; };
 		41A212641BF7504300C1A4DC /* MDMUserCommendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMUserCommendCell.m; sourceTree = "<group>"; };
 		41A212651BF7504300C1A4DC /* MDMUserCommendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDMUserCommendCell.xib; sourceTree = "<group>"; };
+		41B435C31BF97AEA0067953D /* LANMapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LANMapVC.h; sourceTree = "<group>"; };
+		41B435C41BF97AEA0067953D /* LANMapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANMapVC.m; sourceTree = "<group>"; };
 		41B81E571BF4CF3500948027 /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
 		41B81E581BF4CF3500948027 /* REMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenu.m; sourceTree = "<group>"; };
 		41B81E591BF4CF3500948027 /* REMenuContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuContainerView.h; sourceTree = "<group>"; };
@@ -760,6 +768,8 @@
 				C26634131BF56CC300824DAA /* LANDrugVC.m */,
 				C26634151BF56CE300824DAA /* LANInfoVC.h */,
 				C26634161BF56CE300824DAA /* LANInfoVC.m */,
+				41B435C31BF97AEA0067953D /* LANMapVC.h */,
+				41B435C41BF97AEA0067953D /* LANMapVC.m */,
 			);
 			path = LAN;
 			sourceTree = "<group>";
@@ -821,6 +831,9 @@
 				41F4C6031BF729A7005BE59B /* MDMUserPostTVC.m */,
 				41A212601BF74A1E00C1A4DC /* MDMUserCommendTVC.h */,
 				41A212611BF74A1E00C1A4DC /* MDMUserCommendTVC.m */,
+				413525111BF968C6002D6D70 /* MDMUserSettingVC.h */,
+				413525121BF968C6002D6D70 /* MDMUserSettingVC.m */,
+				413525131BF968C6002D6D70 /* MDMUserSettingVC.xib */,
 			);
 			path = MDM;
 			sourceTree = "<group>";
@@ -1055,6 +1068,7 @@
 				C244E35E1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib in Resources */,
 				41C6A7111BF4CDC500A56DD7 /* MDMPostDetailedVC.xib in Resources */,
 				41F4841B1BF6C04200A1BC65 /* UMSocialSDKResourcesNew.bundle in Resources */,
+				413525151BF968C6002D6D70 /* MDMUserSettingVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,7 +1151,6 @@
 				41F6C44E1BF4CA5A0034EA9D /* SDRefreshHeaderView.m in Sources */,
 				41C6A72B1BF4CE5D00A56DD7 /* LANInfoModel.m in Sources */,
 				41F6C44F1BF4CA5A0034EA9D /* SDRefreshView.m in Sources */,
-				41C6A7071BF4CDC500A56DD7 /* BJ_projectTableViewController.m in Sources */,
 				41F4841E1BF6C87600A1BC65 /* MDMFans.m in Sources */,
 				41F4C6041BF729A7005BE59B /* MDMUserPostTVC.m in Sources */,
 				41C6A72A1BF4CE5D00A56DD7 /* LANGrugModel.m in Sources */,
@@ -1152,6 +1165,7 @@
 				41C6A73B1BF4CECD00A56DD7 /* LANTableViewController.m in Sources */,
 				412312BA1BF06FAF00F819EA /* AppDelegate.m in Sources */,
 				41F6C4541BF4CA5A0034EA9D /* SCPopView.m in Sources */,
+				41B435C51BF97AEA0067953D /* LANMapVC.m in Sources */,
 				41F6C4521BF4CA5A0034EA9D /* SCNavTabBarController.m in Sources */,
 				41C6A6C81BF4CD1100A56DD7 /* MDMMyUser.m in Sources */,
 				41F6C4491BF4CA5A0034EA9D /* IanScrollImageView.m in Sources */,
@@ -1175,6 +1189,7 @@
 				C26634171BF56CE300824DAA /* LANInfoVC.m in Sources */,
 				41F6C44A1BF4CA5A0034EA9D /* IanScrollView.m in Sources */,
 				41F6C40C1BF4C8AC0034EA9D /* Networking.m in Sources */,
+				413525141BF968C6002D6D70 /* MDMUserSettingVC.m in Sources */,
 				41C6A7081BF4CDC500A56DD7 /* BJ_tabBarViewController.m in Sources */,
 				41B81E5F1BF4CF3500948027 /* REMenu.m in Sources */,
 				41C6A7051BF4CDC500A56DD7 /* BJ_allTableViewController.m in Sources */,
