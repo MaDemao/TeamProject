@@ -123,6 +123,10 @@
 		C244E35E1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C244E35C1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		C26634141BF56CC300824DAA /* LANDrugVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C26634131BF56CC300824DAA /* LANDrugVC.m */; settings = {ASSET_TAGS = (); }; };
 		C26634171BF56CE300824DAA /* LANInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C26634161BF56CE300824DAA /* LANInfoVC.m */; settings = {ASSET_TAGS = (); }; };
+		C2A7D3C51BF96D460036BE0C /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A7D3C41BF96D460036BE0C /* 5.png */; settings = {ASSET_TAGS = (); }; };
+		C2A7D3C71BF96DDF0036BE0C /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A7D3C61BF96DDF0036BE0C /* 6.png */; settings = {ASSET_TAGS = (); }; };
+		C2A7D3C91BF96EE90036BE0C /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A7D3C81BF96EE90036BE0C /* 7.png */; settings = {ASSET_TAGS = (); }; };
+		C2A7D3CB1BF973F70036BE0C /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A7D3CA1BF973F70036BE0C /* 3.png */; settings = {ASSET_TAGS = (); }; };
 		C2B4FBF01BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2B4FBEF1BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -327,6 +331,10 @@
 		C26634131BF56CC300824DAA /* LANDrugVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANDrugVC.m; sourceTree = "<group>"; };
 		C26634151BF56CE300824DAA /* LANInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LANInfoVC.h; sourceTree = "<group>"; };
 		C26634161BF56CE300824DAA /* LANInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANInfoVC.m; sourceTree = "<group>"; };
+		C2A7D3C41BF96D460036BE0C /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		C2A7D3C61BF96DDF0036BE0C /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		C2A7D3C81BF96EE90036BE0C /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		C2A7D3CA1BF973F70036BE0C /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		C2B4FBEE1BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BJ_HaveProjectTableViewController.h; sourceTree = "<group>"; };
 		C2B4FBEF1BF4DEDC005C5E86 /* BJ_HaveProjectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BJ_HaveProjectTableViewController.m; sourceTree = "<group>"; };
 		E85A9060C0DEAAD7F6FD1CC4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -718,6 +726,10 @@
 			children = (
 				41C6A6CC1BF4CD2700A56DD7 /* 1.png */,
 				41B81E631BF4CFD800948027 /* 4.png */,
+				C2A7D3CA1BF973F70036BE0C /* 3.png */,
+				C2A7D3C41BF96D460036BE0C /* 5.png */,
+				C2A7D3C61BF96DDF0036BE0C /* 6.png */,
+				C2A7D3C81BF96EE90036BE0C /* 7.png */,
 			);
 			path = LANImages;
 			sourceTree = "<group>";
@@ -1039,6 +1051,7 @@
 				41ECDC691BF5FDE300CBC7C3 /* MDMMyCommendCell.xib in Resources */,
 				41C6A68D1BF4CC3100A56DD7 /* MDMPicItem.xib in Resources */,
 				412312A01BF06F5A00F819EA /* Assets.xcassets in Resources */,
+				C2A7D3C71BF96DDF0036BE0C /* 6.png in Resources */,
 				41F484171BF6C04200A1BC65 /* UMShareEditViewControlleriPad.xib in Resources */,
 				4122656E1BF3705200D71D81 /* iconfont-pinglun.png in Resources */,
 				C21994821BF752B20001895B /* fenxiang.png in Resources */,
@@ -1051,7 +1064,10 @@
 				41F4841A1BF6C04200A1BC65 /* UMSShareListController.xib in Resources */,
 				41F484161BF6C04200A1BC65 /* UMShareEditViewController.xib in Resources */,
 				41A212671BF7504300C1A4DC /* MDMUserCommendCell.xib in Resources */,
+				C2A7D3C51BF96D460036BE0C /* 5.png in Resources */,
 				412265441BF337B900D71D81 /* iconfont-morentouxiang.png in Resources */,
+				C2A7D3CB1BF973F70036BE0C /* 3.png in Resources */,
+				C2A7D3C91BF96EE90036BE0C /* 7.png in Resources */,
 				C244E35E1BF5D73B0014E2C7 /* BJ_SecondProjectTableViewCell.xib in Resources */,
 				41C6A7111BF4CDC500A56DD7 /* MDMPostDetailedVC.xib in Resources */,
 				41F4841B1BF6C04200A1BC65 /* UMSocialSDKResourcesNew.bundle in Resources */,
@@ -1137,7 +1153,6 @@
 				41F6C44E1BF4CA5A0034EA9D /* SDRefreshHeaderView.m in Sources */,
 				41C6A72B1BF4CE5D00A56DD7 /* LANInfoModel.m in Sources */,
 				41F6C44F1BF4CA5A0034EA9D /* SDRefreshView.m in Sources */,
-				41C6A7071BF4CDC500A56DD7 /* BJ_projectTableViewController.m in Sources */,
 				41F4841E1BF6C87600A1BC65 /* MDMFans.m in Sources */,
 				41F4C6041BF729A7005BE59B /* MDMUserPostTVC.m in Sources */,
 				41C6A72A1BF4CE5D00A56DD7 /* LANGrugModel.m in Sources */,
