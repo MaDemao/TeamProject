@@ -13,9 +13,13 @@
 #import "MDMLoginVC.h"
 #import "MDMCommendCell.h"
 #import "MDMUserDetailedVC.h"
+#import <MJRefresh.h>
 
 @interface MDMCommendTBC ()
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
+@property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, assign) NSInteger totilePage;
 @end
 
 @implementation MDMCommendTBC
@@ -32,6 +36,62 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 100;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self.dataArray removeAllObjects];
+        [self.tableView reloadData];
+        self.currentPage = 0;
+        
+        AVQuery *query1 = [MDMCommend query];
+        [query1 whereKey:@"post" equalTo:self.post];
+        [query1 countObjectsInBackgroundWithBlock:^(NSInteger number, NSError *error) {
+            self.totilePage = number / 7;
+            self.currentPage = 1;
+        }];
+        
+        AVQuery *query = [MDMCommend query];
+        [query whereKey:@"post" equalTo:self.post];
+        [query orderByDescending:@"date"];
+        query.limit = 7;
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (objects) {
+                if (objects.count == 0) {
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"木有评论" preferredStyle:UIAlertControllerStyleAlert];
+                    [self presentViewController:alert animated:YES completion:nil];
+                    [self performSelector:@selector(dismissAction:) withObject:alert afterDelay:1.0];
+                }else{
+                    [self.dataArray addObjectsFromArray:objects];
+                    [self.tableView reloadData];
+                }
+                [self.tableView.mj_header endRefreshing];
+            }
+        }];
+    }];
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if (self.currentPage < self.totilePage) {
+            AVQuery *query = [MDMCommend query];
+            [query whereKey:@"post" equalTo:self.post];
+            [query orderByDescending:@"date"];
+            query.limit = 7;
+            query.skip = 7 * self.currentPage;
+            self.currentPage++;
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (objects) {
+                    [self.dataArray addObjectsFromArray:objects];
+                    [self.tableView reloadData];
+                    [self.tableView.mj_footer endRefreshing];
+                }
+            }];
+        }else{
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }];
+}
+
+- (void)dismissAction:(UIAlertController *)sender
+{
+    [sender dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)leftBtnAction:(UIBarButtonItem *)sender
@@ -63,18 +123,7 @@
         [self rightBtnAction:nil];
         self.isPush = NO;
     }else{
-        [self.dataArray removeAllObjects];
-        [self.tableView reloadData];
-        
-        AVQuery *query = [MDMCommend query];
-        [query whereKey:@"post" equalTo:self.post];
-        [query orderByDescending:@"date"];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (objects) {
-                [self.dataArray addObjectsFromArray:objects];
-                [self.tableView reloadData];
-            }
-        }];
+        [self.tableView.mj_header beginRefreshing];
     }
 }
 

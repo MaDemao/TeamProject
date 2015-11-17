@@ -23,6 +23,7 @@ PODS:
   - AMap3DMap (3.1.0.1)
   - AMapSearch (3.0.1)
   - AVOSCloud (3.1.6.2)
+  - MJRefresh (3.0.2)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - AMap3DMap
   - AMapSearch
   - AVOSCloud
+  - MJRefresh
   - SDWebImage (~> 3.7)
 
 SPEC CHECKSUMS:
@@ -39,6 +41,7 @@ SPEC CHECKSUMS:
   AMap3DMap: 58f27323368dd0e351cc3c823a77ba389da294fc
   AMapSearch: 431b082417bd3da0c2fe594c4822b664607891e9
   AVOSCloud: a3cd4fd18e2eba50de63c490cbd59fd8892fddee
+  MJRefresh: 85377dc8c70395cf329e102a5c55505ef387c2e1
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
 
 COCOAPODS: 0.39.0

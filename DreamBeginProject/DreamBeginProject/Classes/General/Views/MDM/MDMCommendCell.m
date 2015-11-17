@@ -40,7 +40,7 @@
         NSData *data = [avfile getData];
         self.headPic.image = [UIImage imageWithData:data];
     }];
-    self.dateText.text = commend.date;
+    self.dateText.text = [commend.date substringToIndex:16];
     self.desText.text = commend.des;
 }
 

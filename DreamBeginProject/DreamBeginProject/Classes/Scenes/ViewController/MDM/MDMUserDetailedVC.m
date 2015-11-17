@@ -16,6 +16,7 @@
 #import "MDMLoginVC.h"
 #import "MDMMyAttentionTVC.h"
 #import "MDMMyFansTVC.h"
+#import <MJRefresh.h>
 
 @interface MDMUserDetailedVC ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -37,6 +38,10 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, assign) BOOL isFans;
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
+
+
+@property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, assign) NSInteger totilePage;
 
 @end
 
@@ -69,6 +74,26 @@
     
     UITapGestureRecognizer *tapGRFans = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGRFansAction:)];
     [self.fansView addGestureRecognizer:tapGRFans];
+    
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if (self.currentPage < self.totilePage) {
+            AVQuery *query = [MDMPost query];
+            [query whereKey:@"info" equalTo:self.info];
+            [query orderByDescending:@"date"];
+            [query includeKey:@"images"];
+            query.limit = 7;
+            self.currentPage++;
+            query.skip = 7 * (self.currentPage - 1);
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                [self.dataArray addObjectsFromArray:objects];
+                [self.tableView reloadData];
+                [self.tableView.mj_footer endRefreshing];
+            }];
+        }else{
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -77,13 +102,23 @@
     
     [self.dataArray removeAllObjects];
     
-    AVQuery *query = [MDMPost query];
-    [query whereKey:@"info" equalTo:self.info];
-    [query orderByDescending:@"date"];
-    [query includeKey:@"images"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [self.dataArray addObjectsFromArray:objects];
-        [self.tableView reloadData];
+    AVQuery *queryQ = [MDMPost query];
+    [queryQ whereKey:@"info" equalTo:self.info];
+    [queryQ countObjectsInBackgroundWithBlock:^(NSInteger number, NSError *error) {
+        self.totilePage = number / 7;
+        self.currentPage = 1;
+        
+        if (self.currentPage <= self.totilePage + 1) {
+            AVQuery *query = [MDMPost query];
+            [query whereKey:@"info" equalTo:self.info];
+            [query orderByDescending:@"date"];
+            [query includeKey:@"images"];
+            query.limit = 7;
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                [self.dataArray addObjectsFromArray:objects];
+                [self.tableView reloadData];
+            }];
+        }
     }];
     
     
@@ -174,7 +209,7 @@
                 
                 NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"yyyy-MM-dd HH-mm"];
+                [formatter setDateFormat:@"yyyy-MM-dd HH-mm:ss"];
                 NSString *string = [formatter stringFromDate:date];
                 
                 fans.date = string;
@@ -254,10 +289,10 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 1;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return 1;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

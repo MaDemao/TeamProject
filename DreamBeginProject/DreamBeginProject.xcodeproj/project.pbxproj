@@ -21,6 +21,10 @@
 		412312C01BF070D800F819EA /* ViewControllersTemp.m in Sources */ = {isa = PBXBuildFile; fileRef = 412312BF1BF070D800F819EA /* ViewControllersTemp.m */; settings = {ASSET_TAGS = (); }; };
 		413525141BF968C6002D6D70 /* MDMUserSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 413525121BF968C6002D6D70 /* MDMUserSettingVC.m */; settings = {ASSET_TAGS = (); }; };
 		413525151BF968C6002D6D70 /* MDMUserSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 413525131BF968C6002D6D70 /* MDMUserSettingVC.xib */; settings = {ASSET_TAGS = (); }; };
+		418FE6361BFB0A460091B87D /* BG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 418FE6351BFB0A460091B87D /* BG.jpg */; settings = {ASSET_TAGS = (); }; };
+		418FE6391BFB0AFA0091B87D /* MDMCollect.m in Sources */ = {isa = PBXBuildFile; fileRef = 418FE6381BFB0AFA0091B87D /* MDMCollect.m */; settings = {ASSET_TAGS = (); }; };
+		418FE63D1BFB1A170091B87D /* MDMUserCollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 418FE63B1BFB1A170091B87D /* MDMUserCollectVC.m */; settings = {ASSET_TAGS = (); }; };
+		418FE63E1BFB1A170091B87D /* MDMUserCollectVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 418FE63C1BFB1A170091B87D /* MDMUserCollectVC.xib */; settings = {ASSET_TAGS = (); }; };
 		41A2125E1BF7351A00C1A4DC /* MDMUserPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A2125C1BF7351A00C1A4DC /* MDMUserPostCell.m */; settings = {ASSET_TAGS = (); }; };
 		41A2125F1BF7351A00C1A4DC /* MDMUserPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41A2125D1BF7351A00C1A4DC /* MDMUserPostCell.xib */; settings = {ASSET_TAGS = (); }; };
 		41A212621BF74A1E00C1A4DC /* MDMUserCommendTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A212611BF74A1E00C1A4DC /* MDMUserCommendTVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -152,6 +156,12 @@
 		413525111BF968C6002D6D70 /* MDMUserSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMUserSettingVC.h; sourceTree = "<group>"; };
 		413525121BF968C6002D6D70 /* MDMUserSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMUserSettingVC.m; sourceTree = "<group>"; };
 		413525131BF968C6002D6D70 /* MDMUserSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDMUserSettingVC.xib; sourceTree = "<group>"; };
+		418FE6351BFB0A460091B87D /* BG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BG.jpg; sourceTree = "<group>"; };
+		418FE6371BFB0AFA0091B87D /* MDMCollect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMCollect.h; sourceTree = "<group>"; };
+		418FE6381BFB0AFA0091B87D /* MDMCollect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMCollect.m; sourceTree = "<group>"; };
+		418FE63A1BFB1A170091B87D /* MDMUserCollectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMUserCollectVC.h; sourceTree = "<group>"; };
+		418FE63B1BFB1A170091B87D /* MDMUserCollectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMUserCollectVC.m; sourceTree = "<group>"; };
+		418FE63C1BFB1A170091B87D /* MDMUserCollectVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDMUserCollectVC.xib; sourceTree = "<group>"; };
 		41A2125B1BF7351A00C1A4DC /* MDMUserPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMUserPostCell.h; sourceTree = "<group>"; };
 		41A2125C1BF7351A00C1A4DC /* MDMUserPostCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMUserPostCell.m; sourceTree = "<group>"; };
 		41A2125D1BF7351A00C1A4DC /* MDMUserPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MDMUserPostCell.xib; sourceTree = "<group>"; };
@@ -374,6 +384,7 @@
 		412264E11BF2D81000D71D81 /* MDMImage */ = {
 			isa = PBXGroup;
 			children = (
+				418FE6351BFB0A460091B87D /* BG.jpg */,
 				41F6C3FE1BF490BF0034EA9D /* iconfont-jiantouzuo.png */,
 				4122656D1BF3705200D71D81 /* iconfont-pinglun.png */,
 				412264E21BF2D81000D71D81 /* iconfont-jiantouyou.png */,
@@ -725,6 +736,8 @@
 				41C6A6C11BF4CD1100A56DD7 /* MDMUserInfo.m */,
 				41F4841C1BF6C87600A1BC65 /* MDMFans.h */,
 				41F4841D1BF6C87600A1BC65 /* MDMFans.m */,
+				418FE6371BFB0AFA0091B87D /* MDMCollect.h */,
+				418FE6381BFB0AFA0091B87D /* MDMCollect.m */,
 			);
 			path = MDM;
 			sourceTree = "<group>";
@@ -846,6 +859,9 @@
 				413525111BF968C6002D6D70 /* MDMUserSettingVC.h */,
 				413525121BF968C6002D6D70 /* MDMUserSettingVC.m */,
 				413525131BF968C6002D6D70 /* MDMUserSettingVC.xib */,
+				418FE63A1BFB1A170091B87D /* MDMUserCollectVC.h */,
+				418FE63B1BFB1A170091B87D /* MDMUserCollectVC.m */,
+				418FE63C1BFB1A170091B87D /* MDMUserCollectVC.xib */,
 			);
 			path = MDM;
 			sourceTree = "<group>";
@@ -1051,6 +1067,7 @@
 				C21994851BF754D50001895B /* share_24px_1161414_easyicon.net.png in Resources */,
 				41C6A70D1BF4CDC500A56DD7 /* MDMLoginVC.xib in Resources */,
 				41F3F5FA1BF1E9030097DE21 /* myData.plist in Resources */,
+				418FE63E1BFB1A170091B87D /* MDMUserCollectVC.xib in Resources */,
 				41B81E641BF4CFD800948027 /* 4.png in Resources */,
 				41F484141BF6C04200A1BC65 /* UMSCommentInputController.xib in Resources */,
 				41C6A7351BF4CE9900A56DD7 /* LANDiseaseTypeCell.xib in Resources */,
@@ -1060,6 +1077,7 @@
 				41C6A7161BF4CDC500A56DD7 /* MDMRegisterVC.xib in Resources */,
 				41C6A70F1BF4CDC500A56DD7 /* MDMMyVC.xib in Resources */,
 				41C6A68B1BF4CC3100A56DD7 /* MDMCommendCell.xib in Resources */,
+				418FE6361BFB0A460091B87D /* BG.jpg in Resources */,
 				41F484111BF6C04200A1BC65 /* UMSocialLocalizable.strings in Resources */,
 				41ECDC691BF5FDE300CBC7C3 /* MDMMyCommendCell.xib in Resources */,
 				41C6A68D1BF4CC3100A56DD7 /* MDMPicItem.xib in Resources */,
@@ -1185,6 +1203,7 @@
 				41F6C4521BF4CA5A0034EA9D /* SCNavTabBarController.m in Sources */,
 				41C6A6C81BF4CD1100A56DD7 /* MDMMyUser.m in Sources */,
 				41F6C4491BF4CA5A0034EA9D /* IanScrollImageView.m in Sources */,
+				418FE63D1BFB1A170091B87D /* MDMUserCollectVC.m in Sources */,
 				41ECDC681BF5FDE300CBC7C3 /* MDMMyCommendCell.m in Sources */,
 				41C6A71B1BF4CE1F00A56DD7 /* LANHelper.m in Sources */,
 				41C6A7061BF4CDC500A56DD7 /* BJ_FirstTableViewController.m in Sources */,
@@ -1202,6 +1221,7 @@
 				41ECDC641BF5C26F00CBC7C3 /* MDMMyCommendTBC.m in Sources */,
 				41C6A68C1BF4CC3100A56DD7 /* MDMPicItem.m in Sources */,
 				41F4C5F91BF6DD98005BE59B /* MDMMyAttentionTVC.m in Sources */,
+				418FE6391BFB0AFA0091B87D /* MDMCollect.m in Sources */,
 				C26634171BF56CE300824DAA /* LANInfoVC.m in Sources */,
 				41F6C44A1BF4CA5A0034EA9D /* IanScrollView.m in Sources */,
 				41F6C40C1BF4C8AC0034EA9D /* Networking.m in Sources */,

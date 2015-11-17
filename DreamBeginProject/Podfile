@@ -7,3 +7,5 @@ pod 'AFNetworking', '~>2.0'
 
 pod 'AMap3DMap'
 pod 'AMapSearch'
+
+pod 'MJRefresh'
