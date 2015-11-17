@@ -172,6 +172,7 @@
     NSString *st = [self filterHTML:self.Str];
     
     
+    
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:@"5646898a67e58e8c57002553"
                                       shareText:st

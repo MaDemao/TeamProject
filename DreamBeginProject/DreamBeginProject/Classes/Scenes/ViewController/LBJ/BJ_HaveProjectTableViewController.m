@@ -46,8 +46,9 @@ static NSString *const cellID = @"cell";
     //
     [self setupHeader];
     [self setupFooter];
-//    self.navigationController.navigationBar.translucent = NO;
-
+    self.navigationController.navigationBar.translucent = NO;
+    //关闭默认的44高度
+//    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)loadData{
