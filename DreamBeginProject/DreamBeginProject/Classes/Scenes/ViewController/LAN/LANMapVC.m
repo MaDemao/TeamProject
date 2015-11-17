@@ -8,7 +8,18 @@
 
 #import "LANMapVC.h"
 
+#import <MAMapKit/MAMapKit.h>
+
+
 @interface LANMapVC ()
+
+{
+    //定义全局地图
+    MAMapView *_mapView;
+    
+}
+
+
 
 @end
 
@@ -16,7 +27,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    
+    //设置apikey
+    [MAMapServices sharedServices].apiKey = @"442edfd232f44f61f6b91d2bba557216";
+    
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

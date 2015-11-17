@@ -26,6 +26,8 @@
 @property(nonatomic,strong) NSMutableArray * dataArray;
 @property (nonatomic ,strong)NSMutableArray *titleArray;
 
+@property (nonatomic, assign)NSInteger special_id;
+
 @property(nonatomic,assign)NSInteger currentIndex;
 @property(nonatomic,strong)UILabel *label;
 @property(nonatomic,strong)NSArray *titles;
@@ -56,13 +58,51 @@ static NSString *const cellTwiID = @"cellTwo";
     }
     return self;
 }
-
+- (NSString *)getNetWorkStates {
+    UIApplication *app = [UIApplication sharedApplication];
+    NSArray *children = [[[app valueForKeyPath:@"statusBar"]valueForKeyPath:@"foregroundView"]subviews];
+    NSString *state = [[NSString alloc]init];
+    int netType = 0;
+    //获取到网络返回码
+    for (id child in children) {
+        if ([child isKindOfClass:NSClassFromString(@"UIStatusBarDataNetworkItemView")]) {
+            //获取到状态栏
+            netType = [[child valueForKeyPath:@"dataNetworkType"]intValue];
+            
+            switch (netType) {
+                case 0:
+                    state = @"无网络";
+                    //无网模式
+                    break;
+                case 1:
+                    state = @"2G";
+                    break;
+                case 2:
+                    state = @"3G";
+                    break;
+                case 3:
+                    state = @"4G";
+                    break;
+                case 5:
+                {
+                    state = @"WIFI";
+                }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    //根据状态选择
+    return state;
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
-    
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
+    //关闭默认的44高度
+    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.navigationController.navigationBar.translucent = YES;
+//    self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
    
 }
 
@@ -76,6 +116,7 @@ static NSString *const cellTwiID = @"cellTwo";
     [self loadData];
     [self setExtraCellLineHidden:self.tableView];
     [self addHeader];
+    [self getNetWorkStates];
     //加载第三方
     //添加头部控件
     //
@@ -222,7 +263,27 @@ static NSString *const cellTwiID = @"cellTwo";
         [self drawLable];
     };
     //点击了哪张图片
+    scrollView.userInteractionEnabled = YES;
     scrollView.ianEcrollViewSelectAction = ^(NSInteger i){
+   
+        if (i == 0) {
+            _special_id = 194;
+        }else if (i == 1){
+            _special_id = 9;
+        }else if (i == 2){
+            _special_id = 184;
+        }else{
+            _special_id = 129;
+        }
+        NSString *str = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&order=publishTime&page_index=%d&special_id=%ld&vc=4.0.8",1,_special_id];
+        BJ_HaveProjectTableViewController *haveProjectVC = [[BJ_HaveProjectTableViewController alloc]initWithURL:str];
+        
+        
+        
+        haveProjectVC.special_id = _special_id;
+        
+        haveProjectVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:haveProjectVC animated:YES];
         
     };
     scrollView.PageControlPageIndicatorTintColor = [UIColor colorWithRed:255/255.0f green:244/255.0f blue:227/255.0f alpha:1];

@@ -143,10 +143,11 @@
         UIView *view = [[UIView alloc]initWithFrame:slideImage.frame];
         view.backgroundColor = [UIColor blackColor];
         view.alpha = 0.1;
-        
+        view.userInteractionEnabled = NO;
+       
         [_scrollView addSubview:slideImage];// 首页是第0页,默认从第1页开始的。所以+_scrollView.frame.size.width
-        //
-        [_scrollView addSubview:view];
+         [_scrollView addSubview:view];
+//
     }
     // 取数组最后一张图片 放在第0页
     IanScrollImageView *firstSlideImage = [[IanScrollImageView alloc] init];

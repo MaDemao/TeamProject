@@ -45,8 +45,8 @@
     //添加控制器列表
     navTab.subViewControllers = @[oneController,twoController,threeController,fourController,fiveController,sixController,sevenController,eightController];
     
-
-    navTab.canPopAllItemMenu = NO;
+    
+    navTab.canPopAllItemMenu = YES;
     navTab.scrollAnimation = YES;
     navTab.mainViewBounces = NO;
     navTab.navTabBarColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1];
