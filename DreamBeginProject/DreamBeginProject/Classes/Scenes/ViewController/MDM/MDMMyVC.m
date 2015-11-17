@@ -13,6 +13,8 @@
 #import "MDMMyFansTVC.h"
 #import "MDMUserPostTVC.h"
 #import "MDMUserCommendTVC.h"
+#import "MDMUserSettingVC.h"
+#import "LANMapVC.h"
 
 @interface MDMMyVC ()<UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
@@ -187,6 +189,11 @@ static NSString * const cell_id = @"cell_id";
             //清除缓存
         }else{
             //地图
+            LANMapVC *vc = [[LANMapVC alloc] init];
+            vc.title = @"附近药店";
+            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+            nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:nc animated:YES completion:nil];
         }
     }else{
         if ([MDMUserHelper sharedMDMUserHelper].currentUser) {
@@ -227,6 +234,10 @@ static NSString * const cell_id = @"cell_id";
                 }
             }else{
                 //个人设置
+                MDMUserSettingVC *vc = [[MDMUserSettingVC alloc] init];
+                UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+                nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                [self presentViewController:nc animated:YES completion:nil];
             }
         }else{
             MDMLoginVC *vc = [[MDMLoginVC alloc] init];

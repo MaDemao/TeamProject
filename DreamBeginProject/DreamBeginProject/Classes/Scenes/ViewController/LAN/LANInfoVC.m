@@ -9,6 +9,8 @@
 #import "LANInfoVC.h"
 #import "LANInfoModel.h"
 
+#import <AVUser.h>
+
 #import "UMSocial.h"
 
 
@@ -32,32 +34,30 @@
     _index=0;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:(UIBarButtonItemStylePlain) target:self action:@selector(leftAction:)];
+    //self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIToolbar *tools = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 10, 150, 45)];
-    [tools setTintColor:[UIColor orangeColor]];
     
-    NSMutableArray *buttons = [[NSMutableArray alloc]initWithCapacity:2];
     
-   // UIBarButtonItem *button1 = [[UIBarButtonItem alloc]initWithImage:nil style:(UIBarButtonItemStylePlain) target:self action:@selector(button1Action:)];
-    UIBarButtonItem *button1 = [[UIBarButtonItem alloc]initWithTitle:@"字体" style:(UIBarButtonItemStylePlain) target:self action:@selector(button1Action:)];
+    UIImage *image = [UIImage imageNamed:@"7.png"];
+    UIImage *image1 = [UIImage imageNamed:@"5.png"];
+    UIImage *image2 = [UIImage imageNamed:@"3.png"];
     
-    UIBarButtonItem *button2 = [[UIBarButtonItem alloc]initWithTitle:@"收藏" style:(UIBarButtonItemStylePlain) target:self action:@selector(button2Action:)];
+    //视图可见
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    image1 = [image1 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    image2 = [image2 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //分享
+    UIBarButtonItem *rightOne = [[UIBarButtonItem alloc]initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(button3Action:)];
     
-   // UIBarButtonItem *button2 = [[UIBarButtonItem alloc]initWithImage:nil style:(UIBarButtonItemStylePlain) target:self action:@selector(button2Action:)];
+    //收藏
+    UIBarButtonItem *rightTwo = [[UIBarButtonItem alloc]initWithImage:image2 style:UIBarButtonItemStylePlain target:self action:@selector(button2Action:)];
+    //改变字体
+    UIBarButtonItem *rightThree = [[UIBarButtonItem alloc]initWithImage:image1 style:UIBarButtonItemStylePlain target:self action:@selector(button1Action:)];
+    self.navigationItem.rightBarButtonItems = @[rightOne,rightTwo,rightThree];
+ 
     
-    UIBarButtonItem *button3 = [[UIBarButtonItem alloc]initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(button3Action:)];
-    
-    //UIBarButtonItem *button3 = [[UIBarButtonItem alloc]initWithImage:nil style:(UIBarButtonItemStylePlain) target:self action:@selector(button3Action:)];
-    
-    [buttons addObject:button1];
-    [buttons addObject:button2];
-    [buttons addObject:button3];
-    
-    [tools setItems:buttons animated:NO];
-    UIBarButtonItem *myBtn = [[UIBarButtonItem alloc] initWithCustomView:tools];
-    
-    self.navigationItem.rightBarButtonItem = myBtn;
     
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     //self.webView.delegate = self;
@@ -65,6 +65,7 @@
     [self requestData];
     
 }
+
 
 -(void)requestData{
     
@@ -145,9 +146,6 @@
        
         NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '180%'";
         [_webView stringByEvaluatingJavaScriptFromString:str];
-//        UIColor *fontColor = [UIColor redColor];
-//        NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize=%f;document.body.style.color=%@",17.f,fontColor];
-//        [_webView stringByEvaluatingJavaScriptFromString:jsString];
         
     } else if (_index == 3){
         _index = 0;
@@ -161,24 +159,50 @@
     
 }
 //收藏
--(void)button2Action:(id)sender{
-    
+-(void)button2Action:(UIBarButtonItem *)sender{
    
-    
+    //先判断用户是否登录
+    AVUser *currentUser = [AVUser currentUser];
+    if (currentUser != nil) {
+        // 允许用户使用应用
+        
+        
+    } else {
+        
+        
+        
+    }
+
 }
 //分享
--(void)button3Action:(id)sender{
+-(void)button3Action:(UIBarButtonItem *)sender{
   
-    NSString *st = [self filterHTML:self.Str];
+    //先判断用户是否登录
+    AVUser *currentUser = [AVUser currentUser];
+    if (currentUser != nil) {
+        // 允许用户使用应用
+        NSString *st = [self filterHTML:self.Str];
+        
+        
+        [UMSocialSnsService presentSnsIconSheetView:self
+                                             appKey:@"5646898a67e58e8c57002553"
+                                          shareText:st
+                                         shareImage:[UIImage imageNamed:@"icon.png"]
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToRenren,UMShareToDouban,UMShareToEmail, nil]
+                                           delegate:nil];
+        
+
+        
+        
+    } else {
+        //缓存用户对象为空时，可打开用户注册界面…
+        
+       
+        
+        
+    }
     
-    
-    
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:@"5646898a67e58e8c57002553"
-                                      shareText:st
-                                     shareImage:[UIImage imageNamed:@"icon.png"]
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToRenren,UMShareToDouban,UMShareToEmail, nil]
-                                       delegate:nil];
+
     
     
     
