@@ -9,11 +9,15 @@
 #import "MDMMyCommendTBC.h"
 #import "MDMPostDetailedVC.h"
 #import "MDMMyCommendCell.h"
+#import <MJRefresh.h>
 
 @interface MDMMyCommendTBC ()
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
+
+@property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, assign) NSInteger totilPage;
 @end
 
 @implementation MDMMyCommendTBC
@@ -32,6 +36,24 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 100;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if (self.currentPage <= self.totilPage) {
+            AVQuery *query = [MDMCommend query];
+            [query whereKey:@"info" equalTo:self.info];
+            [query orderByDescending:@"date"];
+            query.limit = 7;
+            self.currentPage++;
+            query.skip = 7 * (self.currentPage - 1);
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                [self.dataArray addObjectsFromArray:objects];
+                [self.tableView reloadData];
+                [self.tableView.mj_footer endRefreshing];
+            }];
+        }else{
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }];
 }
 
 - (void)leftBtnAction:(UIBarButtonItem *)sender
@@ -45,9 +67,18 @@
     [self.dataArray removeAllObjects];
     [self.tableView reloadData];
     
+    
+    AVQuery *query1 = [MDMCommend query];
+    [query1 whereKey:@"info" equalTo:self.info];
+    [query1 countObjectsInBackgroundWithBlock:^(NSInteger number, NSError *error) {
+        self.totilPage = number / 7;
+        self.currentPage = 1;
+    }];
+    
     AVQuery *query = [MDMCommend query];
     [query whereKey:@"info" equalTo:self.info];
     [query orderByDescending:@"date"];
+    query.limit = 7;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [self.dataArray addObjectsFromArray:objects];
         [self.tableView reloadData];
@@ -80,9 +111,13 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10;
+    if (section == 0) {
+        return 0;
+    }else{
+        return 10;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

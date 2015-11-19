@@ -15,6 +15,7 @@
 #import "MDMUserCommendTVC.h"
 #import "MDMUserSettingVC.h"
 #import "LANMapVC.h"
+#import "MDMUserCollectVC.h"
 
 @interface MDMMyVC ()<UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
@@ -42,6 +43,7 @@
     self.dataArray = nil;
     NSString *string = [[NSBundle mainBundle] pathForResource:@"myData" ofType:@"plist"];
     self.dataArray = [NSMutableArray arrayWithContentsOfFile:string];
+    
 }
 
 
@@ -58,7 +60,12 @@ static NSString * const cell_id = @"cell_id";
     self.tableView.delegate = self;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cell_id];
-
+    
+    
+    self.loginBtn.layer.masksToBounds = YES;
+    self.loginBtn.layer.borderWidth = 1.;
+    self.loginBtn.layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    self.loginBtn.layer.cornerRadius = 10;
 }
 
 - (void)tapGRAction:(UITapGestureRecognizer *)sender
@@ -187,6 +194,10 @@ static NSString * const cell_id = @"cell_id";
     if (indexPath.section == 2 && (indexPath.row == 1 || indexPath.row == 2)) {
         if (indexPath.row == 2) {
             //清除缓存
+            NSString *string = [NSString stringWithFormat:@"清除缓存 %.2f M", ([[SDImageCache sharedImageCache] getSize] / 1024. / 1024.)];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:string preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alert animated:YES completion:nil];
+            [self performSelector:@selector(dismissAlert:) withObject:alert afterDelay:0.5];
         }else{
             //地图
             LANMapVC *vc = [[LANMapVC alloc] init];
@@ -231,6 +242,10 @@ static NSString * const cell_id = @"cell_id";
                     [self presentViewController:nc animated:YES completion:nil];
                 }else{
                     //我的收藏
+                    MDMUserCollectVC *vc = [[MDMUserCollectVC alloc] init];
+                    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+                    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                    [self presentViewController:nc animated:YES completion:nil];
                 }
             }else{
                 //个人设置
@@ -248,7 +263,13 @@ static NSString * const cell_id = @"cell_id";
     }
 }
 
-
+- (void)dismissAlert:(UIAlertController *)sender
+{
+    [[SDImageCache sharedImageCache] clearDisk];
+    [sender dismissViewControllerAnimated:YES completion:nil];
+    NSIndexPath *path = [NSIndexPath indexPathForRow:2 inSection:2];
+    [self.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
 
 - (NSMutableArray *)dataArray
 {

@@ -66,7 +66,7 @@
         
         NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSString *string = [formatter stringFromDate:date];
         commend.date = string;
         [commend save];

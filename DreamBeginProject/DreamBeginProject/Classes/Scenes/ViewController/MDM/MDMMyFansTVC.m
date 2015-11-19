@@ -9,12 +9,16 @@
 #import "MDMMyFansTVC.h"
 #import "MDMRelationCell.h"
 #import "MDMUserDetailedVC.h"
+#import <MJRefresh.h>
 
 @interface MDMMyFansTVC ()
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
+
+@property (nonatomic, assign) NSInteger totilPage;
+@property (nonatomic, assign) NSInteger currentPage;
 
 @end
 
@@ -34,6 +38,24 @@
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MDMRelationCell" bundle:nil] forCellReuseIdentifier:@"MDMRelationCell"];
+    
+    self.tableView.mj_footer  = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if (self.currentPage <= self.totilPage) {
+            AVQuery *query = [MDMFans query];
+            [query whereKey:@"toInfo" equalTo:self.info];
+            [query orderByDescending:@"date"];
+            query.limit = 7;
+            self.currentPage++;
+            query.skip = 7 * (self.currentPage - 1);
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                [self.dataArray addObjectsFromArray:objects];
+                [self.tableView reloadData];
+                [self.tableView.mj_footer endRefreshing];
+            }];
+        }else{
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }];
 }
 
 - (void)leftBtnAction:(UIBarButtonItem *)sender
@@ -52,8 +74,17 @@
     [self.dataArray removeAllObjects];
     [self.tableView reloadData];
     
+    AVQuery *query1 = [MDMFans query];
+    [query1 whereKey:@"toInfo" equalTo:self.info];
+    [query1 countObjectsInBackgroundWithBlock:^(NSInteger number, NSError *error) {
+        self.totilPage = number / 7;
+        self.currentPage = 1;
+    }];
+    
     AVQuery *query = [MDMFans query];
     [query whereKey:@"toInfo" equalTo:self.info];
+    [query orderByDescending:@"date"];
+    query.limit = 7;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         [self.dataArray addObjectsFromArray:objects];
         [self.tableView reloadData];

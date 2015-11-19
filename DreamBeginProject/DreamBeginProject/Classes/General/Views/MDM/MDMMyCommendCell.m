@@ -49,7 +49,7 @@
         }];
     }];
     
-    self.dateText.text = commend.date;
+    self.dateText.text = [commend.date substringToIndex:16];
     self.desText.text = commend.des;
 }
 

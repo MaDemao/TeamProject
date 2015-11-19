@@ -28,7 +28,7 @@
 
 - (void)setPost:(MDMPost *)post
 {
-    self.timeText.text = post.date;
+    self.timeText.text = [post.date substringToIndex:16];
     self.titleText.text = post.title;
 }
 
