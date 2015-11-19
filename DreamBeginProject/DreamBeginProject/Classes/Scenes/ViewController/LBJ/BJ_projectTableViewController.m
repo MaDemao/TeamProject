@@ -108,7 +108,13 @@ static NSString *const cellID = @"cell";
         [self loadData];
 
 }
-
+//tableView初始加载无数据时，不显示单元格线
+-(void)setExtraCellLineHidden: (UITableView *)tableView
+{
+    UIView *view = [UIView new];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
+}
 - (void)loadData{
     [[Networking shareNetworking]networkingGetWithURL:self.urlString Block:^(id object) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:object options:NSJSONReadingAllowFragments error:nil];

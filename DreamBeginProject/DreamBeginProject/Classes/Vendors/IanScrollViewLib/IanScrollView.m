@@ -51,7 +51,7 @@
         if (self.ianCurrentIndex) {
             self.ianCurrentIndex(_slideImagesArray.count-1);
         }
-        [self.scrollView scrollRectToVisible:CGRectMake(_scrollView.frame.size.width * _slideImagesArray.count, 0, _scrollView.frame.size.width, _scrollView.frame.size.height) animated:NO];
+        [self.scrollView scrollRectToVisible:CGRectMake(scrollView.frame.size.width * _slideImagesArray.count, 0, _scrollView.frame.size.width, _scrollView.frame.size.height) animated:NO];
     }else if(currentPage == _slideImagesArray.count + 1){
         if (self.ianCurrentIndex){
             self.ianCurrentIndex(0);
@@ -133,10 +133,12 @@
     }
     for (NSInteger i = 0; i < _slideImagesArray.count; i++) {
         IanScrollImageView *slideImage = [[IanScrollImageView alloc] init];
-        slideImage.contentMode = UIViewContentModeScaleAspectFit;
+        //设置显示比例
+        //slideImage.contentMode = UIViewContentModeScaleAspectFit;
         [slideImage sd_setImageWithURL:[NSURL URLWithString:_slideImagesArray[i]] placeholderImage:[UIImage imageNamed:@"IanScrollViewDefault"]];
         slideImage.tag = i;
         slideImage.frame = CGRectMake(_scrollView.frame.size.width * i + _scrollView.frame.size.width, 0, _scrollView.frame.size.width, _scrollView.frame.size.height);
+       
         [slideImage addTarget:self action:@selector(ImageClick:)];
         
         //自己加的
