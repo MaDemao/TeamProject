@@ -22,6 +22,7 @@
 
 
 
+
 @interface BJ_FirstTableViewController ()
 @property (nonatomic, copy) ianScrollViewCurrentIndex ianCurrentIndex;
 
@@ -46,6 +47,7 @@
 
 //
 @property(nonatomic,strong) BJ_Homepage *model;
+
 
 @end
 
@@ -76,7 +78,7 @@ static NSString *const cellTwiID = @"cellTwo";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+  
     
     
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_HomeTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
@@ -99,7 +101,6 @@ static NSString *const cellTwiID = @"cellTwo";
     [self setupHeader];
     [self setupFooter];
 }
-
 
 //tableView初始加载无数据时，不显示单元格线
 -(void)setExtraCellLineHidden: (UITableView *)tableView

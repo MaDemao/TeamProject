@@ -1043,7 +1043,6 @@
 				TargetAttributes = {
 					4123128C1BF06F5A00F819EA = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 5U9K35HWA2;
 					};
 				};
 			};
@@ -1389,7 +1388,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/DreamBeginProject/Classes/Vendors/UMSocial_Sdk_4.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MDM.DreamBeginProject11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MDM.DreamBeginProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1407,7 +1406,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/DreamBeginProject/Classes/Vendors/UMSocial_Sdk_4.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MDM.DreamBeginProject11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MDM.DreamBeginProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -12,6 +12,8 @@
 #import "BJ_projectTableViewController.h"
 #import "BJ_allTableViewController.h"
 
+
+
 @interface BJ_tabBarViewController ()
 
 @end
@@ -20,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+  
     self.title = @"首页";
  
 
@@ -52,6 +54,8 @@
     navTab.mainViewBounces = NO;
     navTab.navTabBarColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1];
     [navTab addParentController:self];
+    
+   
 }
 
 - (void)didReceiveMemoryWarning {
