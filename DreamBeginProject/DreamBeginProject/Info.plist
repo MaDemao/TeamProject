@@ -43,5 +43,7 @@
 	<array>
 		<string>iosamap</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>提示</string>
 </dict>
 </plist>
