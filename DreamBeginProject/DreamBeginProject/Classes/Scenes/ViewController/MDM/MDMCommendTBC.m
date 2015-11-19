@@ -54,17 +54,19 @@
         [query orderByDescending:@"date"];
         query.limit = 7;
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (objects) {
-                if (objects.count == 0) {
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"木有评论" preferredStyle:UIAlertControllerStyleAlert];
-                    [self presentViewController:alert animated:YES completion:nil];
-                    [self performSelector:@selector(dismissAction:) withObject:alert afterDelay:1.0];
-                }else{
-                    [self.dataArray addObjectsFromArray:objects];
-                    [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (objects) {
+                    if (objects.count == 0) {
+                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"木有评论" preferredStyle:UIAlertControllerStyleAlert];
+                        [self presentViewController:alert animated:YES completion:nil];
+                        [self performSelector:@selector(dismissAction:) withObject:alert afterDelay:1.0];
+                    }else{
+                        [self.dataArray addObjectsFromArray:objects];
+                        [self.tableView reloadData];
+                    }
+                    [self.tableView.mj_header endRefreshing];
                 }
-                [self.tableView.mj_header endRefreshing];
-            }
+            });
         }];
     }];
     
@@ -77,11 +79,13 @@
             query.skip = 7 * self.currentPage;
             self.currentPage++;
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                if (objects) {
-                    [self.dataArray addObjectsFromArray:objects];
-                    [self.tableView reloadData];
-                    [self.tableView.mj_footer endRefreshing];
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (objects) {
+                        [self.dataArray addObjectsFromArray:objects];
+                        [self.tableView reloadData];
+                        [self.tableView.mj_footer endRefreshing];
+                    }
+                });
             }];
         }else{
             [self.tableView.mj_footer endRefreshingWithNoMoreData];

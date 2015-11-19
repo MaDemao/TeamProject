@@ -38,15 +38,19 @@
     
     MDMPost *post = commend.post;
     [post fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-        self.postTitleText.text = post.title;
-        
-        MDMUserInfo *info = post.info;
-        [info fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-            AVFile *avfile = info.image;
-            NSData *data = [avfile getData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.postTitleText.text = post.title;
             
-            self.headPic.image = [UIImage imageWithData:data];
-        }];
+            MDMUserInfo *info = post.info;
+            [info fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    AVFile *avfile = info.image;
+                    NSData *data = [avfile getData];
+                    
+                    self.headPic.image = [UIImage imageWithData:data];
+                });
+            }];
+        });
     }];
     
     self.dateText.text = [commend.date substringToIndex:16];

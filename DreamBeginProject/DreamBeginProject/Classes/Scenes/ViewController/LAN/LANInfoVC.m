@@ -13,7 +13,8 @@
 
 #import "UMSocial.h"
 
-
+#import "MDMUserHelper.h"
+#import "MDMLoginVC.h"
 
 
 
@@ -24,6 +25,7 @@
 @property(nonatomic,assign)NSInteger index;
 @property(nonatomic,copy)NSString *Str;
 
+@property (nonatomic, copy) NSString *titleStr;
 
 @end
 
@@ -57,7 +59,7 @@
     UIBarButtonItem *rightThree = [[UIBarButtonItem alloc]initWithImage:image1 style:UIBarButtonItemStylePlain target:self action:@selector(button1Action:)];
     self.navigationItem.rightBarButtonItems = @[rightOne,rightTwo,rightThree];
  
-    
+    self.titleStr = self.infoModel.infoTitle;
     
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     //self.webView.delegate = self;
@@ -91,7 +93,7 @@
             NSDictionary *dict = [rootDic objectForKey:@"data"];
             NSDictionary *dic = [dict objectForKey:@"newsInfo"];
             NSString *string = [dic objectForKey:@"content"];
-            //NSLog(@"%@", string);
+//            NSLog(@"%@", string);
             self.Str = [NSString stringWithString:string];
             
             [self.webView loadHTMLString:string baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
@@ -161,19 +163,37 @@
 //收藏
 -(void)button2Action:(UIBarButtonItem *)sender{
    
-    //先判断用户是否登录
-    AVUser *currentUser = [AVUser currentUser];
-    if (currentUser != nil) {
-        // 允许用户使用应用
+    if ([MDMUserHelper sharedMDMUserHelper].currentUser) {
         
-        
-    } else {
-        
-        
-        
+        if ([MDMUserHelper isCollectOfLAN:self.infoModel.infoId]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"已经收藏" preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alert animated:YES completion:nil];
+            [self performSelector:@selector(dismissAlert:) withObject:alert afterDelay:1.0];
+        }else{
+            if (self.titleStr) {
+                [MDMUserHelper collectOfLAN:self.infoModel.infoId title:self.titleStr];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"收藏成功" preferredStyle:UIAlertControllerStyleAlert];
+                [self presentViewController:alert animated:YES completion:nil];
+                [self performSelector:@selector(dismissAlert:) withObject:alert afterDelay:1.0];
+            }else{
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"内容未加载完成" preferredStyle:UIAlertControllerStyleAlert];
+                [self presentViewController:alert animated:YES completion:nil];
+                [self performSelector:@selector(dismissAlert:) withObject:alert afterDelay:1.0];
+            }
+        }
+    }else{
+        MDMLoginVC *vc = [[MDMLoginVC alloc] init];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:nc animated:YES completion:nil];
     }
-
 }
+
+- (void)dismissAlert:(UIAlertController *)sender
+{
+    [sender dismissViewControllerAnimated:YES completion:nil];
+}
+
 //分享
 -(void)button3Action:(UIBarButtonItem *)sender{
   

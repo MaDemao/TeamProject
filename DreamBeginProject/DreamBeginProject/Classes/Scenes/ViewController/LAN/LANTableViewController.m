@@ -36,6 +36,8 @@ static NSString *const cellID = @"DiseaseType";
 {
     if (self  = [super init]) {
         self.title = @"常见病症";
+        self.navigationItem.title = @"内科";
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"常见病症" image:[UIImage imageNamed:@"iconfont-jiankangchangshi"] tag:100];
     }
     return self;
 }

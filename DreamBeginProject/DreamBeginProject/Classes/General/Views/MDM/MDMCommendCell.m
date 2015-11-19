@@ -35,10 +35,12 @@
     self.headPic.layer.cornerRadius = self.headPic.frame.size.height / 2;
     MDMUserInfo *info = commend.info;
     [info fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-        self.nameText.text = info.name;
-        AVFile *avfile = info.image;
-        NSData *data = [avfile getData];
-        self.headPic.image = [UIImage imageWithData:data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.nameText.text = info.name;
+            AVFile *avfile = info.image;
+            NSData *data = [avfile getData];
+            self.headPic.image = [UIImage imageWithData:data];
+        });
     }];
     self.dateText.text = [commend.date substringToIndex:16];
     self.desText.text = commend.des;

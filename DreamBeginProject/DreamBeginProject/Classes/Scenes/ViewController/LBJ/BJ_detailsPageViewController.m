@@ -8,12 +8,17 @@
 
 #import "BJ_detailsPageViewController.h"
 #import "Networking.h"
+#import "MDMUserHelper.h"
+#import "MDMLoginVC.h"
+
 #define kURL(i) @"http://dxy.com/app/i/columns/article/single?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&id=%ld&mc=8c86141d0947ea82472ff29157b5783b8a996503&vc=4.0.8",i
 
 #import <AVUser.h>
 #import "UMSocial.h"
 @interface BJ_detailsPageViewController ()<UIWebViewDelegate>
 @property(nonatomic,strong)UIWebView *webView;
+
+@property (nonatomic, copy) NSString *titleStr;
 
 @property (nonatomic, strong)NSString *string;
 
@@ -29,7 +34,6 @@
     [self drawWenView];
      [self loadData];
 
-    
     _index = 2;
         self.view.backgroundColor = [UIColor whiteColor];
 //    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64);
@@ -53,6 +57,9 @@
     _webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     _webView.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);//这里webView的frame时充满屏幕的
 }
+
+ 
+//取html标签
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGPoint point = scrollView.contentOffset;
@@ -115,10 +122,37 @@
 }
 - (void)rightThree{
     
-    
-    
-    
+    if ([MDMUserHelper sharedMDMUserHelper].currentUser) {
+        
+        if ([MDMUserHelper isCollectOfBJ:self.ID]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"已经收藏" preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alert animated:YES completion:nil];
+            [self performSelector:@selector(dismissAlert:) withObject:alert afterDelay:1.0];
+        }else{
+            if (self.titleStr) {
+                [MDMUserHelper collectOfBJ:self.ID title:self.titleStr];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"收藏成功" preferredStyle:UIAlertControllerStyleAlert];
+                [self presentViewController:alert animated:YES completion:nil];
+                [self performSelector:@selector(dismissAlert:) withObject:alert afterDelay:1.0];
+            }else{
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"内容未加载完成" preferredStyle:UIAlertControllerStyleAlert];
+                [self presentViewController:alert animated:YES completion:nil];
+                [self performSelector:@selector(dismissAlert:) withObject:alert afterDelay:1.0];
+            }
+        }
+    }else{
+        MDMLoginVC *vc = [[MDMLoginVC alloc] init];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:nc animated:YES completion:nil];
+    }
 }
+
+- (void)dismissAlert:(UIAlertController *)sender
+{
+    [sender dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)drawWenView{
     
 
@@ -143,6 +177,7 @@
         NSDictionary *dict1 = [array firstObject];
             NSString *str = dict1[@"content"];
             NSString *secondStr = dict1[@"title"];
+        self.titleStr = secondStr;
         //通过right分割成多个,存到数组里
         NSArray *arrayStr = [str componentsSeparatedByString:@"right"];
       

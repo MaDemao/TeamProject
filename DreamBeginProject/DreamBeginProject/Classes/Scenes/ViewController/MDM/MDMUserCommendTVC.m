@@ -52,9 +52,11 @@
             self.currentPage++;
             query.skip = 7 * (self.currentPage - 1);
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                [self.dataArray addObjectsFromArray:objects];
-                [self.tableView reloadData];
-                [self.tableView.mj_footer endRefreshing];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.dataArray addObjectsFromArray:objects];
+                    [self.tableView reloadData];
+                    [self.tableView.mj_footer endRefreshing];
+                });
             }];
         }else{
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
@@ -95,8 +97,10 @@
     [query orderByDescending:@"date"];
     query.limit = 7;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [self.dataArray addObjectsFromArray:objects];
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.dataArray addObjectsFromArray:objects];
+            [self.tableView reloadData];
+        });
     }];
 }
 
@@ -159,19 +163,21 @@
         [query whereKey:@"objectId" equalTo:commend.post.objectId];
         [query includeKey:@"images"];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (objects.count > 0) {
-                MDMPost *post = objects.firstObject;
-                vc.post = post;
-                UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-                nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                [self presentViewController:nc animated:YES completion:nil];
-            }else{
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"网络出错" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
-                [alert addAction:action];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-            [self.activityView stopAnimating];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (objects.count > 0) {
+                    MDMPost *post = objects.firstObject;
+                    vc.post = post;
+                    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+                    nc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                    [self presentViewController:nc animated:YES completion:nil];
+                }else{
+                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"网络出错" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+                    [alert addAction:action];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+                [self.activityView stopAnimating];
+            });
         }];
     }
 }

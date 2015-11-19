@@ -85,12 +85,14 @@
 {
     [super viewWillAppear:animated];
     [self.info fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-        self.nameText.text = self.info.name;
-        self.personText.text = self.info.personality;
-        
-        AVFile *avfile = self.info.image;
-        NSData *data = [avfile getData];
-        self.headPic.image = [UIImage imageWithData:data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.nameText.text = self.info.name;
+            self.personText.text = self.info.personality;
+            
+            AVFile *avfile = self.info.image;
+            NSData *data = [avfile getData];
+            self.headPic.image = [UIImage imageWithData:data];
+        });
     }];
 }
 
