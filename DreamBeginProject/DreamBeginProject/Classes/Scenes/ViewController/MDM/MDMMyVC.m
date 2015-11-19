@@ -33,6 +33,7 @@
 {
     if (self = [super init]) {
         self.title = @"我的";
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[UIImage imageNamed:@"iconfont-geren"] tag:100];
         [self loadData];
     }
     return self;
@@ -97,14 +98,16 @@ static NSString * const cell_id = @"cell_id";
     UIImage * image=[info1 objectForKey:UIImagePickerControllerEditedImage];
     MDMUserInfo *info = [MDMUserHelper sharedMDMUserHelper].currentUser.info;
     [info fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-        AVFile *avfile = info.image;
-        NSData *data = UIImageJPEGRepresentation(image, 0.1);
-        AVFile *newAvfile = [AVFile fileWithData:data];
-        [newAvfile save];
-        info.image = newAvfile;
-        [info save];
-        [avfile deleteInBackground];
-        [self viewWillAppear:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            AVFile *avfile = info.image;
+            NSData *data = UIImageJPEGRepresentation(image, 0.1);
+            AVFile *newAvfile = [AVFile fileWithData:data];
+            [newAvfile save];
+            info.image = newAvfile;
+            [info save];
+            [avfile deleteInBackground];
+            [self viewWillAppear:YES];
+        });
     }];
 }
 
@@ -122,8 +125,9 @@ static NSString * const cell_id = @"cell_id";
         [info fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
             AVFile *head = info.image;
             NSData *data = [head getData];
-//            NSLog(@"%@", head);
-            self.headPic.image = [UIImage imageWithData:data];
+            dispatch_async(dispatch_get_main_queue(), ^{
+               self.headPic.image = [UIImage imageWithData:data]; 
+            });
         }];
         
         [self.loginBtn setTitle:@"注销" forState:UIControlStateNormal];

@@ -22,8 +22,9 @@ PODS:
     - AFNetworking/NSURLSession
   - AMap3DMap (3.1.0.1)
   - AMapSearch (3.0.1)
-  - AVOSCloud (3.1.6.2)
-  - MJRefresh (3.0.2)
+  - AVOSCloud (3.1.6.3)
+  - DACircularProgress (2.3.1)
+  - MJRefresh (3.0.3)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - AMap3DMap
   - AMapSearch
   - AVOSCloud
+  - DACircularProgress
   - MJRefresh
   - SDWebImage (~> 3.7)
 
@@ -40,8 +42,9 @@ SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AMap3DMap: 58f27323368dd0e351cc3c823a77ba389da294fc
   AMapSearch: 431b082417bd3da0c2fe594c4822b664607891e9
-  AVOSCloud: a3cd4fd18e2eba50de63c490cbd59fd8892fddee
-  MJRefresh: 85377dc8c70395cf329e102a5c55505ef387c2e1
+  AVOSCloud: c71c27f9463e361d5224a762db9db46d8fc62c3e
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  MJRefresh: 2460fca1a9c09a21aa4e13d47dd9e67c471d22ac
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
 
 COCOAPODS: 0.39.0

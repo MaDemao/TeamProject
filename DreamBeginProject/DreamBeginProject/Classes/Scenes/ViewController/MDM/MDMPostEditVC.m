@@ -10,8 +10,9 @@
 #import "MDMPicItem.h"
 #import "MDMPost.h"
 #import "MDMUserHelper.h"
+#import "LGPhoto.h"
 
-@interface MDMPostEditVC ()<UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface MDMPostEditVC ()<UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate, LGPhotoPickerViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleText;
 @property (weak, nonatomic) IBOutlet UITextView *desText;
 @property (weak, nonatomic) IBOutlet UILabel *tempText;
@@ -20,6 +21,8 @@
 
 @property (nonatomic, strong) NSMutableArray *imageArray;
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
+
+@property (nonatomic, assign) LGShowImageType showType;
 @end
 
 @implementation MDMPostEditVC
@@ -133,7 +136,11 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.imageArray.count + 1;
+    if (self.imageArray.count == 9) {
+        return 9;
+    }else{
+        return self.imageArray.count + 1;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -155,40 +162,36 @@
         [self.titleText resignFirstResponder];
         [self.desText resignFirstResponder];
     }else{
-        UIImagePickerControllerSourceType sourceType=UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
-        }
-        UIImagePickerController * picker = [[UIImagePickerController alloc]init];
-        picker.delegate = self;
-        picker.allowsEditing=NO;
-        picker.sourceType=sourceType;
-        [self presentViewController:picker animated:YES completion:nil];
+        [self presentPhotoPickerViewControllerWithStyle:LGShowImageTypeImagePicker];
     }
 }
 
--(void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary *)info1
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-    [self performSelector:@selector(delayAction:) withObject:info1 afterDelay:0.1];
+- (void)presentPhotoPickerViewControllerWithStyle:(LGShowImageType)style {
+    // 创建控制器
+    LGPhotoPickerViewController *pickerVc = [[LGPhotoPickerViewController alloc] initWithShowType:style];
+    // 默认显示相册里面的内容SavePhotos
+    pickerVc.status = PickerViewShowStatusCameraRoll;
+    // 最多能选9张图片
+    pickerVc.maxCount = 9 - self.imageArray.count;
+    pickerVc.delegate = self;
+    self.showType = style;
+    [pickerVc showPickerVc:self];
 }
 
-- (void)delayAction:(NSDictionary *)info1
-{
-    UIImage * image=[info1 objectForKey:UIImagePickerControllerOriginalImage];
-    [self.imageArray addObject:image];
+- (void)pickerViewControllerDoneAsstes:(NSArray *)assets isOriginal:(BOOL)original{
+//    NSLog(@"%@", [(LGPhotoAssets *)(assets.firstObject) originImage]);
+    for (LGPhotoAssets *asse in assets) {
+        [self.imageArray addObject:asse.originImage];
+    }
     [self.collectionView reloadData];
     [self.titleText resignFirstResponder];
     [self.desText resignFirstResponder];
-    NSIndexPath *path = [NSIndexPath indexPathForItem:self.imageArray.count inSection:0];
-    [self.collectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+//    NSIndexPath *path = [NSIndexPath indexPathForItem:self.imageArray.count + 1 inSection:0];
+////    [self.collectionView scrollToItemAtIndexPath:path atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    [picker dismissViewControllerAnimated:YES completion:nil];
-}
 
+ 
 #pragma mark - 懒加载
 - (NSMutableArray *)imageArray
 {

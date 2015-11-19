@@ -50,7 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityView.color = [UIColor blackColor];
     self.activityView.center = CGPointMake([UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height / 2);
@@ -86,9 +86,11 @@
             self.currentPage++;
             query.skip = 7 * (self.currentPage - 1);
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                [self.dataArray addObjectsFromArray:objects];
-                [self.tableView reloadData];
-                [self.tableView.mj_footer endRefreshing];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.dataArray addObjectsFromArray:objects];
+                    [self.tableView reloadData];
+                    [self.tableView.mj_footer endRefreshing];
+                });
             }];
         }else{
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
@@ -115,8 +117,10 @@
             [query includeKey:@"images"];
             query.limit = 7;
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                [self.dataArray addObjectsFromArray:objects];
-                [self.tableView reloadData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.dataArray addObjectsFromArray:objects];
+                    [self.tableView reloadData];
+                });
             }];
         }
     }];
@@ -156,13 +160,15 @@
             [query2 whereKey:@"toInfo" equalTo:self.info];
             AVQuery *query = [AVQuery andQueryWithSubqueries:@[query1, query2]];
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                if (objects.count > 0) {
-                    [self.funsBtn setTitle:@"取消关注" forState:UIControlStateNormal];
-                    self.isFans = YES;
-                }else{
-                    [self.funsBtn setTitle:@"关注" forState:UIControlStateNormal];
-                    self.isFans = NO;
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (objects.count > 0) {
+                        [self.funsBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+                        self.isFans = YES;
+                    }else{
+                        [self.funsBtn setTitle:@"关注" forState:UIControlStateNormal];
+                        self.isFans = NO;
+                    }
+                });
             }];
         }
     }
@@ -187,17 +193,19 @@
                 [query2 whereKey:@"toInfo" equalTo:self.info];
                 AVQuery *query = [AVQuery andQueryWithSubqueries:@[query1, query2]];
                 [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                    if (objects.count > 0) {
-                        MDMFans *fans = objects.firstObject;
-                        [self.activityView startAnimating];
-                        NSLog(@"%@", fans);
-                        [fans deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                            self.isFans = NO;
-                            [self.funsBtn setTitle:@"关注" forState:UIControlStateNormal];
-                            [self viewWillAppear:YES];
-                            [self.activityView stopAnimating];
-                        }];
-                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (objects.count > 0) {
+                            MDMFans *fans = objects.firstObject;
+                            [self.activityView startAnimating];
+                            NSLog(@"%@", fans);
+                            [fans deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                self.isFans = NO;
+                                [self.funsBtn setTitle:@"关注" forState:UIControlStateNormal];
+                                [self viewWillAppear:YES];
+                                [self.activityView stopAnimating];
+                            }];
+                        }
+                    });
                 }];
                 
                 

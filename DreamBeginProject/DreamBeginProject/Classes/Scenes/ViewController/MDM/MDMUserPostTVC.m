@@ -45,9 +45,11 @@
             self.currentPage++;
             query.skip = 7 * (self.currentPage - 1);
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                [self.dataArray addObjectsFromArray:objects];
-                [self.tableView reloadData];
-                [self.tableView.mj_footer endRefreshing];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.dataArray addObjectsFromArray:objects];
+                    [self.tableView reloadData];
+                    [self.tableView.mj_footer endRefreshing];
+                });
             }];
         }else{
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
@@ -75,10 +77,12 @@
     [query orderByDescending:@"date"];
     query.limit = 7;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (objects.count > 0) {
-            [self.dataArray addObjectsFromArray:objects];
-            [self.tableView reloadData];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (objects.count > 0) {
+                [self.dataArray addObjectsFromArray:objects];
+                [self.tableView reloadData];
+            }
+        });
     }];
 }
 

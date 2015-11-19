@@ -31,7 +31,9 @@
     self.commentText.text = commend.des;
     MDMPost *post = commend.post;
     [post fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-        self.titleText.text = post.title;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.titleText.text = post.title;
+        });
     }];
 }
 

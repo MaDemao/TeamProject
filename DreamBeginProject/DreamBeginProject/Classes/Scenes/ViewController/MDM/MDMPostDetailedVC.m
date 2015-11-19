@@ -11,8 +11,9 @@
 #import "MDMCommendTBC.h"
 #import "MDMCommend.h"
 #import "MDMUserDetailedVC.h"
+#import "LGPhoto.h"
 
-@interface MDMPostDetailedVC ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface MDMPostDetailedVC ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, LGPhotoPickerBrowserViewControllerDelegate, LGPhotoPickerBrowserViewControllerDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *headPic;
 @property (weak, nonatomic) IBOutlet UILabel *nameText;
 @property (weak, nonatomic) IBOutlet UILabel *personText;
@@ -25,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *tempView;
 
+@property (nonatomic, strong) NSMutableArray *LGPhotoPickerBrowserPhotoArray;
+
+@property (nonatomic, assign) LGShowImageType showType;
 @end
 
 @implementation MDMPostDetailedVC
@@ -93,13 +97,23 @@
     [info fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
         AVFile *avfile = info.image;
         NSData *data = [avfile getData];
-        self.headPic.image = [UIImage imageWithData:data];
-        self.headPic.layer.masksToBounds = YES;
-        self.headPic.layer.cornerRadius = self.headPic.frame.size.height / 2.;
-        self.nameText.text = info.name;
-        self.personText.text = info.personality;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.headPic.image = [UIImage imageWithData:data];
+            self.headPic.layer.masksToBounds = YES;
+            self.headPic.layer.cornerRadius = self.headPic.frame.size.height / 2.;
+            self.nameText.text = info.name;
+            self.personText.text = info.personality;
+        });
+        
     }];
-    
+    [self.LGPhotoPickerBrowserPhotoArray removeAllObjects];
+    for (AVFile *avfile in self.post.images) {
+        NSData *data = [avfile getData];
+        UIImage *image = [UIImage imageWithData:data];
+        LGPhotoPickerBrowserPhoto *photo = [[LGPhotoPickerBrowserPhoto alloc] init];
+        photo.photoImage = image;
+        [self.LGPhotoPickerBrowserPhotoArray addObject:photo];
+    }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -126,6 +140,56 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(140, 140);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+//    [self pushPhotoBroswerWithStyle:LGShowImageTypeImageBroswer];
+    
+    LGPhotoPickerBrowserViewController *BroswerVC = [[LGPhotoPickerBrowserViewController alloc] init];
+    BroswerVC.delegate = self;
+    BroswerVC.dataSource = self;
+    BroswerVC.showType = LGShowImageTypeImageBroswer;
+    self.showType = LGShowImageTypeImageBroswer;
+    BroswerVC.currentIndexPath = indexPath;
+    [self presentViewController:BroswerVC animated:YES completion:nil];
+}
+
+/*
+- (void)pushPhotoBroswerWithStyle:(LGShowImageType)style{
+    LGPhotoPickerBrowserViewController *BroswerVC = [[LGPhotoPickerBrowserViewController alloc] init];
+    BroswerVC.delegate = self;
+    BroswerVC.dataSource = self;
+    BroswerVC.showType = style;
+    self.showType = style;
+//    BroswerVC.currentIndexPath = 
+    [self presentViewController:BroswerVC animated:YES completion:nil];
+}
+*/
+#pragma mark - LGPhotoPickerBrowserViewControllerDataSource
+- (NSInteger)photoBrowser:(LGPhotoPickerBrowserViewController *)photoBrowser numberOfItemsInSection:(NSUInteger)section{if (self.showType == LGShowImageTypeImageBroswer) {
+    return self.LGPhotoPickerBrowserPhotoArray.count;
+    } else {
+        NSLog(@"非法数据源");
+        return 0;
+    }
+}
+
+- (id<LGPhotoPickerBrowserPhoto>)photoBrowser:(LGPhotoPickerBrowserViewController *)pickerBrowser photoAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.showType == LGShowImageTypeImageBroswer) {
+        return [self.LGPhotoPickerBrowserPhotoArray objectAtIndex:indexPath.item];
+    } else {
+        NSLog(@"非法数据源");
+        return nil;
+    }
+}
+
+- (NSMutableArray *)LGPhotoPickerBrowserPhotoArray
+{
+    if (_LGPhotoPickerBrowserPhotoArray == nil) {
+        self.LGPhotoPickerBrowserPhotoArray = [NSMutableArray array];
+    }
+    return _LGPhotoPickerBrowserPhotoArray;
 }
 
 @end

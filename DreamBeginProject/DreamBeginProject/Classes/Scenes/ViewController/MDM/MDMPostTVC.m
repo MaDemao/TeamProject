@@ -26,6 +26,7 @@
 {
     if (self = [super init]) {
         self.title = @"论坛";
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"论坛" image:[UIImage imageNamed:@"iconfont-luntan"] tag:100];
     }
     return self;
 }

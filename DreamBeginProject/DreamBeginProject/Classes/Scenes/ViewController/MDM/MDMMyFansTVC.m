@@ -48,9 +48,11 @@
             self.currentPage++;
             query.skip = 7 * (self.currentPage - 1);
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                [self.dataArray addObjectsFromArray:objects];
-                [self.tableView reloadData];
-                [self.tableView.mj_footer endRefreshing];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.dataArray addObjectsFromArray:objects];
+                    [self.tableView reloadData];
+                    [self.tableView.mj_footer endRefreshing];
+                });
             }];
         }else{
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
@@ -86,8 +88,10 @@
     [query orderByDescending:@"date"];
     query.limit = 7;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [self.dataArray addObjectsFromArray:objects];
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.dataArray addObjectsFromArray:objects];
+            [self.tableView reloadData];
+        });
     }];
 }
 
@@ -110,7 +114,9 @@
         MDMUserInfo *info = fans.fromInfo;
         
         [info fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-            cell.info = info;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.info = info;
+            });
         }];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -144,10 +150,12 @@
         MDMUserInfo *info = fans.fromInfo;
         
         [info fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-            MDMUserDetailedVC *vc = [[MDMUserDetailedVC alloc] init];
-            vc.info = info;
-            [self.activityView stopAnimating];
-            [self.navigationController pushViewController:vc animated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                MDMUserDetailedVC *vc = [[MDMUserDetailedVC alloc] init];
+                vc.info = info;
+                [self.activityView stopAnimating];
+                [self.navigationController pushViewController:vc animated:YES];
+            });
         }];
     }
 }
