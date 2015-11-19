@@ -13,6 +13,7 @@
 #import "MDMPostEditVC.h"
 #import "MDMPostDetailedVC.h"
 #import "MDMUserDetailedVC.h"
+#import <MJRefresh.h>
 
 @interface MDMPostTVC ()
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -42,12 +43,31 @@
     [MDMUserHelper sharedMDMUserHelper].thePostBlock = ^(){
         self.dataArray = [MDMUserHelper sharedMDMUserHelper].postArray;
         [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     };
     
     self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.activityView.color = [UIColor blackColor];
     self.activityView.center = CGPointMake([UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height / 2);
     [self.view addSubview:self.activityView];
+    
+    [self setupRefresh];
+}
+
+- (void)setupRefresh
+{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [MDMUserHelper sharedMDMUserHelper].currentPage = 0;
+        [[MDMUserHelper sharedMDMUserHelper] requestPostDataWithPage:[MDMUserHelper sharedMDMUserHelper].currentPage];
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if ([MDMUserHelper sharedMDMUserHelper].currentPage <= [MDMUserHelper sharedMDMUserHelper].totilPage){
+            [[MDMUserHelper sharedMDMUserHelper] requestPostDataWithPage:[MDMUserHelper sharedMDMUserHelper].currentPage];
+        }else{
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -65,7 +85,10 @@
     }
     if (self.isRef == YES) {
         [self.tableView reloadData];
-        [[MDMUserHelper sharedMDMUserHelper] requestPostData];
+//        [[MDMUserHelper sharedMDMUserHelper] requestPostData];
+        
+        [self.tableView.mj_header beginRefreshing];
+        
         self.isRef = NO;
     }
 }

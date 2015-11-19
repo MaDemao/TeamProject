@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MDMMyUser.h"
 #import "MDMUserInfo.h"
+#import "MDMCollect.h"
 
 typedef void(^postBlock)(void);
 
@@ -19,8 +20,21 @@ typedef void(^postBlock)(void);
 @property (nonatomic, strong) NSMutableArray *postArray;
 @property (nonatomic, strong) postBlock thePostBlock;
 
+@property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, assign) NSInteger totilPage;
+
 + (instancetype)sharedMDMUserHelper;
 
-- (void)requestPostData;
+- (void)requestPostDataWithPage:(NSInteger)page;
+
++ (void)collectOfBJ:(NSInteger)theId
+              title:(NSString *)title;
+
++ (BOOL)isCollectOfBJ:(NSInteger)theId;
+
++ (void)collectOfLAN:(NSString *)theId
+               title:(NSString *)title;
+
++ (BOOL)isCollectOfLAN:(NSString *)theId;
 
 @end

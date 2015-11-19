@@ -33,17 +33,96 @@
     return self;
 }
 
-- (void)requestPostData
+- (void)requestPostDataWithPage:(NSInteger)page
 {
+    if (page == 0) {
+        [self.myPostArray removeAllObjects];
+
+        AVQuery *query = [MDMPost query];
+        [query countObjectsInBackgroundWithBlock:^(NSInteger number, NSError *error) {
+            self.totilPage = number / 7;
+//            self.currentPage = 0;
+        }];
+    }
+    
+    
+    self.currentPage++;
+
+    
     AVQuery *query = [MDMPost query];
     [query orderByDescending:@"date"];
     [query includeKey:@"images"];
+    query.limit = 7;
+    query.skip = 7 * (self.currentPage - 1);
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [self.myPostArray removeAllObjects];
+//        [self.myPostArray removeAllObjects];
         [self.myPostArray addObjectsFromArray:objects];
         self.thePostBlock();
     }];
 }
+
++ (void)collectOfBJ:(NSInteger)theId title:(NSString *)title
+{
+    MDMCollect *collect = [MDMCollect object];
+    collect.theId = [NSString stringWithFormat:@"%ld", theId];
+    collect.type = @"BJ";
+    collect.info = [MDMUserHelper sharedMDMUserHelper].currentUser.info;
+    collect.title = title;
+    [collect save];
+}
+
++ (BOOL)isCollectOfBJ:(NSInteger)theId
+{
+    AVQuery *query1 = [MDMCollect query];
+    [query1 whereKey:@"type" equalTo:@"BJ"];
+    
+    AVQuery *query2 = [MDMCollect query];
+    [query2 whereKey:@"info" equalTo:[MDMUserHelper sharedMDMUserHelper].currentUser.info];
+    
+    AVQuery *query3 = [MDMCollect query];
+    [query3 whereKey:@"theId" equalTo:[NSString stringWithFormat:@"%ld", theId]];
+    
+    AVQuery *query = [AVQuery andQueryWithSubqueries:@[query1, query2, query3]];
+    NSArray *array = [query findObjects];
+    if (array.count > 0) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
++ (void)collectOfLAN:(NSString *)theId title:(NSString *)title
+{
+    MDMCollect *collect = [MDMCollect object];
+    collect.theId = theId;
+    collect.type = @"LAN";
+    collect.info = [MDMUserHelper sharedMDMUserHelper].currentUser.info;
+    collect.title = title;
+    [collect save];
+}
+
++ (BOOL)isCollectOfLAN:(NSString *)theId
+{
+    AVQuery *query1 = [MDMCollect query];
+    [query1 whereKey:@"type" equalTo:@"LAN"];
+    
+    AVQuery *query2 = [MDMCollect query];
+    [query2 whereKey:@"info" equalTo:[MDMUserHelper sharedMDMUserHelper].currentUser.info];
+    
+    AVQuery *query3 = [MDMCollect query];
+    [query3 whereKey:@"theId" equalTo:theId];
+    
+    AVQuery *query = [AVQuery andQueryWithSubqueries:@[query1, query2, query3]];
+    NSArray *array = [query findObjects];
+    if (array.count > 0) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+
+
 
 - (NSMutableArray *)postArray
 {

@@ -10,5 +10,5 @@
 
 @interface BJ_detailsPageViewController : UIViewController
 @property (nonatomic, assign)NSInteger ID;
-- (void)webViewDidFinishLoad:(UIWebView *)webView;
+//- (void)webViewDidFinishLoad:(UIWebView *)webView;
 @end

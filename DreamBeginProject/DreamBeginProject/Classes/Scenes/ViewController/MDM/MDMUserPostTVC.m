@@ -10,10 +10,14 @@
 #import "MDMUserPostCell.h"
 #import "MDMPost.h"
 #import "MDMPostDetailedVC.h"
+#import <MJRefresh.h>
 
 @interface MDMUserPostTVC ()
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
+@property (nonatomic, assign) NSInteger totilPage;
+@property (nonatomic, assign) NSInteger currentPage;
 
 @end
 
@@ -30,6 +34,25 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if (self.currentPage <= self.totilPage) {
+            AVQuery *query = [MDMPost query];
+            [query whereKey:@"info" equalTo:self.info];
+            [query includeKey:@"images"];
+            [query orderByDescending:@"date"];
+            query.limit = 7;
+            self.currentPage++;
+            query.skip = 7 * (self.currentPage - 1);
+            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                [self.dataArray addObjectsFromArray:objects];
+                [self.tableView reloadData];
+                [self.tableView.mj_footer endRefreshing];
+            }];
+        }else{
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -39,10 +62,18 @@
     [self.dataArray removeAllObjects];
     [self.tableView reloadData];
     
+    AVQuery *query1 = [MDMPost query];
+    [query1 whereKey:@"info" equalTo:self.info];
+    [query1 countObjectsInBackgroundWithBlock:^(NSInteger number, NSError *error) {
+        self.totilPage = number / 7;
+        self.currentPage = 1;
+    }];
+    
     AVQuery *query = [MDMPost query];
     [query whereKey:@"info" equalTo:self.info];
     [query includeKey:@"images"];
     [query orderByDescending:@"date"];
+    query.limit = 7;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects.count > 0) {
             [self.dataArray addObjectsFromArray:objects];
@@ -95,7 +126,7 @@
     return 71;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 1;
     
