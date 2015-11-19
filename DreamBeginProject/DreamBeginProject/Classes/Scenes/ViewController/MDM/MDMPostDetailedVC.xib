@@ -43,7 +43,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYh-dr-6Mw">
-                            <rect key="frame" x="78" y="39" width="65" height="20.5"/>
+                            <rect key="frame" x="78" y="39" width="362" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -90,6 +90,7 @@
                         <constraint firstAttribute="height" constant="70" id="PNm-Xg-DZv"/>
                         <constraint firstItem="a0v-Xg-8Kx" firstAttribute="top" secondItem="wk2-TP-cZu" secondAttribute="top" id="Wag-H7-ePv"/>
                         <constraint firstItem="QJW-KW-01e" firstAttribute="top" secondItem="wk2-TP-cZu" secondAttribute="top" constant="10" id="WjH-xM-iZ7"/>
+                        <constraint firstItem="a0v-Xg-8Kx" firstAttribute="leading" secondItem="eYh-dr-6Mw" secondAttribute="trailing" constant="10" id="aag-2V-ivz"/>
                         <constraint firstAttribute="bottom" secondItem="443-Tn-abU" secondAttribute="bottom" id="afE-DR-2ph"/>
                         <constraint firstItem="QJW-KW-01e" firstAttribute="leading" secondItem="wk2-TP-cZu" secondAttribute="leading" constant="20" id="jHc-WN-pnu"/>
                         <constraint firstItem="a0v-Xg-8Kx" firstAttribute="width" secondItem="wk2-TP-cZu" secondAttribute="width" multiplier="0.25" id="nAN-tF-xIa"/>

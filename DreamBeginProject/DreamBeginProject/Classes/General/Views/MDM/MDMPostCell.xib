@@ -59,7 +59,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评论数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7b2-pf-TJr">
                                 <rect key="frame" x="8" y="93" width="40" height="20.5"/>
-                                <color key="backgroundColor" red="0.10940376810000001" green="0.73232323229999996" blue="0.17631595459999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.23462881328601767" green="0.84071180555555558" blue="0.27161062258472851" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="7CL-yJ-gMg"/>
                                 </constraints>
