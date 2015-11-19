@@ -22,6 +22,7 @@
     [super viewDidLoad];
     
     self.title = @"首页";
+    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[UIImage imageNamed:@"iconfont-shouyeshouye"] tag:100];
 
     BJ_FirstTableViewController *oneController = [[BJ_FirstTableViewController alloc]initWithURLString:kBaseUrlWithRecommended];
     oneController.title = @"推荐";

@@ -2,10 +2,15 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MDMUserCollectVC">
             <connections>
+                <outlet property="infoTableView" destination="y6r-mV-Tqs" id="SnR-PF-1c2"/>
+                <outlet property="newsTableView" destination="HRo-it-kpB" id="6Nm-Su-3KE"/>
+                <outlet property="scrollView" destination="zV6-f2-ql0" id="bCi-Z7-UXa"/>
+                <outlet property="segment" destination="3sA-Ww-599" id="ZkP-E1-HV9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,18 +20,60 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3sA-Ww-599">
-                    <rect key="frame" x="30" y="65" width="540" height="29"/>
+                    <rect key="frame" x="10" y="1" width="580" height="29"/>
                     <segments>
-                        <segment title="First"/>
-                        <segment title="Second"/>
+                        <segment title="资讯"/>
+                        <segment title="疾病"/>
                     </segments>
                 </segmentedControl>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zV6-f2-ql0">
+                    <rect key="frame" x="0.0" y="39" width="600" height="561"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WIT-Yy-57e">
+                            <rect key="frame" x="0.0" y="0.0" width="1200" height="561"/>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HRo-it-kpB">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="561"/>
+                                    <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </tableView>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y6r-mV-Tqs">
+                                    <rect key="frame" x="600" y="0.0" width="600" height="561"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="HRo-it-kpB" secondAttribute="bottom" id="3Xm-Zy-gop"/>
+                                <constraint firstItem="y6r-mV-Tqs" firstAttribute="top" secondItem="WIT-Yy-57e" secondAttribute="top" id="77K-uN-yr5"/>
+                                <constraint firstItem="HRo-it-kpB" firstAttribute="leading" secondItem="WIT-Yy-57e" secondAttribute="leading" id="9fo-LY-T1x"/>
+                                <constraint firstAttribute="trailing" secondItem="y6r-mV-Tqs" secondAttribute="trailing" id="heo-8o-dEj"/>
+                                <constraint firstAttribute="bottom" secondItem="y6r-mV-Tqs" secondAttribute="bottom" id="sbc-jw-GIF"/>
+                                <constraint firstItem="HRo-it-kpB" firstAttribute="top" secondItem="WIT-Yy-57e" secondAttribute="top" id="yU5-qu-UF8"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="WIT-Yy-57e" firstAttribute="width" secondItem="zV6-f2-ql0" secondAttribute="width" multiplier="2" id="BLS-BG-aKl"/>
+                        <constraint firstItem="y6r-mV-Tqs" firstAttribute="width" secondItem="zV6-f2-ql0" secondAttribute="width" id="KiL-vY-qrh"/>
+                        <constraint firstItem="WIT-Yy-57e" firstAttribute="top" secondItem="zV6-f2-ql0" secondAttribute="top" id="QP5-2z-ktB"/>
+                        <constraint firstItem="WIT-Yy-57e" firstAttribute="leading" secondItem="zV6-f2-ql0" secondAttribute="leading" id="RjZ-hj-TFm"/>
+                        <constraint firstItem="HRo-it-kpB" firstAttribute="width" secondItem="zV6-f2-ql0" secondAttribute="width" id="SMw-xG-noF"/>
+                        <constraint firstItem="WIT-Yy-57e" firstAttribute="centerY" secondItem="zV6-f2-ql0" secondAttribute="centerY" id="cHz-PC-76P"/>
+                        <constraint firstAttribute="bottom" secondItem="WIT-Yy-57e" secondAttribute="bottom" id="ghd-2q-3uB"/>
+                        <constraint firstAttribute="trailing" secondItem="WIT-Yy-57e" secondAttribute="trailing" id="nk7-4T-Yqw"/>
+                    </constraints>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="3sA-Ww-599" secondAttribute="trailing" constant="30" id="TAw-0g-iuh"/>
-                <constraint firstItem="3sA-Ww-599" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="Y6n-lg-mTv"/>
-                <constraint firstItem="3sA-Ww-599" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="tJq-mW-whe"/>
+                <constraint firstAttribute="trailing" secondItem="zV6-f2-ql0" secondAttribute="trailing" id="EgD-ep-ANf"/>
+                <constraint firstAttribute="trailing" secondItem="3sA-Ww-599" secondAttribute="trailing" constant="10" id="TAw-0g-iuh"/>
+                <constraint firstAttribute="bottom" secondItem="zV6-f2-ql0" secondAttribute="bottom" id="VLe-jK-9eB"/>
+                <constraint firstItem="3sA-Ww-599" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="1" id="Y6n-lg-mTv"/>
+                <constraint firstItem="zV6-f2-ql0" firstAttribute="top" secondItem="3sA-Ww-599" secondAttribute="bottom" constant="10" id="Ysq-BK-bUV"/>
+                <constraint firstItem="zV6-f2-ql0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="h0r-6F-TvC"/>
+                <constraint firstItem="3sA-Ww-599" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="tJq-mW-whe"/>
             </constraints>
         </view>
     </objects>

@@ -56,8 +56,10 @@
     query.skip = 7 * (self.currentPage - 1);
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
 //        [self.myPostArray removeAllObjects];
-        [self.myPostArray addObjectsFromArray:objects];
-        self.thePostBlock();
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.myPostArray addObjectsFromArray:objects];
+            self.thePostBlock();
+        });
     }];
 }
 
@@ -83,7 +85,12 @@
     [query3 whereKey:@"theId" equalTo:[NSString stringWithFormat:@"%ld", theId]];
     
     AVQuery *query = [AVQuery andQueryWithSubqueries:@[query1, query2, query3]];
-    NSArray *array = [query findObjects];
+    NSMutableArray *array = [NSMutableArray array];
+    NSError *error = nil;
+    [array addObjectsFromArray:[query findObjects:&error]];
+    if (error) {
+        return NO;
+    }
     if (array.count > 0) {
         return YES;
     }else{
@@ -113,7 +120,12 @@
     [query3 whereKey:@"theId" equalTo:theId];
     
     AVQuery *query = [AVQuery andQueryWithSubqueries:@[query1, query2, query3]];
-    NSArray *array = [query findObjects];
+    NSMutableArray *array = [NSMutableArray array];
+    NSError *error = nil;
+    [array addObjectsFromArray:[query findObjects:&error]];
+    if (error) {
+        return NO;
+    }
     if (array.count > 0) {
         return YES;
     }else{

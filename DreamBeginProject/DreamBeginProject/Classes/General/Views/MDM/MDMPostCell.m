@@ -44,18 +44,22 @@
     AVQuery *query = [MDMCommend query];
     [query whereKey:@"post" equalTo:post];
     [query countObjectsInBackgroundWithBlock:^(NSInteger number, NSError *error) {
-        if (number >= 1024) {
-            number = number / 1024.;
-            self.commentCount.text = [NSString stringWithFormat:@"%.2fK", (double)number];
-        }else{
-            self.commentCount.text = [NSString stringWithFormat:@"%ld", number];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (number >= 1024) {
+                int a = number / 1024.;
+                self.commentCount.text = [NSString stringWithFormat:@"%.2fK", (double)a];
+            }else{
+                self.commentCount.text = [NSString stringWithFormat:@"%ld", number];
+            }
+        });
     }];
     
     [info fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
         AVFile *avfile = info.image;
         NSData *data = [avfile getData];
-        self.headPic.image = [UIImage imageWithData:data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.headPic.image = [UIImage imageWithData:data];
+        });
     }];
 }
 
