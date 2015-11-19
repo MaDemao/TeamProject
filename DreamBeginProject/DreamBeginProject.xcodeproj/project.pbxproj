@@ -1401,7 +1401,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/DreamBeginProject/Classes/Vendors/UMSocial_Sdk_4.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MDM.DreamBeginProject11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MDM.DreamBeginProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1419,7 +1419,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/DreamBeginProject/Classes/Vendors/UMSocial_Sdk_4.3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MDM.DreamBeginProject11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MDM.DreamBeginProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
