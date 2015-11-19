@@ -54,7 +54,5 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>提示</string>
-=======
->>>>>>> 8583dfd2db3e3186baff73137c151348190e84e7
 </dict>
 </plist>
