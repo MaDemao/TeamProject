@@ -108,7 +108,7 @@
 }
 
 -(void)initTableView{
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.view.bounds)*0.6, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)*0.5) style:(UITableViewStylePlain)];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.view.bounds)*0.6, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)*0.4) style:(UITableViewStylePlain)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     

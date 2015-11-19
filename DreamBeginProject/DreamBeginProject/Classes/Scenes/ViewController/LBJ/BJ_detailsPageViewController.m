@@ -87,8 +87,17 @@
 
 
 - (void)rightOne{
+    
+    
+    
     NSString *st = [self filterHTML:self.string];
    
+    if (st.length > 130) {
+        st = [st substringToIndex:129];
+        st = [st stringByAppendingString:@"..."];
+        
+    }
+    
         [UMSocialSnsService presentSnsIconSheetView:self appKey:@"5646898a67e58e8c57002553" shareText:st shareImage:[UIImage imageNamed:@"icon.png"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToRenren,UMShareToDouban,UMShareToEmail, nil] delegate:nil];
         
   

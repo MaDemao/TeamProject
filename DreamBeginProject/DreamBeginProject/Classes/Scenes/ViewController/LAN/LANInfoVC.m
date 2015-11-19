@@ -197,12 +197,16 @@
 //分享
 -(void)button3Action:(UIBarButtonItem *)sender{
   
-    //先判断用户是否登录
-    AVUser *currentUser = [AVUser currentUser];
-    if (currentUser != nil) {
+    
+    
+    
         // 允许用户使用应用
         NSString *st = [self filterHTML:self.Str];
-        
+    
+    if (st.length > 130) {
+        st = [st substringToIndex:129];
+        st = [st stringByAppendingString:@"..."];
+    }
         
         [UMSocialSnsService presentSnsIconSheetView:self
                                              appKey:@"5646898a67e58e8c57002553"
@@ -213,14 +217,6 @@
         
 
         
-        
-    } else {
-        //缓存用户对象为空时，可打开用户注册界面…
-        
-       
-        
-        
-    }
     
 
     
