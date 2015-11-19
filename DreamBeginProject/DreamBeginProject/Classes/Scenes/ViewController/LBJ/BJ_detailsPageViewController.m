@@ -23,10 +23,7 @@
 @implementation BJ_detailsPageViewController
 
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super  viewWillAppear:animated];
-        self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self drawWenView];
@@ -37,9 +34,9 @@
         self.view.backgroundColor = [UIColor whiteColor];
 //    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64);
     self.navigationController.navigationBar.translucent = NO;
-    UIImage *image = [UIImage imageNamed:@"7.jpg"];
-    UIImage *image1 = [UIImage imageNamed:@"5.jpg"];
-    UIImage *image2 = [UIImage imageNamed:@"3.jpg"];
+    UIImage *image = [UIImage imageNamed:@"fenxiang"];
+    UIImage *image1 = [UIImage imageNamed:@"ziti"];
+    UIImage *image2 = [UIImage imageNamed:@"shoucang"];
      image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     image1 = [image1 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     image2 = [image2 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -51,11 +48,19 @@
      //收藏
     UIBarButtonItem *rightThree = [[UIBarButtonItem alloc]initWithImage:image2 style:UIBarButtonItemStylePlain target:self action:@selector(rightThree)];
     self.navigationItem.rightBarButtonItems = @[rightOne,rightThree,rightTwo];
-    _webView.scalesPageToFit =YES;
-    
+//    _webView.scalesPageToFit =YES;
+ 
+    _webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    _webView.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);//这里webView的frame时充满屏幕的
 }
-
-//取html标签
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGPoint point = scrollView.contentOffset;
+    if (point.x > 0) {
+        scrollView.contentOffset = CGPointMake(0, point.y);//这里不要设置为CGPointMake(0, point.y)，这样我们在文章下面左右滑动的时候，就跳到文章的起始位置，不科学
+    }
+}
+ //取html标签(分享的时候把尖括号全部去掉只剩文字)
 - (NSString *)filterHTML:(NSString *)html{
     NSScanner * scanner = [NSScanner scannerWithString:html];
     NSString * text = nil;
@@ -72,6 +77,8 @@
     return html;
     
 }
+
+
 - (void)rightOne{
     NSString *st = [self filterHTML:self.string];
    
@@ -86,12 +93,12 @@
     
     _index++;
     if (_index == 1) {
-        NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'";
+        NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '50%'";
         [_webView stringByEvaluatingJavaScriptFromString:str];
         
     }else if (_index == 2){
         
-        NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '250%'";
+        NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'";
         [_webView stringByEvaluatingJavaScriptFromString:str];
         //        UIColor *fontColor = [UIColor redColor];
         //        NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize=%f;document.body.style.color=%@",17.f,fontColor];
@@ -99,7 +106,7 @@
         
     } else if (_index == 3){
         _index = 0;
-        NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '300%'";
+        NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '150%'";
         [_webView stringByEvaluatingJavaScriptFromString:str];
         
     }
@@ -115,17 +122,19 @@
 - (void)drawWenView{
     
 
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(10, 0, self.view.frame.size.width - 10, [UIScreen mainScreen].bounds.size.height - 64)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , [UIScreen mainScreen].bounds.size.height - 64)];
     _webView.backgroundColor = [UIColor whiteColor];
 //    _webView.scalesPageToFit =YES;
     _webView.delegate =self;
+//    _webView.alwaysBounceVertical = NO;
+    _webView.scrollView.alwaysBounceVertical = YES;
     
     
 }
 
 - (void)loadData{
     NSString *url = [NSString stringWithFormat:kURL(_ID)];
-    NSLog(@"%ld",_ID);
+
     [[Networking shareNetworking]networkingGetWithURL:url Block:^(id object) {
         
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:object options:NSJSONReadingAllowFragments error:nil];
@@ -134,10 +143,41 @@
         NSDictionary *dict1 = [array firstObject];
             NSString *str = dict1[@"content"];
             NSString *secondStr = dict1[@"title"];
+        //通过right分割成多个,存到数组里
+        NSArray *arrayStr = [str componentsSeparatedByString:@"right"];
+      
+        str = arrayStr[0];
+       
+       
+        //去webView里面的链接的
+        NSArray *arrayStrTwo = [str componentsSeparatedByString:@"href"];
+
+        NSString *strTwo = arrayStrTwo[0];
+        NSArray *arrayStrThree = [str componentsSeparatedByString:@"_blank"];
         
+        NSString *strThree = arrayStrThree.lastObject;
+        //判断html里面是否含有href 有的话拼接 没有直接显示
+        if([str rangeOfString:@"href"].location !=NSNotFound)//_roaldSearchText
+        {
+            str = [strTwo stringByAppendingString:[NSString stringWithFormat:@"%@",strThree]];
+        }
+        else
+        {
+          
+        }
+        
+        //拼接字符串 h1字体最大
           str = [@"<h1>" stringByAppendingString:[NSString stringWithFormat:@"%@</h1>%@",secondStr,str]];
+        
+        //修改图片尺寸适应屏幕
+        NSInteger weight = self.view.frame.size.width - 10;
+     NSString *str2 = [NSString stringWithFormat:@"<head><style>img{width:%ldpx !important;}</style></head>",(long)weight];
+        str = [str2 stringByAppendingString:str];
         self.string = str;
-//          str = [NSString stringWithFormat:@"<body>%@</body>",str];
+        
+        
+       
+          str = [NSString stringWithFormat:@"<body>%@</body>",str];
             [_webView loadHTMLString:str baseURL:[NSURL fileURLWithPath:[NSBundle mainBundle].bundlePath]];
         
         
@@ -174,14 +214,18 @@
 //     "document.getElementsByTagName('head')[0].appendChild(script);"];
 //    
 //    [webView stringByEvaluatingJavaScriptFromString:@"ResizeImages();"];
-   
-    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '250%'"];
+//    
+
+    
+
+    
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'"];
+    
     
     // 禁用用户选择
-    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
+//    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitUserSelect='none';"];
     
-    // 禁用长按弹出框
-    [webView stringByEvaluatingJavaScriptFromString:@"document.documentElement.style.webkitTouchCallout='none';"];
+    
 }
 
 

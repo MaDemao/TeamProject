@@ -22,6 +22,7 @@
     [super viewDidLoad];
     
     self.title = @"首页";
+ 
 
     BJ_FirstTableViewController *oneController = [[BJ_FirstTableViewController alloc]initWithURLString:kBaseUrlWithRecommended];
     oneController.title = @"推荐";

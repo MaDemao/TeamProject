@@ -15,6 +15,8 @@
 #import "SDRefresh.h"
 #import "BJ_HaveProjectTableViewController.h"
 #import "BJ_detailsPageViewController.h"
+#import "SDRefreshFooterView.h"
+#import "SDRefreshView.h"
 
 
 
@@ -33,15 +35,18 @@
 @property(nonatomic,strong)NSArray *titles;
 //获取网址
 @property (nonatomic ,strong)NSString *urlString;
+#pragma mark --1--
 //第三方
 @property (nonatomic, weak) SDRefreshFooterView *refreshFooter;
 @property (nonatomic, weak) SDRefreshHeaderView *refreshHeader;
+//总页数
+@property (nonatomic ,strong)NSString *total_pages;
+//当前页数
 @property(nonatomic,assign)NSInteger pageIndex;
 
 //
 @property(nonatomic,strong) BJ_Homepage *model;
-//总页数
-@property (nonatomic ,strong)NSString *total_pages;
+
 @end
 
 @implementation BJ_FirstTableViewController
@@ -58,65 +63,36 @@ static NSString *const cellTwiID = @"cellTwo";
     }
     return self;
 }
-- (NSString *)getNetWorkStates {
-    UIApplication *app = [UIApplication sharedApplication];
-    NSArray *children = [[[app valueForKeyPath:@"statusBar"]valueForKeyPath:@"foregroundView"]subviews];
-    NSString *state = [[NSString alloc]init];
-    int netType = 0;
-    //获取到网络返回码
-    for (id child in children) {
-        if ([child isKindOfClass:NSClassFromString(@"UIStatusBarDataNetworkItemView")]) {
-            //获取到状态栏
-            netType = [[child valueForKeyPath:@"dataNetworkType"]intValue];
-            
-            switch (netType) {
-                case 0:
-                    state = @"无网络";
-                    //无网模式
-                    break;
-                case 1:
-                    state = @"2G";
-                    break;
-                case 2:
-                    state = @"3G";
-                    break;
-                case 3:
-                    state = @"4G";
-                    break;
-                case 5:
-                {
-                    state = @"WIFI";
-                }
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-    //根据状态选择
-    return state;
-}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
     //关闭默认的44高度
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.navigationController.navigationBar.translucent = YES;
-//    self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
-   
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:28/255.0 green:187/255.0 blue:45/255.0 alpha:1];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    _pageIndex = 1;
+    
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_HomeTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_projectTableViewCell" bundle:nil] forCellReuseIdentifier:cellTwiID];
    
     [self loadData];
     [self setExtraCellLineHidden:self.tableView];
     [self addHeader];
-    [self getNetWorkStates];
+    
+    
+    
+    
+    
+#pragma mark --2--
+    //默认为1
+    _pageIndex = 1;
     //加载第三方
     //添加头部控件
     //
@@ -177,7 +153,7 @@ static NSString *const cellTwiID = @"cellTwo";
     __weak typeof(self) weakSelf = self;
     refreshHeader.beginRefreshingOperation = ^{
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-
+           
             [weakSelf.tableView reloadData];
             [weakRefreshHeader endRefreshing];
         });
@@ -201,18 +177,21 @@ static NSString *const cellTwiID = @"cellTwo";
 
 - (void)footerRefresh
 {
+    
+#pragma mark --3--
+    
     _pageIndex ++;
    
-    
+    //判断当pageindex 大于总页数的时候结束
     if (_pageIndex > [self.total_pages intValue]) {
         [self.refreshFooter endRefreshing];
+        
         return;
     }
  
     NSString *url = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/recommend?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&page_index=%ld&vc=4.0.8",(long)_pageIndex];
-    self.urlString = url;
-
     
+    self.urlString = url;
     [self loadData];
 
     }
@@ -249,7 +228,7 @@ static NSString *const cellTwiID = @"cellTwo";
 #pragma mark --添加区头
 - (void)addHeader
 {
-    IanScrollView *scrollView = [[IanScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
+    IanScrollView *scrollView = [[IanScrollView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 200)];
     NSMutableArray *array = [NSMutableArray array];
     [array addObject:[NSString stringWithFormat:@"http://img.dxycdn.com/dotcom/2015/06/15/59/oispicfs.jpg"]];
     [array addObject:[NSString stringWithFormat:@"http://img.dxycdn.com/dotcom/2015/11/04/57/qpjzoeio.gif"]];
@@ -275,7 +254,7 @@ static NSString *const cellTwiID = @"cellTwo";
         }else{
             _special_id = 129;
         }
-        NSString *str = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&order=publishTime&page_index=%d&special_id=%ld&vc=4.0.8",1,_special_id];
+        NSString *str = [NSString stringWithFormat:@"http://dxy.com/app/i/columns/article/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&order=publishTime&page_index=%d&special_id=%ld&vc=4.0.8",1,(long)_special_id];
         BJ_HaveProjectTableViewController *haveProjectVC = [[BJ_HaveProjectTableViewController alloc]initWithURL:str];
         
         
