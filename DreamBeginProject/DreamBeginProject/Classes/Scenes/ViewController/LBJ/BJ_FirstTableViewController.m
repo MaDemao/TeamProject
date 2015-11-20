@@ -72,8 +72,7 @@ static NSString *const cellTwiID = @"cellTwo";
     //关闭默认的44高度
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.navigationController.navigationBar.translucent = YES;
-  
- 
+
 }
 
 - (void)viewDidLoad {

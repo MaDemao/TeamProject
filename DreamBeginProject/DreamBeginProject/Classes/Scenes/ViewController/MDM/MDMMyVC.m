@@ -98,7 +98,7 @@ static NSString * const cell_id = @"cell_id";
     UIImage * image=[info1 objectForKey:UIImagePickerControllerEditedImage];
     MDMUserInfo *info = [MDMUserHelper sharedMDMUserHelper].currentUser.info;
     [info fetchIfNeededInBackgroundWithBlock:^(AVObject *object, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        
             AVFile *avfile = info.image;
             NSData *data = UIImageJPEGRepresentation(image, 0.1);
             AVFile *newAvfile = [AVFile fileWithData:data];
@@ -107,7 +107,7 @@ static NSString * const cell_id = @"cell_id";
             [info save];
             [avfile deleteInBackground];
             [self viewWillAppear:YES];
-        });
+       
     }];
 }
 

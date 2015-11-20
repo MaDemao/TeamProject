@@ -29,6 +29,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    
     [MDMUserInfo registerSubclass];
     [MDMMyUser registerSubclass];
     [MDMPost registerSubclass];
@@ -68,7 +69,15 @@
     self.window.rootViewController=rootTBC;
     
     
+    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    [self.window addSubview:view];
+    view.image = [UIImage imageNamed:@"hello"];
     
+    [UIView animateWithDuration:2.0 animations:^{
+        view.alpha = 0.01;
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+    }];
     
     
     
