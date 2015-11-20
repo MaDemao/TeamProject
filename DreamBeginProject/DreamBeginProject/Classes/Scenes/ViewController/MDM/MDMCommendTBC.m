@@ -33,6 +33,7 @@
     self.isPush = NO;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MDMCommendCell" bundle:nil] forCellReuseIdentifier:@"MDMCommendCell"];
+    //
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 100;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -40,6 +41,7 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self.dataArray removeAllObjects];
         [self.tableView reloadData];
+        
         self.currentPage = 0;
         
         AVQuery *query1 = [MDMCommend query];

@@ -29,7 +29,7 @@ static NSString *const cellID = @"cell";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tableView.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height - 49 - 64 - 40 );
-    
+   
     
     
 }
@@ -45,7 +45,7 @@ static NSString *const cellID = @"cell";
     self.view.backgroundColor = [UIColor whiteColor];
     [self loadData];
    _pageIndex = 1;
-    
+  
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_SecondProjectTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
 
     //加载第三方

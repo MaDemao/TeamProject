@@ -49,14 +49,10 @@ static NSString *const cellID = @"cell";
     self.navigationController.navigationBar.translucent = NO;
     //关闭默认的44高度
 //    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.title = @"专题";
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
-//tableView初始加载无数据时，不显示单元格线
--(void)setExtraCellLineHidden: (UITableView *)tableView
-{
-    UIView *view = [UIView new];
-    view.backgroundColor = [UIColor clearColor];
-    [tableView setTableFooterView:view];
-}
+
 - (void)loadData{
    
     [[Networking shareNetworking]networkingGetWithURL:self.urlString Block:^(id object) {

@@ -23,8 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-    self.title = @"首页";
-
+    self.title = @"健康属于你   关爱在这里";
+   
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[UIImage imageNamed:@"iconfont-shouyeshouye"] tag:100];
 
 

@@ -182,10 +182,6 @@
 		C24E8A401BFD6A6E00512276 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = C24E8A3F1BFD6A6E00512276 /* search.png */; settings = {ASSET_TAGS = (); }; };
 		C26634141BF56CC300824DAA /* LANDrugVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C26634131BF56CC300824DAA /* LANDrugVC.m */; settings = {ASSET_TAGS = (); }; };
 		C26634171BF56CE300824DAA /* LANInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C26634161BF56CE300824DAA /* LANInfoVC.m */; settings = {ASSET_TAGS = (); }; };
-		C29DC24A1BF988E30079E2D7 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C29DC2461BF988E30079E2D7 /* 3.jpg */; settings = {ASSET_TAGS = (); }; };
-		C29DC24B1BF988E30079E2D7 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C29DC2471BF988E30079E2D7 /* 4.jpg */; settings = {ASSET_TAGS = (); }; };
-		C29DC24C1BF988E30079E2D7 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C29DC2481BF988E30079E2D7 /* 5.jpg */; settings = {ASSET_TAGS = (); }; };
-		C29DC24D1BF988E30079E2D7 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C29DC2491BF988E30079E2D7 /* 7.jpg */; settings = {ASSET_TAGS = (); }; };
 		C29DC24F1BF98D8E0079E2D7 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C29DC24E1BF98D8E0079E2D7 /* 12.jpg */; settings = {ASSET_TAGS = (); }; };
 		C2A7D3C51BF96D460036BE0C /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A7D3C41BF96D460036BE0C /* 5.png */; settings = {ASSET_TAGS = (); }; };
 		C2A7D3C71BF96DDF0036BE0C /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A7D3C61BF96DDF0036BE0C /* 6.png */; settings = {ASSET_TAGS = (); }; };
@@ -490,10 +486,6 @@
 		C26634131BF56CC300824DAA /* LANDrugVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANDrugVC.m; sourceTree = "<group>"; };
 		C26634151BF56CE300824DAA /* LANInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LANInfoVC.h; sourceTree = "<group>"; };
 		C26634161BF56CE300824DAA /* LANInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANInfoVC.m; sourceTree = "<group>"; };
-		C29DC2461BF988E30079E2D7 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
-		C29DC2471BF988E30079E2D7 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
-		C29DC2481BF988E30079E2D7 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
-		C29DC2491BF988E30079E2D7 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		C29DC24E1BF98D8E0079E2D7 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
 		C2A7D3C41BF96D460036BE0C /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		C2A7D3C61BF96DDF0036BE0C /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
@@ -1323,10 +1315,6 @@
 				C2F2390B1BFC769D00709C9C /* shoucang.png */,
 				C2F2390C1BFC769D00709C9C /* ziti.png */,
 				C29DC24E1BF98D8E0079E2D7 /* 12.jpg */,
-				C29DC2461BF988E30079E2D7 /* 3.jpg */,
-				C29DC2471BF988E30079E2D7 /* 4.jpg */,
-				C29DC2481BF988E30079E2D7 /* 5.jpg */,
-				C29DC2491BF988E30079E2D7 /* 7.jpg */,
 			);
 			path = BJImage;
 			sourceTree = "<group>";
@@ -1403,15 +1391,11 @@
 				41F484151BF6C04200A1BC65 /* UMSCommentInputControlleriPad.xib in Resources */,
 				413EE35F1BFC689F0042BE9D /* paizhao.png in Resources */,
 				C2F239101BFC769D00709C9C /* ziti.png in Resources */,
-				C29DC24A1BF988E30079E2D7 /* 3.jpg in Resources */,
 				412312A31BF06F5A00F819EA /* LaunchScreen.storyboard in Resources */,
 				413EE35E1BFC689F0042BE9D /* lock@2x.png in Resources */,
 				413EE3631BFC689F0042BE9D /* X.png in Resources */,
 				41F6C3FF1BF490BF0034EA9D /* iconfont-jiantouzuo.png in Resources */,
 				41F484191BF6C04200A1BC65 /* UMSnsAccountViewController.xib in Resources */,
-				C29DC24C1BF988E30079E2D7 /* 5.jpg in Resources */,
-				C29DC24D1BF988E30079E2D7 /* 7.jpg in Resources */,
-				C29DC24B1BF988E30079E2D7 /* 4.jpg in Resources */,
 				41F0BBFD1BFC22CA00C8396C /* iconfont-luntan.png in Resources */,
 				413EE3541BFC689F0042BE9D /* broswerPic0.jpg in Resources */,
 				413EE3571BFC689F0042BE9D /* broswerPic3.jpg in Resources */,

@@ -25,7 +25,8 @@
 //慢病
 #define kBaseUrlWithSlowDisease @"http://dxy.com/app/i/columns/article/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&channel_id=7&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&order=publishTime&vc=4.0.8&page_index="
 //营养
-#define kBaseUrlWithNutrition @"http://dxy.com/app/i/columns/article/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&channel_id=6&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&order=publishTime&&vc=4.0.8page_index="
+#define kBaseUrlWithNutrition @"http://dxy.com/app/i/columns/article/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&channel_id=6&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&order=publishTime&&vc=4.0.8&page_index="
+
 
 //母婴
 #define kBaseUrlWithMaternalAndInfant @"http://dxy.com/app/i/columns/article/list?ac=1d6c96d5-9a53-4fe1-9537-85a33de916f1&channel_id=5&items_per_page=10&mc=8c86141d0947ea82472ff29157b5783b8a996503&order=publishTime&vc=4.0.8&page_index="

@@ -88,6 +88,7 @@
 
 - (void)rightOne{
     NSString *st = [self filterHTML:self.string];
+
    
         [UMSocialSnsService presentSnsIconSheetView:self appKey:@"5646898a67e58e8c57002553" shareText:st shareImage:[UIImage imageNamed:@"icon.png"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToRenren,UMShareToDouban,UMShareToEmail, nil] delegate:nil];
         
@@ -179,6 +180,7 @@
             NSString *secondStr = dict1[@"title"];
         self.titleStr = secondStr;
         //通过right分割成多个,存到数组里
+       
         NSArray *arrayStr = [str componentsSeparatedByString:@"right"];
       
         str = arrayStr[0];
@@ -213,6 +215,8 @@
         
        
           str = [NSString stringWithFormat:@"<body>%@</body>",str];
+        
+        
             [_webView loadHTMLString:str baseURL:[NSURL fileURLWithPath:[NSBundle mainBundle].bundlePath]];
         
         

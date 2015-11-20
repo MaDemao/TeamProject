@@ -122,9 +122,10 @@ static NSString *const cellSeconID = @"cellTwo";
 {
     _pageIndex ++;
     
-    
+    NSLog(@"%d",[self.total_pages intValue]);
     if (_pageIndex > [self.total_pages intValue]) {
         [self.refreshFooter endRefreshing];
+        
         return;
     }
     
