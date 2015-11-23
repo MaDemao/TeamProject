@@ -197,7 +197,7 @@
                         if (objects.count > 0) {
                             MDMFans *fans = objects.firstObject;
                             [self.activityView startAnimating];
-                            NSLog(@"%@", fans);
+                            //NSLog(@"===========%@", fans);
                             [fans deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                                 self.isFans = NO;
                                 [self.funsBtn setTitle:@"关注" forState:UIControlStateNormal];

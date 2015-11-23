@@ -170,7 +170,7 @@
 - (NSInteger)photoBrowser:(LGPhotoPickerBrowserViewController *)photoBrowser numberOfItemsInSection:(NSUInteger)section{if (self.showType == LGShowImageTypeImageBroswer) {
     return self.LGPhotoPickerBrowserPhotoArray.count;
     } else {
-        NSLog(@"非法数据源");
+       // NSLog(@"非法数据源");
         return 0;
     }
 }
