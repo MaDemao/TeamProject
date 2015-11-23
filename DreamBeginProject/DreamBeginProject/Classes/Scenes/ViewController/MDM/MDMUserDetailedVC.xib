@@ -48,7 +48,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZN0-wc-Ctk">
-                                <rect key="frame" x="105" y="69" width="425" height="20.5"/>
+                                <rect key="frame" x="105" y="69" width="425" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.38133285984848486" green="0.38133285984848486" blue="0.38133285984848486" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -63,17 +63,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hFu-Cv-Qzl">
                                 <rect key="frame" x="5" y="105" width="200" height="60"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yRJ-Sl-ked">
-                                        <rect key="frame" x="10" y="10" width="180" height="41"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yRJ-Sl-ked">
+                                        <rect key="frame" x="10" y="10" width="180" height="42"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pcy-jj-Sj2">
-                                                <rect key="frame" x="0.0" y="0.0" width="180" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="180" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评论" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORD-Yg-Vj0">
-                                                <rect key="frame" x="0.0" y="20.5" width="180" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="21" width="180" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.38133285979999998" green="0.38133285979999998" blue="0.38133285979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -91,17 +91,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W9R-UW-Fnw">
                                 <rect key="frame" x="200" y="105" width="200" height="60"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gae-xV-yPf">
-                                        <rect key="frame" x="10" y="10" width="180" height="41"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gae-xV-yPf">
+                                        <rect key="frame" x="10" y="10" width="180" height="42"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZK-tm-MYy">
-                                                <rect key="frame" x="0.0" y="0.0" width="180" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="180" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="关注" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lZ-yI-d0t">
-                                                <rect key="frame" x="0.0" y="20.5" width="180" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="21" width="180" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.38133285979999998" green="0.38133285979999998" blue="0.38133285979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -119,17 +119,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P4g-ae-VuC">
                                 <rect key="frame" x="395" y="105" width="200" height="60"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BiI-T8-Q08">
-                                        <rect key="frame" x="10" y="10" width="180" height="41"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BiI-T8-Q08">
+                                        <rect key="frame" x="10" y="10" width="180" height="42"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GU6-xy-oX0">
-                                                <rect key="frame" x="0.0" y="0.0" width="180" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="180" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="粉丝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3v-tR-Bzm">
-                                                <rect key="frame" x="0.0" y="20.5" width="180" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="21" width="180" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.38133285979999998" green="0.38133285979999998" blue="0.38133285979999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -193,6 +193,7 @@
                 <constraint firstAttribute="bottom" secondItem="ros-2v-AlT" secondAttribute="bottom" id="ah9-Rh-Z9v"/>
                 <constraint firstItem="ros-2v-AlT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wb3-y3-0jf"/>
             </constraints>
+            <point key="canvasLocation" x="546" y="393"/>
         </view>
     </objects>
 </document>
