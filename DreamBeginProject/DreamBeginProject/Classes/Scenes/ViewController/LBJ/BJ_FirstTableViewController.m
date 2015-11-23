@@ -78,7 +78,7 @@ static NSString *const cellTwiID = @"cellTwo";
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-     self.navigationController.navigationBar.tintColor = [UIColor greenColor];
+ 
     
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_HomeTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_projectTableViewCell" bundle:nil] forCellReuseIdentifier:cellTwiID];
@@ -113,7 +113,6 @@ static NSString *const cellTwiID = @"cellTwo";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 #pragma mark --解析数据
 - (void)loadData
 {

@@ -35,7 +35,7 @@
      [self loadData];
 
     _index = 2;
-        self.view.backgroundColor = [UIColor whiteColor];
+    
 //    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64);
     self.navigationController.navigationBar.translucent = NO;
     UIImage *image = [UIImage imageNamed:@"fenxiang"];
@@ -52,21 +52,28 @@
      //收藏
     UIBarButtonItem *rightThree = [[UIBarButtonItem alloc]initWithImage:image2 style:UIBarButtonItemStylePlain target:self action:@selector(rightThree)];
     self.navigationItem.rightBarButtonItems = @[rightOne,rightThree,rightTwo];
+    
+    _webView.backgroundColor = [UIColor grayColor];
+    
+    //字体颜色
+    [_webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= 'gray'"];
+    //背景颜色
+    [_webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='＃2E2E2E'"];
 //    _webView.scalesPageToFit =YES;
  
-    _webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    _webView.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);//这里webView的frame时充满屏幕的
+//    _webView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//    _webView.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);//这里webView的frame时充满屏幕的
 }
 
  
-//取html标签
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    CGPoint point = scrollView.contentOffset;
-    if (point.x > 0) {
-        scrollView.contentOffset = CGPointMake(0, point.y);//这里不要设置为CGPointMake(0, point.y)，这样我们在文章下面左右滑动的时候，就跳到文章的起始位置，不科学
-    }
-}
+////取html标签
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    CGPoint point = scrollView.contentOffset;
+//    if (point.x > 0) {
+//        scrollView.contentOffset = CGPointMake(0, point.y);//这里不要设置为CGPointMake(0, point.y)，这样我们在文章下面左右滑动的时候，就跳到文章的起始位置，不科学
+//    }
+//}
  //取html标签(分享的时候把尖括号全部去掉只剩文字)
 - (NSString *)filterHTML:(NSString *)html{
     NSScanner * scanner = [NSScanner scannerWithString:html];
@@ -121,14 +128,12 @@
         //        NSString *jsString = [[NSString alloc] initWithFormat:@"document.body.style.fontSize=%f;document.body.style.color=%@",17.f,fontColor];
         //        [_webView stringByEvaluatingJavaScriptFromString:jsString];
         
-    } else if (_index == 3){
+    }else if (_index == 3){
         _index = 0;
         NSString *str = @"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '150%'";
         [_webView stringByEvaluatingJavaScriptFromString:str];
         
     }
-    
-    
 }
 - (void)rightThree{
     
@@ -168,6 +173,7 @@
 
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width , [UIScreen mainScreen].bounds.size.height - 64)];
     _webView.backgroundColor = [UIColor whiteColor];
+    
 //    _webView.scalesPageToFit =YES;
     _webView.delegate =self;
 //    _webView.alwaysBounceVertical = NO;
@@ -264,7 +270,10 @@
 //    [webView stringByEvaluatingJavaScriptFromString:@"ResizeImages();"];
 //    
 
-    
+    //字体颜色
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= 'gray'"];
+    //背景颜色
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='＃2E2E2E''"];
 
     
     [webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '100%'"];

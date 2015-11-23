@@ -23,7 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-    self.title = @"健康属于你   关爱在这里";
+    self.title = @"小   医";
+    
+    
    
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[UIImage imageNamed:@"iconfont-shouyeshouye"] tag:100];
 
@@ -34,8 +36,8 @@
     twoController.title = @"专题";
     BJ_allTableViewController *threeController = [[BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithTure];
     threeController.title = @"真相";
-     BJ_allTableViewController *fourController = [[ BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithRead];
-    fourController.title = @"一图读懂";
+//     BJ_allTableViewController *fourController = [[ BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithRead];
+//    fourController.title = @"一图读懂";
      BJ_allTableViewController *fiveController = [[BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithTumor];
     fiveController.title = @"肿瘤";
     BJ_allTableViewController *sixController = [[BJ_allTableViewController alloc]initWithUrl:kBaseUrlWithSlowDisease];
@@ -48,10 +50,10 @@
     SCNavTabBarController *navTab = [[SCNavTabBarController alloc]init];
        
     //添加控制器列表
-    navTab.subViewControllers = @[oneController,twoController,threeController,fourController,fiveController,sixController,sevenController,eightController];
+    navTab.subViewControllers = @[oneController,twoController,threeController,fiveController,sixController,sevenController,eightController];
     
     
-    navTab.canPopAllItemMenu = YES;
+    navTab.canPopAllItemMenu = NO;
     navTab.scrollAnimation = YES;
     navTab.mainViewBounces = NO;
     navTab.navTabBarColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1];
