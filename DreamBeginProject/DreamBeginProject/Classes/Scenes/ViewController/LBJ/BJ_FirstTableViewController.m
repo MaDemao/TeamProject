@@ -72,17 +72,17 @@ static NSString *const cellTwiID = @"cellTwo";
     //关闭默认的44高度
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.navigationController.navigationBar.translucent = YES;
-//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:28/255.0 green:187/255.0 blue:45/255.0 alpha:1];
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-    
+ 
     
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_HomeTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
     [self.tableView registerNib:[UINib nibWithNibName:@"BJ_projectTableViewCell" bundle:nil] forCellReuseIdentifier:cellTwiID];
-   
+    
     [self loadData];
     [self setExtraCellLineHidden:self.tableView];
     [self addHeader];
@@ -113,7 +113,6 @@ static NSString *const cellTwiID = @"cellTwo";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 #pragma mark --解析数据
 - (void)loadData
 {

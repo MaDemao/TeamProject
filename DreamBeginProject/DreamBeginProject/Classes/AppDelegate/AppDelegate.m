@@ -19,9 +19,14 @@
 #import "MDMCollect.h"
 //
 #import "LANTableViewController.h"
+#import "ZWIntroductionViewController.h"
 
+#import "FXLabel.h"
 @interface AppDelegate ()
-
+@property (nonatomic, strong) FXLabel *firstLabel;
+@property (nonatomic, strong) FXLabel *secondLabel;
+@property (nonatomic, strong) FXLabel *thirdyLabel;
+@property (nonatomic, strong) FXLabel *fourthLabel;
 @end
 
 @implementation AppDelegate
@@ -48,40 +53,115 @@
     self.window.backgroundColor=[UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    UINavigationController *BJ_rootVC = [[UINavigationController alloc]initWithRootViewController:[BJ_tabBarViewController new]];
    
     
-    UINavigationController *rootVC = [[UINavigationController alloc]initWithRootViewController:[LANTableViewController new]];
-    
-    MDMPostTVC *postVC = [[MDMPostTVC alloc] init];
-    postVC.isRef = YES;
-    UINavigationController *postNC = [[UINavigationController alloc] initWithRootViewController:postVC];
-    
-    MDMMyVC *mdmMyVC = [[MDMMyVC alloc] init];
-    mdmMyVC.view.backgroundColor = [UIColor whiteColor];
-    
-    UITabBarController *rootTBC = [[UITabBarController alloc] init];
-    rootTBC.viewControllers = @[BJ_rootVC, rootVC, postNC, mdmMyVC];
     
     
     
     
-    self.window.rootViewController=rootTBC;
+    [self rootView];
     
-    
-    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    [self.window addSubview:view];
-    view.image = [UIImage imageNamed:@"hello"];
-    
-    [UIView animateWithDuration:2.0 animations:^{
-        view.alpha = 0.01;
-    } completion:^(BOOL finished) {
-        [view removeFromSuperview];
-    }];
-    
+//    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+//    [self.window addSubview:view];
+//    view.image = [UIImage imageNamed:@"hello"];
+//    
+//    [UIView animateWithDuration:2.0 animations:^{
+//        view.alpha = 0.01;
+//    } completion:^(BOOL finished) {
+//        [view removeFromSuperview];
+//    }];
+//    
     
     
     return YES;
+}
+#pragma mark --判断个登陆 显示页
+
+- (void)rootView{
+    //添加判断是否首次登陆
+    if (![[NSUserDefaults standardUserDefaults]boolForKey:@"everLaunched"]) {
+        //userDefaults 存储判定信息
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"everLaunched"];
+        
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"firstLaunch"];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults]boolForKey:@"firstLaunch"]) {
+        //改写判定首次等陆为NO  确保以后不再走 此分支
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
+        
+        // 设置介绍图片数组
+        NSArray *coverImageNames = @[@"smlvcdShadow@2x", @"smlvcdShadow@2x", @"smlvcdShadow@2x", @"smlvcdShadow@2x"];
+        NSArray *backgroundImageNames = @[@"bj_1.png", @"bj_3.jpg", @"2.jpg", @"hello.png"];
+        //文本内容分数组
+        NSArray *titles = @[@"健康最宝贵",@"疾病早预防",@"论坛来互动",@"健康快乐伴你行"];
+        
+        //初始化轮播介绍控制器
+        __block ZWIntroductionViewController *introductionVC = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:backgroundImageNames titleArray:titles];
+        
+        //添加为跟试图
+        self.window.rootViewController = introductionVC;
+        
+        //按钮 或最后页的回调方法
+        introductionVC.didSelectedEnter = ^() {
+            //更换APP跟试图
+            introductionVC = nil;
+            
+            UINavigationController *BJ_rootVC = [[UINavigationController alloc]initWithRootViewController:[BJ_tabBarViewController new]];
+            
+            
+            UINavigationController *rootVC = [[UINavigationController alloc]initWithRootViewController:[LANTableViewController new]];
+            
+            MDMPostTVC *postVC = [[MDMPostTVC alloc] init];
+            postVC.isRef = YES;
+            UINavigationController *postNC = [[UINavigationController alloc] initWithRootViewController:postVC];
+            
+            MDMMyVC *mdmMyVC = [[MDMMyVC alloc] init];
+            mdmMyVC.view.backgroundColor = [UIColor whiteColor];
+            
+            UITabBarController *rootTBC = [[UITabBarController alloc] init];
+            rootTBC.viewControllers = @[BJ_rootVC, rootVC, postNC, mdmMyVC];
+            self.window.rootViewController=rootTBC;
+        };
+    }else{
+        //判断非首次登陆直接跳转 首页
+        UINavigationController *BJ_rootVC = [[UINavigationController alloc]initWithRootViewController:[BJ_tabBarViewController new]];
+        
+        
+        UINavigationController *rootVC = [[UINavigationController alloc]initWithRootViewController:[LANTableViewController new]];
+        
+        MDMPostTVC *postVC = [[MDMPostTVC alloc] init];
+        postVC.isRef = YES;
+        UINavigationController *postNC = [[UINavigationController alloc] initWithRootViewController:postVC];
+        
+        MDMMyVC *mdmMyVC = [[MDMMyVC alloc] init];
+        mdmMyVC.view.backgroundColor = [UIColor whiteColor];
+        
+        UITabBarController *rootTBC = [[UITabBarController alloc] init];
+        rootTBC.viewControllers = @[BJ_rootVC, rootVC, postNC, mdmMyVC];
+        self.window.rootViewController=rootTBC;
+    }
+}
+
+
+#pragma mark -- 启动动画
+- (void)animationView
+{
+    //设置启动图 拉近效果
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:self.window.bounds];
+    //图片设置与启动图片一致
+    imgView.image = [UIImage imageNamed:@"hello.png"];
+    
+    [self.window addSubview:imgView];
+    //拉近动画
+    [UIView animateWithDuration:2 animations:^{
+        
+        imgView.transform = CGAffineTransformScale(imgView.transform, 1.2, 1.2);
+        
+    } completion:^(BOOL finished) {
+        //将试图消除
+        [imgView removeFromSuperview];
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

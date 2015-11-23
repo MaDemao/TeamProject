@@ -32,5 +32,4 @@
  *  获取相册的URL
  */
 - (NSURL *)assetURL;
-
 @end
